@@ -1,5 +1,5 @@
 Mobile App Engineering Sommersemester 2018 Denis Ayana, Marvin Runge, Dustin Pawlowicz , Marvin Blaffert
-======
+---------
 # Projektvision
 
 ## MyPayments
@@ -14,7 +14,7 @@ MyPayments soll als ständiger Begleiter einen Überblick über alle Finanzen li
 MyPayments soll sowohl für Kinder die ihr Taschengeld im Auge behalten wollen, für Studenten die ihr monatliches Budget für bestimmte Aktivitäten verwalten oder auch für eine Familie die effizient mit ihrem Haushaltsgeld und anderen Finanzen wirtschaften wollen. 
 
 ### Business-Case
-Als Basis-Modell wird die App mit dezenter Werbung und einem geringen Funktionsumfang für den Nutzer verfügbar sein. Sobald der Nutzer einen kleinen Geldbetrag bezahlt hat, wird die App in ein Premium-Modell aufgewertet. Die Werbung wird nicht mehr angezeit und die App ist in vollem Umfang nutzbar. 
+Als Basis-Modell wird die App mit dezenter Werbung und einem geringen Funktionsumfang für den Nutzer verfügbar sein. Sobald der Nutzer einen kleinen Geldbetrag bezahlt hat, wird die App in ein Premium-Modell aufgewertet. Die Werbung wird nicht mehr angezeit und die App ist in vollem Umfang nutzbar.
 
 
 
