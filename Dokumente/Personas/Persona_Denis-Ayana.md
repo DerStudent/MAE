@@ -1,6 +1,6 @@
-## Perosna
+# Perosna
 
-### Robin Seal
+## Robin Seal
 
 Robin Seal, 16 Jahre alt, Schüler, geboren in Lünen, geht in die 10. Klasse des Freiherr-vom-Stein Gymnasiums.
 Robin hat vier Brüder. Lukas(23) und Marc(21), beide älter als Robin, studiern an der FH Dortmund Informatik. Rene(14) und Tobias(12), beide jünger als Robin, sind auch Schüler des Feiherr-vom-Stein Gymnasiums.
