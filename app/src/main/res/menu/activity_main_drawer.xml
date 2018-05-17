@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    android:divider="#FF0000">
+
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_overview"
+            android:icon="@drawable/ic_menu_wallet"
+            android:title="&#220;bersicht"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_income"
+            android:icon="@drawable/ic_menu_income"
+            android:title="Einnahmen" />
+        <item
+            android:id="@+id/nav_outcome"
+            android:icon="@drawable/ic_menu_outcome"
+            android:title="Ausgaben" />
+        <item
+            android:id="@+id/nav_calender"
+            android:icon="@drawable/ic_menu_calendar"
+            android:title="Kalender" />
+        <item
+            android:id="@+id/nav_charts"
+            android:icon="@drawable/ic_menu_chart"
+            android:title="Diagramme" />
+        <item
+            android:id="@+id/nav_categories"
+            android:icon="@drawable/ic_menu_category"
+            android:title="Kategorien" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_middle"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_menu_account"
+            android:title="Konto" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="Einstellungen" />
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_help"
+            android:title="Hilfe &amp; Feedback" />
+        <item
+            android:id="@+id/nav_imprint"
+            android:title="Impressum" />
+    </group>
+
+</menu>
