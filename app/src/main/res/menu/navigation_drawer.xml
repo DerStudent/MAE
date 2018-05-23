@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    android:divider="#FF0000">
+    tools:showIn="navigation_view">
 
     <group
         android:id="@+id/menu_top"
@@ -10,55 +9,55 @@
         <item
             android:id="@+id/nav_overview"
             android:icon="@drawable/ic_menu_wallet"
-            android:title="&#220;bersicht"
+            android:title="@string/nav_overview"
             android:checked="true"/>
         <item
             android:id="@+id/nav_income"
             android:icon="@drawable/ic_menu_income"
-            android:title="Einnahmen" />
+            android:title="@string/nav_income" />
         <item
             android:id="@+id/nav_outcome"
             android:icon="@drawable/ic_menu_outcome"
-            android:title="Ausgaben" />
+            android:title="@string/nav_outcome" />
         <item
             android:id="@+id/nav_calender"
             android:icon="@drawable/ic_menu_calendar"
-            android:title="Kalender" />
+            android:title="@string/nav_calender" />
         <item
             android:id="@+id/nav_charts"
             android:icon="@drawable/ic_menu_chart"
-            android:title="Diagramme" />
+            android:title="@string/nav_charts" />
         <item
             android:id="@+id/nav_categories"
             android:icon="@drawable/ic_menu_category"
-            android:title="Kategorien" />
+            android:title="@string/nav_categories" />
 
     </group>
 
     <group
         android:id="@+id/menu_middle"
-        android:checkableBehavior="none">
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_account"
             android:icon="@drawable/ic_menu_account"
-            android:title="Konto" />
+            android:title="@string/nav_account" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
-            android:title="Einstellungen" />
+            android:title="@string/nav_settings" />
     </group>
 
     <group
         android:id="@+id/menu_bottom"
-        android:checkableBehavior="none">
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_help"
-            android:title="Hilfe &amp; Feedback" />
+            android:title="@string/nav_help" />
         <item
             android:id="@+id/nav_imprint"
-            android:title="Impressum" />
+            android:title="@string/nav_imprint" />
     </group>
 
 </menu>
