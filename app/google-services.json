@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "267367424075",
+    "firebase_url": "https://mypayments-406c7.firebaseio.com",
+    "project_id": "mypayments-406c7",
+    "storage_bucket": "mypayments-406c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267367424075:android:9ec2fc4d66bb061a",
+        "android_client_info": {
+          "package_name": "de.fh.mae.md2.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267367424075-c0n3f4dbe5ss3g6pld3r0gqa7pf94fvq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.fh.mae.md2.app",
+            "certificate_hash": "9b33a77d92a2b86854e63a392005e57a7400f4e5"
+          }
+        },
+        {
+          "client_id": "267367424075-tva32cth53kc0m20gmbvp6l2qb15ldlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT9UgNQ-J0bkCpSPOjVwd6cLv2Jhwlk64"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267367424075-tva32cth53kc0m20gmbvp6l2qb15ldlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
