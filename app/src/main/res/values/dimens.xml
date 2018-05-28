@@ -16,4 +16,5 @@
 
     <dimen name="card_view_margin" tools:override="true">10dp</dimen>
     <dimen name="relative_layout_inside_card_view_padding" tools:override="true">10dp</dimen>
+    <dimen name="default_image_size">42dp</dimen>
 </resources>

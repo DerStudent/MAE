@@ -38,6 +38,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTitle(getResources().getString(R.string.sign_in_label));
         setContentView(R.layout.sign_in);
 
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
