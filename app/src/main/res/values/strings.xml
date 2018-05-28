@@ -1,18 +1,22 @@
 <resources>
     <string name="app_name">MyPayments</string>
 
-    <!-- Main-->
-    <string name="action_signOut">Abmelden</string>
+    <!-- sign_in -->
+    <string name="sign_in_label">Anmelden</string>
 
-    <!-- Navigation Drawer Header-->
+    <!-- main-->
+    <string name="main_label">&#220;bersicht</string>
+    <string name="action_sign_out">Abmelden</string>
+
+    <!-- navigation_drawer_header-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_desc">Navigation drawer header</string>
+    <string name="nav_header__image_desc">Profilbild</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
 
 
-    <!-- Navigation Drawer -->
+    <!-- navigation_drawer -->
     <string name="nav_overview">&#220;bersicht</string>
     <string name="nav_income">Einnahmen</string>
     <string name="nav_outcome">Ausgaben</string>
@@ -24,6 +28,15 @@
     <string name="nav_help">Hilfe &amp; Feedback</string>
     <string name="nav_imprint">Impressum</string>
     <string name="title_activity_login">Sign in</string>
+
+    <!-- add_transaction -->
+    <string name="add_transaction_label">Transaktion hinzuf&#252;gen</string>
+    <string name="add_transaction_save">Speichern</string>
+    <string name="add_transaction_currency">&#8364;</string>
+    <string name="add_transaction_category">Sport</string>
+    <string name="add_transaction_note">Notiz</string>
+    <string name="add_transaction_date">Heute</string>
+    <string name="add_transaction___category_image_desc">Kategoriebild</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
