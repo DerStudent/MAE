@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_sign_out"
+        android:id="@+id/action_save_transaction"
         android:orderInCategory="100"
-        android:title="@string/action_sign_out"
-        app:showAsAction="never" />
+        android:title="@string/add_transaction_save"
+        app:showAsAction="always" />
 </menu>
