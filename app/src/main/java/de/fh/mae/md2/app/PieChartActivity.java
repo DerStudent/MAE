@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
@@ -34,5 +35,9 @@ public class PiChartActivity extends AppCompatActivity {
         }
 
         PieDataSet dataset = new PieDataSet(list, "PiChart");
+        PieData lineData = new PieData(dataset);
+        chart.setData(lineData);
+        chart.invalidate(); // refresh
+
     }
 }
