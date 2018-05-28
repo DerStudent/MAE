@@ -9,8 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,10 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
 
-    private static final String TAG = "SignInActivity";
+    private static final String TAG = "SignIn";
     private static final int RC_SIGN_IN = 9001;
 
     private SignInButton signInButton;
@@ -40,7 +38,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.sign_in);
 
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
@@ -149,7 +147,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void switchToMainActivity() {
         finish();
-        Intent myIntent = new Intent(SignInActivity.this, MainActivity.class);
+        Intent myIntent = new Intent(SignIn.this, Main.class);
         startActivity(myIntent);
     }
 }

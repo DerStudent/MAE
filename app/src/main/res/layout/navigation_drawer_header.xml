@@ -24,7 +24,7 @@
             android:id="@+id/nav_header_image"
             android:layout_width="@dimen/profile_width"
             android:layout_height="@dimen/profile_height"
-            android:contentDescription="@string/nav_header_desc"
+            android:contentDescription="@string/nav_header__image_desc"
             android:src="@mipmap/ic_launcher_round" />
 
         <TextView

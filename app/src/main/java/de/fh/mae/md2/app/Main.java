@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity
+public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.navigation_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -115,11 +114,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_signOutButton) {
+        if (id == R.id.action_sign_out) {
             signOut();
 
             finish();
-            Intent myIntent = new Intent(MainActivity.this, SignInActivity.class);
+            Intent myIntent = new Intent(Main.this, SignIn.class);
             startActivity(myIntent);
             return true;
         }
@@ -195,8 +194,8 @@ public class MainActivity extends AppCompatActivity
         int i = view.getId();
 
         if (i == R.id.action_floatingActionButton) {
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Intent myIntent = new Intent(Main.this, AddTransaction.class);
+            startActivity(myIntent);
         }
     }
 }
