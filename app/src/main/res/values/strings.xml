@@ -35,8 +35,11 @@
     <string name="add_transaction_currency">&#8364;</string>
     <string name="add_transaction_category">Sport</string>
     <string name="add_transaction_note">Notiz</string>
-    <string name="add_transaction_date">Heute</string>
-    <string name="add_transaction___category_image_desc">Kategoriebild</string>
+    <string name="add_transaction_category_image_desc">Kategoriebild</string>
+    <string name="add_transaction_note_image_desc">Notizsymbol</string>
+    <string name="add_transaction_hint_note">Notiz</string>
+    <string name="add_transaction_calendar_image_desc">Kalendersymbol</string>
+    <string name="add_transaction_hint_empty"></string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
