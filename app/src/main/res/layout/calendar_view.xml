@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -35,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="21.01     - 10€        Mittagessen"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/holo_green_dark" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -50,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="21.01     + 20€        Taschengeld"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/holo_red_dark" />
 
         </android.support.v7.widget.CardView>
 
