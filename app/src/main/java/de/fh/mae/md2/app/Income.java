@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
 
-public class Einnahmen extends AppCompatActivity {
+public class Income extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -21,23 +21,6 @@ public class Einnahmen extends AppCompatActivity {
 
     //the recyclerview
     RecyclerView recyclerView;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_einnahmen);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_ausgaben);
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,35 +41,35 @@ public class Einnahmen extends AppCompatActivity {
         cal.set(2018,5,28);
         transactionList.add(
                 new Transaction(
-                        100,
-                        new Category("Fast Food"),
+                        -100,
+                        new Category("Fast Food Fast Food Fast Food Fast Food"),
                         cal.getTime(),
                         R.drawable.category_fastfood));
 
         transactionList.add(
                 new Transaction(
-                        20,
+                        -20,
                         new Category("Transport"),
                         cal.getTime(),
                         R.drawable.category_transport));
 
         transactionList.add(
                 new Transaction(
-                        8,
+                        -8,
                         new Category("Movie"),
                         cal.getTime(),
                         R.drawable.category_localmovie));
 
         transactionList.add(
                 new Transaction(
-                        23.56,
+                        -23.56,
                         new Category("Supermarket"),
                         cal.getTime(),
                         R.drawable.category_store));
 
         transactionList.add(
                 new Transaction(
-                        30,
+                        -30,
                         new Category("Restaurant"),
                         cal.getTime(),
                         R.drawable.category_restaurant));
@@ -97,5 +80,4 @@ public class Einnahmen extends AppCompatActivity {
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
     }
-
 }

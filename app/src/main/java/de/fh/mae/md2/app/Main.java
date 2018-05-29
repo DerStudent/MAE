@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -165,7 +164,8 @@ public class Main extends AppCompatActivity
         if (id == R.id.nav_overview) {
             // Handle the camera action
         } else if (id == R.id.nav_income) {
-
+            Intent myIntent = new Intent(Main.this, Income.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_outcome) {
 
         } else if (id == R.id.nav_calender) {
