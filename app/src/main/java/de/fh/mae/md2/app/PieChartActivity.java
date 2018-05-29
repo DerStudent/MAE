@@ -20,6 +20,9 @@ public class PieChartActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+        /**
+         *
+
         PieChart chart = (PieChart) findViewById(R.id.chart1);
 
         float[] werte = new float[5];
@@ -39,6 +42,6 @@ public class PieChartActivity extends AppCompatActivity {
         PieData lineData = new PieData(dataset);
         chart.setData(lineData);
         chart.invalidate(); // refresh
-
+         */
     }
 }
