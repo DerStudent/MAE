@@ -1,32 +1,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:background="@color/colorTextOnSecondary"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <CalendarView
-        android:id="@+id/calendar"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/date_transaktion1"
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_margin="10dp" />
+
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:text="21.01     - 10€        Mittagessen"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/date_transaktion2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="21.01     + 20€        Taschengeld"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/date_transaktion1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="21.01     - 10€        Mittagessen"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/date_transaktion2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="21.01     + 20€        Taschengeld"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 
 
 </LinearLayout>
