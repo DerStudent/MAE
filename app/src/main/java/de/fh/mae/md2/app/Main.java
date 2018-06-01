@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,8 +27,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import de.fh.mae.md2.app.activities.AddTransactionActivity;
+import de.fh.mae.md2.app.activities.CalendarActivity;
+import de.fh.mae.md2.app.activities.ChartActivity;
+import de.fh.mae.md2.app.activities.IncomeActivity;
+import de.fh.mae.md2.app.activities.OutcomeActivity;
+import de.fh.mae.md2.app.activities.OverviewActivity;
+import de.fh.mae.md2.app.activities.SignInActivity;
+import de.fh.mae.md2.app.activities.UnlockActivity;
+
 public class Main extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
@@ -34,7 +45,7 @@ public class Main extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.navigation_drawer);
+        setContentView(R.layout.navigation_drawer_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -58,12 +69,8 @@ public class Main extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setNavigationDrawerHeader(navigationView);
-        setOnClickListeners();
-    }
 
-    private void setOnClickListeners() {
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.action_floatingActionButton);
-        floatingActionButton.setOnClickListener(this);
+        displaySelectedScreen(R.id.nav_overview);
     }
 
     private void setNavigationDrawerHeader(NavigationView navigationView) {
@@ -117,7 +124,7 @@ public class Main extends AppCompatActivity
             signOut();
 
             finish();
-            Intent myIntent = new Intent(Main.this, SignIn.class);
+            Intent myIntent = new Intent(Main.this, SignInActivity.class);
             startActivity(myIntent);
             return true;
         }
@@ -155,47 +162,66 @@ public class Main extends AppCompatActivity
                 });
     }
 
+    private void displaySelectedScreen(int id) {
+        Fragment fragment = null;
+
+        switch (id) {
+            case R.id.nav_overview:
+                fragment = new OverviewActivity();
+                break;
+            case R.id.nav_income:
+                fragment = new IncomeActivity();
+                break;
+            case R.id.nav_outcome:
+                fragment = new OutcomeActivity();
+                break;
+            case R.id.nav_calender:
+                fragment = new CalendarActivity();
+                break;
+            case R.id.nav_charts:
+                fragment = new ChartActivity();
+                break;
+            case R.id.nav_categories:
+                Intent myIntent = new Intent(this, UnlockActivity.class);
+                startActivity(myIntent);
+                break;
+            case R.id.nav_account:
+                break;
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_help:
+                break;
+            case R.id.nav_imprint:
+                break;
+
+        }
+
+        if(fragment != null) {
+            hideFloatingButton();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        }
+
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.main_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    private void hideFloatingButton() {
+        FloatingActionButton buttonFloatingMain = (FloatingActionButton) findViewById(R.id.button__floating_main);
+        if(buttonFloatingMain != null) {
+            buttonFloatingMain.setVisibility(View.GONE);
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_overview) {
-            // Handle the camera action
-        } else if (id == R.id.nav_income) {
-            Intent myIntent = new Intent(Main.this, Income.class);
-            startActivity(myIntent);
-        } else if (id == R.id.nav_outcome) {
-
-        } else if (id == R.id.nav_calender) {
-
-        } else if (id == R.id.nav_charts) {
-
-        } else if (id == R.id.nav_categories) {
-
-        } else if (id == R.id.nav_account) {
-
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_help) {
-
-        } else if (id == R.id.nav_imprint) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        displaySelectedScreen(item.getItemId());
         return true;
     }
 
-    @Override
-    public void onClick(View view) {
-        int i = view.getId();
-
-        if (i == R.id.action_floatingActionButton) {
-            Intent myIntent = new Intent(Main.this, AddTransaction.class);
-            startActivity(myIntent);
-        }
-    }
 }

@@ -20,4 +20,49 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="large_amount_outcome" parent="@android:style/TextAppearance">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorOutcome</item>
+    </style>
+
+    <style name="large_amount_income" parent="@android:style/TextAppearance">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorIncome</item>
+    </style>
+
+    <style name="medium_amount_outcome" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+        <item name="android:textColor">@color/colorOutcome</item>
+    </style>
+
+    <style name="medium_amount_income" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+        <item name="android:textColor">@color/colorIncome</item>
+    </style>
+
+    <style name="small_amount_outcome" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_small_material</item>
+        <item name="android:textColor">@color/colorOutcome</item>
+    </style>
+
+    <style name="small_amount_income" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_small_material</item>
+        <item name="android:textColor">@color/colorIncome</item>
+    </style>
+
+    <style name="small" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_small_material</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="medium" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="large" parent="@android:style/TextAppearance">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>

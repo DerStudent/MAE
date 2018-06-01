@@ -1,14 +1,20 @@
 <resources>
     <string name="app_name">MyPayments</string>
 
-    <!-- sign_in -->
-    <string name="sign_in_label">Anmelden</string>
-
-    <!-- main-->
+    <!-- activity_main -->
     <string name="main_label">&#220;bersicht</string>
     <string name="action_sign_out">Abmelden</string>
 
-    <!-- navigation_drawer_header-->
+    <!-- activity_sign_in -->
+    <string name="sign_in_label">Anmelden</string>
+
+    <!-- activity_unlock -->
+    <string name="unlock_label">Entsperren</string>
+
+    <!-- activity_overview -->
+    <string name="overview_label">&#220;bersicht</string>
+
+    <!-- activity_navigation_drawer_header-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header__image_desc">Profilbild</string>
@@ -16,7 +22,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
 
 
-    <!-- navigation_drawer -->
+    <!-- navigation_drawer_main -->
     <string name="nav_overview">&#220;bersicht</string>
     <string name="nav_income">Einnahmen</string>
     <string name="nav_outcome">Ausgaben</string>
@@ -29,7 +35,7 @@
     <string name="nav_imprint">Impressum</string>
     <string name="title_activity_login">Sign in</string>
 
-    <!-- add_transaction -->
+    <!-- activity_add_transaction -->
     <string name="add_transaction_label">Transaktion hinzuf&#252;gen</string>
     <string name="add_transaction_save">Speichern</string>
     <string name="add_transaction_currency">&#8364;</string>
@@ -41,7 +47,19 @@
     <string name="add_transaction_calendar_image_desc">Kalendersymbol</string>
     <string name="add_transaction_hint_empty"></string>
 
-    <!-- Strings related to login -->
+    <!-- activity_icome -->
+    <string name="income_label">Einnahmen</string>
+
+    <!-- activity_outcome -->
+    <string name="outcome_label">Ausgaben</string>
+
+    <!-- activity_calendar -->
+    <string name="calendar_label">Kalender</string>
+
+    <!-- activity_chart -->
+    <string name="chart_label">Diagramme</string>
+
+    <!-- Strings related to sign in -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>

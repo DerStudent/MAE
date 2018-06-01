@@ -14,7 +14,9 @@
     <dimen name="design_navigation_separator_vertical_padding" tools:override="true">0dp</dimen>
     <dimen name="design_navigation_padding_bottom" tools:override="true">0dp</dimen>
 
-    <dimen name="card_view_margin" tools:override="true">10dp</dimen>
-    <dimen name="relative_layout_inside_card_view_padding" tools:override="true">10dp</dimen>
+    <dimen name="margin_default" tools:override="true">10dp</dimen>
+    <dimen name="margin_default_half" tools:override="true">5dp</dimen>
+    <dimen name="padding_inside_card" tools:override="true">10dp</dimen>
+    <dimen name="padding_inside_card_half" tools:override="true">5dp</dimen>
     <dimen name="default_image_size">42dp</dimen>
 </resources>

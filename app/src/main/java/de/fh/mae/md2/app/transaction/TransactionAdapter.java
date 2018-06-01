@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app;
+package de.fh.mae.md2.app.transaction;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -13,10 +13,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.List;
 
-/**
- * Created by Belal on 10/18/2017.
- */
-
+import de.fh.mae.md2.app.R;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
     //this context we will use to inflate the layout
@@ -47,16 +44,19 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //binding the data with the viewholder views
 
         if(transaction.getValue() >= 0){
-            holder.textViewValue.setText(String.format("+ %.2f €", transaction.getValue()));
+            holder.textAmount.setText(String.format("+ %.2f €", transaction.getValue()));
+            int colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
+            holder.textAmount.setTextColor(colorIncome);
         }
         else{
-            holder.textViewValue.setText(String.format("- %.2f €", Math.abs(transaction.getValue())));
-            holder.textViewValue.setTextColor(Color.RED);
+            holder.textAmount.setText(String.format("- %.2f €", Math.abs(transaction.getValue())));
+            int colorOutcome = mCtx.getResources().getColor(R.color.colorOutcome);
+            holder.textAmount.setTextColor(colorOutcome);
         }
 
-        holder.textViewCategory.setText(transaction.getCategory().getName());
-        holder.textViewDate.setText(new SimpleDateFormat("MM/dd/yyyy").format(transaction.getDate()));
-        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(transaction.getImage()));
+        holder.textCategory.setText(transaction.getCategory().getName());
+        holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
+        holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getImage()));
     }
 
     @Override
@@ -65,16 +65,16 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     class TransactionViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewCategory, textViewValue, textViewDate;
-        ImageView imageView;
+        TextView textCategory, textAmount, textDate;
+        ImageView imageCategory;
 
         public TransactionViewHolder(View itemView) {
             super(itemView);
 
-            textViewCategory = itemView.findViewById(R.id.textViewCategory);
-            textViewDate = itemView.findViewById(R.id.textViewDate);
-            textViewValue = itemView.findViewById(R.id.textViewValue);
-            imageView = itemView.findViewById(R.id.imageView);
+            textCategory = itemView.findViewById(R.id.text_transaction_card_category);
+            textDate = itemView.findViewById(R.id.text_transaction_card_date);
+            textAmount = itemView.findViewById(R.id.text_transaction_card_amount);
+            imageCategory = itemView.findViewById(R.id.image_transaction_card_category);
         }
     }
 }

@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app;
+package de.fh.mae.md2.app.transaction;
 
 public class Category{
     private String name;

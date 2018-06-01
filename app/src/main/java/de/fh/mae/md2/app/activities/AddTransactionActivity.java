@@ -1,25 +1,22 @@
-package de.fh.mae.md2.app;
+package de.fh.mae.md2.app.activities;
 
-import android.app.ActionBar;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class AddTransaction extends AppCompatActivity implements View.OnClickListener {
+import de.fh.mae.md2.app.R;
+
+public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_transaction);
+        setContentView(R.layout.activity_add_transaction);
 
         View current = getCurrentFocus();
         if (current != null) {
@@ -29,15 +26,18 @@ public class AddTransaction extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setOnClickListeners();
 
-        TextView amountText = (TextView) findViewById(R.id.transaction_amount_text);
+        ImageView imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
+        imageCategory.setImageDrawable(getResources().getDrawable(R.drawable.ic_category_store));
+
+        TextView textAmount = (TextView) findViewById(R.id.text_add_transaction_amount);
         String currency = String.format(getResources().getString(R.string.add_transaction_currency));
-        amountText.setText("0,00 " + currency);
+        textAmount.setText("0,00 " + currency);
 
-        TextView categoryText = (TextView) findViewById(R.id.transaction_category_text);
-        categoryText.setText("Supermarkt");
+        TextView textCategory = (TextView) findViewById(R.id.text_add_transaction_category);
+        textCategory.setText("Supermarkt");
 
-        TextView calendarText = (TextView) findViewById(R.id.transaction_calendar_text);
-        calendarText.setText("Heute");
+        TextView textCalendar = (TextView) findViewById(R.id.text_add_transaction_calendar);
+        textCalendar.setText("Heute");
     }
 
     private void setOnClickListeners() {
@@ -45,7 +45,6 @@ public class AddTransaction extends AppCompatActivity implements View.OnClickLis
         addTransactionAmount.setOnClickListener(this);
         RelativeLayout addTransactionCategory = (RelativeLayout) findViewById(R.id.layout_add_transaction_category);
         addTransactionCategory.setOnClickListener(this);
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.action_floatingActionButton);
     }
 
     @Override

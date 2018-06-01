@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app;
+package de.fh.mae.md2.app.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,10 +24,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class SignIn extends AppCompatActivity implements View.OnClickListener {
+import de.fh.mae.md2.app.Main;
+import de.fh.mae.md2.app.R;
+
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private static final String TAG = "SignIn";
+    private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
     private SignInButton signInButton;
@@ -40,7 +43,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         setTitle(getResources().getString(R.string.sign_in_label));
-        setContentView(R.layout.sign_in);
+        setContentView(R.layout.activity_sign_in);
 
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
@@ -149,7 +152,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     private void switchToMainActivity() {
         finish();
-        Intent myIntent = new Intent(SignIn.this, Main.class);
+        Intent myIntent = new Intent(SignInActivity.this, Main.class);
         startActivity(myIntent);
     }
 }
