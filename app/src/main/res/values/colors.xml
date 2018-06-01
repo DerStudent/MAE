@@ -15,4 +15,7 @@
     <color name="colorTextOnSecondary">#ffffff</color>
 
     <color name="colorBackground">#fff3f3f3</color>
+
+    <color name="colorIncome">#4caf50</color>
+    <color name="colorOutcome">#f44336</color>
 </resources>
