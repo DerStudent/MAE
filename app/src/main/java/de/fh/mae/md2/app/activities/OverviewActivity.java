@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import de.fh.mae.md2.app.transaction.Category;
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.transaction.Transaction;
-import de.fh.mae.md2.app.transaction.TransactionAdapter;
+import de.fh.mae.md2.app.transaction.*;
 
 public class OverviewActivity extends Fragment implements  View.OnClickListener{
     private FragmentActivity activity;
