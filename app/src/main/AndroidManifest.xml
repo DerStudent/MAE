@@ -10,19 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".Main"
             android:label="@string/main_label"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SignInActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,18 +28,22 @@
         <activity
             android:name=".activities.UnlockActivity"
             android:label="@string/unlock_label"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-        </activity>
-        <activity android:name=".activities.AddTransactionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AddTransactionActivity"
             android:label="@string/add_transaction_label"
-            android:theme="@style/AppTheme"
             android:parentActivityName=".Main"
-            >
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main"
-                />
+                android:value=".Main" />
         </activity>
+        <activity
+            android:name=".activities.AddTransactionAmountActivity"
+            android:label="@string/add_transaction_amount_label"
+            android:theme="@style/AppTheme" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.AddTransactionActivity" />
     </application>
 </manifest>

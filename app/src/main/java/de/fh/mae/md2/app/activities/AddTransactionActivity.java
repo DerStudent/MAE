@@ -1,10 +1,12 @@
 package de.fh.mae.md2.app.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,11 +19,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
-
-        View current = getCurrentFocus();
-        if (current != null) {
-            current.clearFocus();
-        }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setOnClickListeners();
@@ -45,6 +42,10 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         addTransactionAmount.setOnClickListener(this);
         RelativeLayout addTransactionCategory = (RelativeLayout) findViewById(R.id.layout_add_transaction_category);
         addTransactionCategory.setOnClickListener(this);
+        RelativeLayout addTransactionNote = (RelativeLayout) findViewById(R.id.layout_add_transaction_note);
+        addTransactionNote.setOnClickListener(this);
+        RelativeLayout addTransactionCalendar = (RelativeLayout) findViewById(R.id.layout_add_transaction_calendar);
+        addTransactionCalendar.setOnClickListener(this);
     }
 
     @Override
@@ -66,8 +67,15 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         int i = view.getId();
 
         if (i == R.id.layout_add_transaction_amount) {
-
+            Intent myIntent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
+            startActivity(myIntent);
         } else if (i == R.id.layout_add_transaction_category) {
+
+        } else if (i == R.id.layout_add_transaction_note) {
+            EditText note = (EditText) findViewById(R.id.edit_add_transaction_note);
+            note.setFocusableInTouchMode(true);
+            note.requestFocus();
+        } else if (i == R.id.layout_add_transaction_calendar) {
 
         }
     }
