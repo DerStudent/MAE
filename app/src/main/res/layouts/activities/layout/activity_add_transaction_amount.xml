@@ -3,7 +3,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:card_view="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 tools:context=".activities.AddTransactionAmountActivity"
-android:id="@+id/layout_add_transaction"
+android:id="@+id/layout_add_transaction_amount"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
@@ -11,20 +11,20 @@ android:gravity="top"
 >
 
     <TextView
-        android:id="@+id/text_amount"
+        android:id="@+id/text_add_transaction_amount_amount"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/border_bottom"
-        android:text="@string/defaultAmount"
+        android:text=""
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/layout_input"
+        android:layout_above="@+id/layout_add_transaction_amount_input"
         android:padding="@dimen/padding_default"
         android:textAppearance="@style/large"
         android:gravity="bottom"
         />
 
     <android.support.v7.widget.GridLayout
-        android:id="@+id/layout_input"
+        android:id="@+id/layout_add_transaction_amount_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:columnCount="4"
@@ -34,7 +34,7 @@ android:gravity="top"
         >
 
         <Button
-            android:id="@+id/button_one"
+            android:id="@+id/button_add_transaction_amount_one"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
@@ -50,7 +50,7 @@ android:gravity="top"
             />
 
         <Button
-            android:id="@+id/button_two"
+            android:id="@+id/button_add_transaction_amount_two"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left_bottom"
@@ -66,7 +66,7 @@ android:gravity="top"
             />
 
         <Button
-            android:id="@+id/button_three"
+            android:id="@+id/button_add_transaction_amount_three"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left_bottom"
@@ -79,7 +79,7 @@ android:gravity="top"
             />
 
         <ImageButton
-            android:id="@+id/button_check"
+            android:id="@+id/button_add_transaction_amount_check"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="false"
@@ -95,7 +95,7 @@ android:gravity="top"
             />
 
         <Button
-            android:id="@+id/button_four"
+            android:id="@+id/button_add_transaction_amount_four"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
@@ -108,7 +108,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_five"
+            android:id="@+id/button_add_transaction_amount_five"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left_bottom"
@@ -120,7 +120,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_six"
+            android:id="@+id/button_add_transaction_amount_six"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left_bottom"
@@ -132,7 +132,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_seven"
+            android:id="@+id/button_add_transaction_amount_seven"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
@@ -144,7 +144,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_eight"
+            android:id="@+id/button_add_transaction_amount_eight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left_bottom"
@@ -156,7 +156,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_nine"
+            android:id="@+id/button_add_transaction_amount_nine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left_bottom"
@@ -168,11 +168,11 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_comma"
+            android:id="@+id/button_add_transaction_amount_separator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_none"
-            android:text="@string/add_transaction_amount_button_comma"
+            android:text=""
             android:textAppearance="@style/mediumSecondary"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
@@ -180,7 +180,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <Button
-            android:id="@+id/button_zero"
+            android:id="@+id/button_add_transaction_amount_zero"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left"
@@ -192,7 +192,7 @@ android:gravity="top"
             android:stateListAnimator="@null"/>
 
         <ImageButton
-            android:id="@+id/button_backspace"
+            android:id="@+id/button_add_transaction_amount_backspace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_left"
