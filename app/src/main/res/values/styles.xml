@@ -65,4 +65,9 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="mediumSecondary" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
+
 </resources>
