@@ -1,43 +1,62 @@
 package de.fh.mae.md2.app.activities;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener {
+    private int AMOUNT_REQUEST = 1;
+
+    private String separator;
+    private String currencySymbol;
+    private String amount;
+
+    private TextView textAmount;
+    private TextView textCategory;
+    private TextView textCalendar;
+
+    private ImageView imageCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
 
-        View current = getCurrentFocus();
-        if (current != null) {
-            current.clearFocus();
-        }
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setOnClickListeners();
 
-        ImageView imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
+        init();
+    }
+
+    private void init() {
+        MyPayments myPayments = (MyPayments) this.getApplication();
+        currencySymbol = myPayments.getCurrencySymbol();
+        separator = myPayments.getSeparator();
+        amount = myPayments.getDefaultAmount();
+
+        imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
         imageCategory.setImageDrawable(getResources().getDrawable(R.drawable.ic_category_store));
 
-        TextView textAmount = (TextView) findViewById(R.id.text_add_transaction_amount);
-        String currency = String.format(getResources().getString(R.string.add_transaction_currency));
-        textAmount.setText("0,00 " + currency);
+        textAmount = (TextView) findViewById(R.id.text_add_transaction_amount);
 
-        TextView textCategory = (TextView) findViewById(R.id.text_add_transaction_category);
+        textCategory = (TextView) findViewById(R.id.text_add_transaction_category);
         textCategory.setText("Supermarkt");
 
-        TextView textCalendar = (TextView) findViewById(R.id.text_add_transaction_calendar);
+        textCalendar = (TextView) findViewById(R.id.text_add_transaction_calendar);
         textCalendar.setText("Heute");
+
+        refresh();
     }
 
     private void setOnClickListeners() {
@@ -45,13 +64,23 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         addTransactionAmount.setOnClickListener(this);
         RelativeLayout addTransactionCategory = (RelativeLayout) findViewById(R.id.layout_add_transaction_category);
         addTransactionCategory.setOnClickListener(this);
+        RelativeLayout addTransactionNote = (RelativeLayout) findViewById(R.id.layout_add_transaction_note);
+        addTransactionNote.setOnClickListener(this);
+        RelativeLayout addTransactionCalendar = (RelativeLayout) findViewById(R.id.layout_add_transaction_calendar);
+        addTransactionCalendar.setOnClickListener(this);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        finish();
-        return true;
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_save_transaction) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -66,10 +95,32 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         int i = view.getId();
 
         if (i == R.id.layout_add_transaction_amount) {
-
+            Intent intent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
+            intent.putExtra("REQUEST", AMOUNT_REQUEST);
+            intent.putExtra("AMOUNT", amount);
+            startActivityForResult(intent, AMOUNT_REQUEST);
         } else if (i == R.id.layout_add_transaction_category) {
+
+        } else if (i == R.id.layout_add_transaction_note) {
+            EditText note = (EditText) findViewById(R.id.edit_add_transaction_note);
+            note.setFocusableInTouchMode(true);
+            note.requestFocus();
+        } else if (i == R.id.layout_add_transaction_calendar) {
 
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == AMOUNT_REQUEST) {
+            amount = data.getStringExtra("AMOUNT");
+        }
+
+        refresh();
+    }
+
+    private void refresh() {
+        textAmount.setText(amount + " " + currencySymbol);
+    }
 }

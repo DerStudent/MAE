@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">MyPayments</string>
+    <string name="currencySymbolEuro">&#8364;</string>
+    <string name="currencySymbolDollar">&#36;</string>
+    <string name="separatorComma">&#44;</string>
+    <string name="separatorDot">&#46;</string>
 
     <!-- activity_main -->
     <string name="main_label">&#220;bersicht</string>
@@ -38,7 +42,6 @@
     <!-- activity_add_transaction -->
     <string name="add_transaction_label">Transaktion hinzuf&#252;gen</string>
     <string name="add_transaction_save">Speichern</string>
-    <string name="add_transaction_currency">&#8364;</string>
     <string name="add_transaction_category">Sport</string>
     <string name="add_transaction_note">Notiz</string>
     <string name="add_transaction_category_image_desc">Kategoriebild</string>
@@ -46,6 +49,21 @@
     <string name="add_transaction_hint_note">Notiz</string>
     <string name="add_transaction_calendar_image_desc">Kalendersymbol</string>
     <string name="add_transaction_hint_empty"></string>
+
+    <!-- activity_add_transaction_amount-->
+    <string name="add_transaction_amount_label">Betrag eingeben</string>
+    <string name="add_transaction_amount_button_1">1</string>
+    <string name="add_transaction_amount_button_2">2</string>
+    <string name="add_transaction_amount_button_3">3</string>
+    <string name="add_transaction_amount_button_4">4</string>
+    <string name="add_transaction_amount_button_5">5</string>
+    <string name="add_transaction_amount_button_6">6</string>
+    <string name="add_transaction_amount_button_7">7</string>
+    <string name="add_transaction_amount_button_8">8</string>
+    <string name="add_transaction_amount_button_9">9</string>
+    <string name="add_transaction_amount_button_0">0</string>
+    <string name="add_transaction_amount_button_check">Best&#228;tigen</string>
+    <string name="add_transaction_amount_button_backspace">Backspace</string>
 
     <!-- activity_icome -->
     <string name="income_label">Einnahmen</string>
@@ -71,5 +89,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

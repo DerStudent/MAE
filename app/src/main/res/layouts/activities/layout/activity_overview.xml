@@ -43,10 +43,10 @@
                     android:id="@+id/text_overview_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/padding_inside_card"
-                    android:paddingEnd="@dimen/padding_inside_card"
-                    android:paddingTop="@dimen/padding_inside_card"
-                    android:paddingBottom="@dimen/padding_inside_card_half"
+                    android:paddingStart="@dimen/padding_default"
+                    android:paddingEnd="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_default"
+                    android:paddingBottom="@dimen/padding_default_half"
                     android:text="Kontostand"
                     android:textAppearance="@style/medium"
                     />
@@ -55,9 +55,9 @@
                     android:id="@+id/layout_overview_income"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/padding_inside_card"
-                    android:paddingEnd="@dimen/padding_inside_card"
-                    android:paddingTop="@dimen/padding_inside_card_half"
+                    android:paddingStart="@dimen/padding_default"
+                    android:paddingEnd="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_default_half"
                     >
 
                     <TextView
@@ -88,9 +88,9 @@
                     android:id="@+id/layout_overview_outcome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/padding_inside_card"
-                    android:paddingEnd="@dimen/padding_inside_card"
-                    android:paddingBottom="@dimen/padding_inside_card_half"
+                    android:paddingStart="@dimen/padding_default"
+                    android:paddingEnd="@dimen/padding_default"
+                    android:paddingBottom="@dimen/padding_default_half"
                     >
 
                     <RelativeLayout
@@ -135,10 +135,10 @@
                     android:id="@+id/layout_overview_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/padding_inside_card"
-                    android:paddingEnd="@dimen/padding_inside_card"
-                    android:paddingTop="@dimen/padding_inside_card_half"
-                    android:paddingBottom="@dimen/padding_inside_card_half"
+                    android:paddingStart="@dimen/padding_default"
+                    android:paddingEnd="@dimen/padding_default"
+                    android:paddingTop="@dimen/padding_default_half"
+                    android:paddingBottom="@dimen/padding_default_half"
                     >
 
                     <TextView
