@@ -87,8 +87,8 @@ public class Main extends AppCompatActivity
 
         Picasso.get()
                 .load(imageuUrl)
-                .placeholder(R.mipmap.ic_launcher_round)
-                .error(R.mipmap.ic_launcher_round)
+                .placeholder(R.drawable.ic_default_user)
+                .error(R.drawable.ic_default_user)
                 .into(headerImage);
 
         headerName.setText(name);
@@ -145,6 +145,8 @@ public class Main extends AppCompatActivity
                         //updateUI(null);
                     }
                 });
+
+        MyPayments.signOut();
     }
 
     // disconnect

@@ -6,10 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.SignInActivity"
-    android:gravity="center">
+    android:gravity="center"
+    android:layout_marginRight="@dimen/margin_default"
+    android:layout_marginLeft="@dimen/margin_default"
+    android:orientation="vertical"
+    >
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/sign_in_button_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:id="@+id/sign_in_button_guest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="@string/sign_in_guest"
+        android:drawableStart="@drawable/ic_default_user"
+        />
+
 </LinearLayout>

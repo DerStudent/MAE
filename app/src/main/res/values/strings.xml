@@ -11,6 +11,9 @@
 
     <!-- activity_sign_in -->
     <string name="sign_in_label">Anmelden</string>
+    <string name="sign_in_guest">Als Gast anmelden</string>
+    <string name="sign_in_guest_name">Gast</string>
+    <string name="sign_in_guest_email">Melden Sie sich unter "Konto" an!</string>
 
     <!-- activity_unlock -->
     <string name="unlock_label">Entsperren</string>

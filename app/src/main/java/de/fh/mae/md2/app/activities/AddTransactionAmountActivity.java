@@ -17,7 +17,6 @@ import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 
 public class AddTransactionAmountActivity extends AppCompatActivity implements View.OnClickListener {
-    private MyPayments myPayments;
 
     private String amount;
     private String separator;
@@ -39,9 +38,8 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
     private  void init() {
         componentName = this.getCallingActivity();
 
-        myPayments = (MyPayments) this.getApplication();
-        currencySymbol = myPayments.getCurrencySymbol();
-        separator = myPayments.getSeparator();
+        currencySymbol = MyPayments.getCurrencySymbol();
+        separator = MyPayments.getSeparator();
 
         Button separatorButton = (Button) findViewById(R.id.button_add_transaction_amount_separator);
         separatorButton.setText(separator);
@@ -49,7 +47,7 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
         textAmount = (TextView) findViewById(R.id.text_add_transaction_amount_amount);
         amount = getIntent().getStringExtra("AMOUNT");
         if(isAmountEmpty()) {
-            amount = myPayments.getDefaultAmount();
+            amount = MyPayments.getDefaultAmount();
         }
 
         refreshAmount();
@@ -86,16 +84,16 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
 
     private void saveAmount() {
         if(isAmountEmpty()) {
-            amount = myPayments.getDefaultAmount();
+            amount = MyPayments.getDefaultAmount();
         } else if(containsSeparator()) {
             String missingFractionalDigits = "";
-            for(int i = (amount.length() - amount.indexOf(separator)); i < myPayments.getFractionalDigits(); i++) {
-                missingFractionalDigits += myPayments.getZero();
+            for(int i = (amount.length() - 1 - amount.indexOf(separator)); i < MyPayments.getFractionalDigits(); i++) {
+                missingFractionalDigits += MyPayments.getZero();
             }
 
             amount += missingFractionalDigits;
         } else {
-            amount += separator + myPayments.getDefaultFractionalDigitValue();
+            amount += separator + MyPayments.getDefaultFractionalDigitValue();
         }
 
         Intent intent = new Intent(AddTransactionAmountActivity.this, AddTransactionActivity.class);
@@ -156,14 +154,14 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
 
     private void addInputToAmount(int buttonId) {
         String inputValue = getButtonInputValue(buttonId);
-        if(containsSeparator() && !myPayments.getDefaultAmount().equals(amount)) {
+        if(containsSeparator() && !MyPayments.getDefaultAmount().equals(amount)) {
             int separatorPosition = amount.indexOf(separator);
-            if(separatorPosition + myPayments.getFractionalDigits() < amount.length()) {
+            if(separatorPosition + MyPayments.getFractionalDigits() < amount.length()) {
                 return;
             }
         }
 
-        if(amount.equals(myPayments.getDefaultAmount())) {
+        if(amount.equals(MyPayments.getDefaultAmount())) {
             amount = "";
         }
 
@@ -172,7 +170,7 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
 
     private void refreshAmount() {
         if(isAmountEmpty()) {
-            amount = myPayments.getDefaultAmount();
+            amount = MyPayments.getDefaultAmount();
         }
 
         removeLeadingZeros();
@@ -180,7 +178,7 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
     }
 
     private void removeLeadingZeros() {
-        String zero = myPayments.getZero();
+        String zero = MyPayments.getZero();
 
         while(amount.length() > 1 && amount.startsWith(zero) && amount.charAt(1) != separator.charAt(0)) {
             amount = amount.substring(1, amount.length());
