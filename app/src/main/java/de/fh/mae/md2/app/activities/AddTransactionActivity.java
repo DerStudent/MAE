@@ -40,10 +40,9 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     }
 
     private void init() {
-        MyPayments myPayments = (MyPayments) this.getApplication();
-        currencySymbol = myPayments.getCurrencySymbol();
-        separator = myPayments.getSeparator();
-        amount = myPayments.getDefaultAmount();
+        currencySymbol = MyPayments.getCurrencySymbol();
+        separator = MyPayments.getSeparator();
+        amount = MyPayments.getDefaultAmount();
 
         imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
         imageCategory.setImageDrawable(getResources().getDrawable(R.drawable.ic_category_store));

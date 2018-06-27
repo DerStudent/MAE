@@ -6,9 +6,13 @@ import android.content.res.Configuration;
 public class MyPayments extends Application {
     private static final int fractionalDigits = 2;
     private static final String zero = "0";
-    private String separator;
-    private String currencySymbol;
-    private String defaultAmount;
+
+    private static String separator;
+    private static String currencySymbol;
+    private static String defaultAmount;
+
+    private static boolean premium = false;
+    private static boolean signedIn = false;
 
     @Override
     public void onCreate() {
@@ -27,7 +31,7 @@ public class MyPayments extends Application {
         defaultAmount = zero + separator + getDefaultFractionalDigitValue();
     }
 
-    public String getDefaultFractionalDigitValue() {
+    public static String getDefaultFractionalDigitValue() {
         String value = "";
         for(int i = 0; i < fractionalDigits; i++) {
             value += zero;
@@ -51,23 +55,23 @@ public class MyPayments extends Application {
         super.onLowMemory();
     }
 
-    public  String getZero() {
+    public static String getZero() {
         return zero;
     }
 
-    public int getFractionalDigits() {
+    public static int getFractionalDigits() {
         return fractionalDigits;
     }
 
-    public String getSeparator() {
+    public static String getSeparator() {
         return separator;
     }
 
-    public String getCurrencySymbol() {
+    public static String getCurrencySymbol() {
         return currencySymbol;
     }
 
-    public String getDefaultAmount() {
+    public static String getDefaultAmount() {
         return defaultAmount;
     }
 
@@ -79,4 +83,23 @@ public class MyPayments extends Application {
         this.currencySymbol = currencySymbol;
     }
 
+    public static boolean isPremium() {
+        return premium;
+    }
+
+    public void setPremium(boolean premium) {
+        this.premium = premium;
+    }
+
+    public static boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public static void signIn() {
+        signedIn = true;
+    }
+
+    public static void signOut() {
+        signedIn = false;
+    }
 }
