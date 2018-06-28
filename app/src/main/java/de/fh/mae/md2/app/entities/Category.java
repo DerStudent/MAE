@@ -1,16 +1,25 @@
 package de.fh.mae.md2.app.entities;
 
 import android.arch.persistence.room.*;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "categories")
 public class Category {
 
     @PrimaryKey(autoGenerate = true)
+    @NonNull
     private int id;
 
+    @NonNull
     private String name;
 
+    @NonNull
     private int image;
+
+    public Category(@NonNull String name, @NonNull int image){
+        this.name = name;
+        this.image = image;
+    }
 
     public String getName() {
         return name;
@@ -33,7 +42,4 @@ public class Category {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }
