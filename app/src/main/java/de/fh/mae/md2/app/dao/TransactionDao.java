@@ -20,5 +20,5 @@ public interface TransactionDao {
     public void deleteTransaction(Transaction transaction);
 
     @Query("SELECT * FROM transactions")
-    public LiveData<List<Transaction>> loadAllTransactions();
+    public List<Transaction> loadAllTransactions();
 }

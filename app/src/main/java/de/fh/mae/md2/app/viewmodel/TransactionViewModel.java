@@ -13,7 +13,7 @@ public class TransactionViewModel extends AndroidViewModel {
 
     private TransactionRepository transactionRepository;
 
-    private LiveData<List<Transaction>> allTransactions;
+    private List<Transaction> allTransactions;
 
     public TransactionViewModel(Application application){
         super(application);
@@ -21,7 +21,7 @@ public class TransactionViewModel extends AndroidViewModel {
         allTransactions = transactionRepository.getAllTransactions();
     }
 
-    public LiveData<List<Transaction>> getAllTransactions() {
+    public List<Transaction> getAllTransactions() {
         return allTransactions;
     }
 

@@ -20,6 +20,6 @@ public interface CategoryDao {
     public void deleteCategory(Category category);
 
     @Query("SELECT * FROM categories")
-    public LiveData<List<Category>> loadAllCategories();
+    public List<Category> loadAllCategories();
 
 }

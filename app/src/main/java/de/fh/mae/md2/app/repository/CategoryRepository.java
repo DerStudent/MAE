@@ -14,7 +14,7 @@ import de.fh.mae.md2.app.entities.Category;
 public class CategoryRepository {
 
     private CategoryDao categoryDao;
-    private LiveData<List<Category>> allCategories;
+    private List<Category> allCategories;
 
     public CategoryRepository(Application application){
 
@@ -24,7 +24,7 @@ public class CategoryRepository {
         allCategories =categoryDao.loadAllCategories();
     }
 
-    public LiveData<List<Category>> getAllCategories() {
+    public List<Category> getAllCategories() {
         return allCategories;
     }
 

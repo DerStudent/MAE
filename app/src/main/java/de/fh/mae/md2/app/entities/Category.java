@@ -42,4 +42,7 @@ public class Category {
         return id;
     }
 
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
 }

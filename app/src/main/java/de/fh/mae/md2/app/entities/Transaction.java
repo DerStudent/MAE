@@ -57,4 +57,7 @@ public class Transaction {
         this.date = date;
     }
 
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
 }

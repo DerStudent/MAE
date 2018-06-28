@@ -13,7 +13,7 @@ import de.fh.mae.md2.app.entities.Transaction;
 public class TransactionRepository {
 
     private TransactionDao transactionDAO;
-    private LiveData<List<Transaction>> allTransactions;
+    private List<Transaction> allTransactions;
 
     public TransactionRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -23,7 +23,7 @@ public class TransactionRepository {
         allTransactions = transactionDAO.loadAllTransactions();
     }
 
-    public LiveData<List<Transaction>> getAllTransactions() {
+    public List<Transaction> getAllTransactions() {
         return allTransactions;
     }
 
