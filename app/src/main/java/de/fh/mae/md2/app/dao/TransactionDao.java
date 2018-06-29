@@ -1,7 +1,11 @@
 package de.fh.mae.md2.app.dao;
 
 import de.fh.mae.md2.app.entities.Transaction;
+
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
+
+import java.util.List;
 
 @Dao
 public interface TransactionDao {
@@ -16,5 +20,5 @@ public interface TransactionDao {
     public void deleteTransaction(Transaction transaction);
 
     @Query("SELECT * FROM transactions")
-    public Transaction[] loadAllTransactions();
+    public List<Transaction> loadAllTransactions();
 }
