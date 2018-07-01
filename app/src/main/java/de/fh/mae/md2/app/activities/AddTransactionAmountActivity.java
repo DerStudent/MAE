@@ -66,22 +66,6 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (item.getItemId() == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        } else if (id == R.id.action_save_transaction_amount) {
-            saveAmount();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private void saveAmount() {
         if(isAmountEmpty()) {
             amount = MyPayments.getDefaultAmount();
@@ -101,6 +85,7 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
         if(componentName != null) {
             setResult(getIntent().getIntExtra("REQUEST", 0), intent);
         }
+
         finish();
     }
 
@@ -131,6 +116,22 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
         }
 
         refreshAmount();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (item.getItemId() == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        } else if (id == R.id.action_save_transaction_amount) {
+            saveAmount();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean containsSeparator() {
