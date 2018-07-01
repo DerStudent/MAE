@@ -3,59 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:id="@+id/activity_add_category"
     android:orientation="vertical"
     android:background="@color/colorBackground"
     >
 
     <RelativeLayout
-        android:id="@+id/layout_add_category"
+        android:id="@+id/layout_add_category_head"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
-        <RelativeLayout
-            android:id="@+id/layout_add_category_head"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            android:paddingTop="14dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:text="@string/category_add"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingTop="8dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/colorPrimary"
-                android:textColor="@android:color/white"
-                android:textAlignment="center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:text="@string/category_add"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/category_add_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_add_category_head"
+        android:padding="10dp">
 
         <RelativeLayout
-            android:id="@+id/layout_add_category_input"
+            android:id="@+id/category_add_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout_add_category_head"
+
             android:layout_marginBottom="10dp">
 
             <ImageView
-                android:id="@+id/add_category_imageView"
+                android:id="@+id/category_add_imageView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_category_icon_7"
                 android:onClick="clickEvent"
+                android:clickable="true"
                 android:background="@android:color/white" />
 
             <EditText
-                android:id="@+id/text_add_category"
+                android:id="@+id/category_add_text"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:singleLine="true"
                 android:hint="@string/category_content_description"
-                android:layout_toEndOf="@+id/add_category_imageView"
+                android:layout_toEndOf="@+id/category_add_imageView"
                 android:background="?android:attr/editTextBackground"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_centerVertical="true"
@@ -64,16 +66,17 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/layout_add_category_input2"
+            android:id="@+id/category_add_input2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout_add_category_input">
+            android:layout_below="@id/category_add_input">
 
             <ImageButton
-                android:id="@+id/button_done"
+                android:id="@+id/category_add_button_done"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryLight"
+                android:clickable="true"
                 app:srcCompat="@drawable/ic_category_done"/>
 
         </RelativeLayout>
