@@ -95,4 +95,11 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
 
+    <!-- category_chart -->
+    <string name="title_activity_category_overview">Kategorien</string>
+    <string name="category_placeholer">Kategorie</string>
+    <string name="category_image_description">Kategoriebild</string>
+    <string name="tab_text_1">Einnahmen</string>
+    <string name="tab_text_2">Ausgaben</string>
+
 </resources>

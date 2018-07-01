@@ -47,5 +47,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.AddTransactionActivity" />
+        <activity
+            android:name=".activities.CategoryOverviewActivity"
+            android:label="@string/category_placeholer"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activities.CategoryPopupActivity"
+            android:label="@string/app_name"
+            android:theme="@style/popupAddCategory"/>
+        <activity
+            android:name=".activities.ChooseIconActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 </manifest>

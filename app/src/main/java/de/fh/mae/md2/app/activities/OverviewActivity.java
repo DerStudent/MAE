@@ -74,41 +74,6 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener{
         Calendar cal = Calendar.getInstance();
 
         //adding some items to our list
-        cal.set(2018,5,5);
-        transactionList.add(
-            new Transaction(
-                +100,
-                new Category("Fast Food"),
-                cal.getTime(),
-                R.drawable.ic_category_fastfood));
-
-        transactionList.add(
-            new Transaction(
-                +20,
-                new Category("Transport"),
-                cal.getTime(),
-                R.drawable.ic_category_transport));
-
-        transactionList.add(
-            new Transaction(
-                -8,
-                new Category("Movie"),
-                cal.getTime(),
-                R.drawable.ic_category_localmovie));
-
-        transactionList.add(
-            new Transaction(
-                -23.56,
-                new Category("Supermarket"),
-                cal.getTime(),
-                R.drawable.ic_category_store));
-
-        transactionList.add(
-            new Transaction(
-                +30,
-                new Category("Restaurant"),
-                cal.getTime(),
-                R.drawable.ic_category_restaurant));
 
         //creating recyclerview adapter
         TransactionAdapter adapter = new TransactionAdapter(activity, transactionList);
