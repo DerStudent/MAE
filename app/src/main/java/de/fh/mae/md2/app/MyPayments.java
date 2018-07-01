@@ -15,6 +15,8 @@ public class MyPayments extends Application {
     private static boolean premium = false;
     private static boolean signedIn = false;
 
+    private static String pin = "1234";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -63,6 +65,14 @@ public class MyPayments extends Application {
 
     public static int getFractionalDigits() {
         return fractionalDigits;
+    }
+
+    public static String getPin() {
+        return pin;
+    }
+
+    public static void setPin(String pin) {
+        MyPayments.pin = pin;
     }
 
     public static String getSeparator() {

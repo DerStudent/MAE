@@ -1,33 +1,28 @@
 package de.fh.mae.md2.app.activities;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import de.fh.mae.md2.app.MyPayments;
+import de.fh.mae.md2.app.Main;
 import de.fh.mae.md2.app.R;
 
 public class UnlockActivity extends AppCompatActivity implements View.OnClickListener{
     private AppCompatActivity activity;
     private String amount;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock);
-;
         setOnClickListeners();
     }
 
@@ -43,11 +38,14 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void isPinCorrect(String pin){
-        Fragment fragment = new OverviewActivity();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.containe); // fragmen container id in first parameter is the  container(Main layout id) of Activity
-        transaction.addToBackStack(null);  // this will manage backstack
-        transaction.commit();
+        if(pin.equals(MyPayments.getPin())){
+            Fragment fragment = new OverviewActivity();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        }else{
+            amount = "";
+        }
     }
 
     @Override
@@ -73,13 +71,15 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
         switch (i) {
             case R.id.button_pin_backspace:
                 removeCharacterFromAmount();
+                System.out.println(amount);
                 break;
             case R.id.button_pin_check:
-                Intent myIntent = new Intent(this, OverviewActivity.class);
-                startActivity(myIntent);
+                System.out.println(amount);
+                isPinCorrect(amount);
                 break;
             default:
                 addInputToAmount(i);
+                System.out.println(amount);
                 break;
         }
     }
@@ -91,17 +91,11 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
 
     private void addInputToAmount(int buttonId) {
         String inputValue = getButtonInputValue(buttonId);
-        if(!MyPayments.getDefaultAmount().equals(amount)) {
-            //if(MyPayments.getFractionalDigits() < amount.length()) {   //------------------------------
-                return;
-            //}
+        if(amount == null){
+            amount = inputValue;
+        }else {
+            amount += inputValue;
         }
-
-        if(amount.equals(MyPayments.getDefaultAmount())) {
-            amount = "";
-        }
-
-        amount += inputValue;
     }
 
     private void removeCharacterFromAmount() {
