@@ -3,8 +3,6 @@ package de.fh.mae.md2.app.activities;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -17,7 +15,7 @@ import de.fh.mae.md2.app.R;
 
 
 
-public class CategoryOverviewActivity extends FragmentActivity {
+public class CategoryOverviewActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private CategoryPageAdapter mCategoryPageAdapter;

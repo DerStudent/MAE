@@ -1,29 +1,32 @@
 package de.fh.mae.md2.app.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.dao.CategoryDao;
 
 public class CategoryPopupActivity extends AppCompatActivity {
+
+    private CategoryDao cd;
+    private int image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "MyPaymentsDatabase").build();
+
+        cd = db.categoryDao();*/
 
         setContentView(R.layout.category_popup);
 
@@ -34,6 +37,16 @@ public class CategoryPopupActivity extends AppCompatActivity {
         int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 242, r.getDisplayMetrics());
         int width = dm.widthPixels;
         getWindow().setLayout((int)(width * .95), ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        ImageButton b = findViewById(R.id.category_add_button_done);
+
+        b.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //cd.insertCategory(new Category(((EditText)findViewById(R.id.category_add_text)).getText().toString(), image, true));
+                finish();
+            }
+        });
     }
 
     public void clickEvent(View v)
@@ -46,8 +59,8 @@ public class CategoryPopupActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
-                int drawableId = data.getIntExtra("drawableId", 7);
-                ((ImageView) findViewById(R.id.add_category_imageView)).setImageResource(drawableId);
+                image = data.getIntExtra("drawableId", 7);
+                ((ImageView) findViewById(R.id.category_add_imageView)).setImageResource(image);
             }
         }
     }
