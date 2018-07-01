@@ -10,6 +10,7 @@ public class MyPayments extends Application {
     private static String separator;
     private static String currencySymbol;
     private static String defaultAmount;
+    private static String todayText;
 
     private static boolean premium = false;
     private static boolean signedIn = false;
@@ -29,6 +30,7 @@ public class MyPayments extends Application {
         }
 
         defaultAmount = zero + separator + getDefaultFractionalDigitValue();
+        todayText = getResources().getString(R.string.today);
     }
 
     public static String getDefaultFractionalDigitValue() {
@@ -73,6 +75,10 @@ public class MyPayments extends Application {
 
     public static String getDefaultAmount() {
         return defaultAmount;
+    }
+
+    public static String getTodayText() {
+        return todayText;
     }
 
     public void setSeparator(String separator) {
