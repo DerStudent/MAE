@@ -1,7 +1,10 @@
 package de.fh.mae.md2.app.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +14,7 @@ import android.widget.Toast;
 import de.fh.mae.md2.app.Category.CategoryImageAdapter;
 import de.fh.mae.md2.app.R;
 
-public class ChooseIconActivity extends AppCompatActivity{
+public class ChooseIconActivity extends FragmentActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +26,10 @@ public class ChooseIconActivity extends AppCompatActivity{
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ChooseIconActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("drawableId", view.getContext().getResources().getIdentifier("ic_category_icon_" + (position+1), "drawable", view.getContext().getPackageName()));
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
     }

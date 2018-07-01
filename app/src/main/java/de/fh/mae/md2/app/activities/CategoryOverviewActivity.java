@@ -1,9 +1,10 @@
 package de.fh.mae.md2.app.activities;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import de.fh.mae.md2.app.Category.CategoryPageAdapter;
 import de.fh.mae.md2.app.fragments.*;
 import de.fh.mae.md2.app.R;
 
-public class CategoryOverviewActivity extends AppCompatActivity {
+
+
+public class CategoryOverviewActivity extends FragmentActivity {
     private static final String TAG = "MainActivity";
 
     private CategoryPageAdapter mCategoryPageAdapter;
@@ -22,7 +25,7 @@ public class CategoryOverviewActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_overview);
         Log.d(TAG, "onCreate: Starting.");

@@ -12,6 +12,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -38,6 +39,16 @@ public class CategoryPopupActivity extends AppCompatActivity {
     public void clickEvent(View v)
     {
         Intent myIntent = new Intent(CategoryPopupActivity.this, ChooseIconActivity.class);
-        startActivity(myIntent);
+        startActivityForResult(myIntent, 1);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                int drawableId = data.getIntExtra("drawableId", 7);
+                ((ImageView) findViewById(R.id.add_category_imageView)).setImageResource(drawableId);
+            }
+        }
     }
 }

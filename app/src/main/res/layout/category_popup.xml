@@ -40,7 +40,7 @@
             android:layout_marginBottom="10dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/add_category_imageView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:padding="5dp"
@@ -55,7 +55,7 @@
                 android:layout_marginStart="10dp"
                 android:singleLine="true"
                 android:hint="@string/category_content_description"
-                android:layout_toEndOf="@+id/imageView"
+                android:layout_toEndOf="@+id/add_category_imageView"
                 android:background="?android:attr/editTextBackground"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_centerVertical="true"
