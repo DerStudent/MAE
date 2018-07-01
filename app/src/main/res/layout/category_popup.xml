@@ -28,7 +28,7 @@
                 android:textColor="@android:color/white"
                 android:textAlignment="center"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:text="Hinzufügen"/>
+                android:text="@string/category_add"/>
 
         </RelativeLayout>
 
@@ -54,11 +54,12 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:singleLine="true"
-                android:hint="Bezeichnung"
+                android:hint="@string/category_content_description"
                 android:layout_toEndOf="@+id/imageView"
                 android:background="?android:attr/editTextBackground"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:inputType="text"/>
 
         </RelativeLayout>
 

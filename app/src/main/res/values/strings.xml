@@ -29,6 +29,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
 
 
+
+
     <!-- navigation_drawer_main -->
     <string name="nav_overview">&#220;bersicht</string>
     <string name="nav_income">Einnahmen</string>
@@ -98,6 +100,8 @@
     <!-- category_chart -->
     <string name="title_activity_category_overview">Kategorien</string>
     <string name="category_placeholer">Kategorie</string>
+    <string name="category_add">Hinzufügen</string>
+    <string name="category_content_description">Bezeichnung</string>
     <string name="category_image_description">Kategoriebild</string>
     <string name="tab_text_1">Einnahmen</string>
     <string name="tab_text_2">Ausgaben</string>
