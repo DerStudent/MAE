@@ -1,5 +1,6 @@
 package de.fh.mae.md2.app.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import de.fh.mae.md2.app.MyPayments;
@@ -18,11 +20,18 @@ import de.fh.mae.md2.app.R;
 public class UnlockActivity extends AppCompatActivity implements View.OnClickListener{
     private AppCompatActivity activity;
     private String amount;
+    private EditText txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock);
+
+        txt = (EditText) findViewById(R.id.editText);
+        txt.setFocusableInTouchMode(false);
+        txt.setFocusable(false);
+        txt.setClickable(true);
+
         setOnClickListeners();
     }
 
@@ -39,12 +48,12 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
 
     public void isPinCorrect(String pin){
         if(pin.equals(MyPayments.getPin())){
-            Fragment fragment = new OverviewActivity();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
+            finish();
+            Intent myIntent = new Intent(UnlockActivity.this, Main.class);
+            startActivity(myIntent);
         }else{
             amount = "";
+            refreshAmount();
         }
     }
 
@@ -71,6 +80,7 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
         switch (i) {
             case R.id.button_pin_backspace:
                 removeCharacterFromAmount();
+                refreshAmount();
                 System.out.println(amount);
                 break;
             case R.id.button_pin_check:
@@ -79,9 +89,18 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             default:
                 addInputToAmount(i);
+                refreshAmount();
                 System.out.println(amount);
                 break;
         }
+    }
+
+    private void refreshAmount() {
+        if(isAmountEmpty()) {
+            amount = "";
+        }
+
+        txt.setText(amount);
     }
 
     private String getButtonInputValue(int buttonId) {
