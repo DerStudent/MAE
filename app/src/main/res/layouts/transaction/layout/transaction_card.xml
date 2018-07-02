@@ -71,6 +71,25 @@
                 android:layout_centerVertical="true"
                 />
 
+            <!--TODO: Notiz sichtbar machen?-->
+            <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:id="@+id/layout_transaction_card_main_note"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/text_transaction_card_category"-->
+                <!--&gt;-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/text_transaction_card_note"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Kategorienotiz"-->
+                    <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"-->
+                    <!--android:gravity="start"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--/>-->
+            <!--</RelativeLayout>-->
+
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/layout_transaction_card_main_date_amount"
                 android:layout_width="wrap_content"

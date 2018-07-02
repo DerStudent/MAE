@@ -45,4 +45,6 @@ public class Category {
     public void setId(@NonNull int id) {
         this.id = id;
     }
+
+    // TODO: getCategoryById(Long id)
 }
