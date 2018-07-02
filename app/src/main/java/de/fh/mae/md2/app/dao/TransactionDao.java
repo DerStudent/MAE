@@ -21,4 +21,7 @@ public interface TransactionDao {
 
     @Query("SELECT * FROM transactions")
     public List<Transaction> loadAllTransactions();
+
+    //@Query("SELECT * FROM transactions ORDER BY date DESC LIMIT 10 OFFSET :offset")
+    //public List<Transaction> loadAllTransactions(int offset);
 }

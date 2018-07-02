@@ -1,5 +1,6 @@
 package de.fh.mae.md2.app.activities;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,12 +23,16 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.dialogs.DatePickerFragment;
+import de.fh.mae.md2.app.entities.Transaction;
+import de.fh.mae.md2.app.repository.TransactionRepository;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, DatePickerDialog.OnDateSetListener {
+    private boolean edit;
     private int AMOUNT_REQUEST = 1;
 
     private String separator;
@@ -40,6 +46,17 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     private Date dateCalendar;
 
     private ImageView imageCategory;
+
+    private Transaction transaction;
+
+    public AddTransactionActivity(Transaction transaction){
+        this.transaction = transaction;
+        edit = true;
+    }
+
+    public AddTransactionActivity(){
+        edit = false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +89,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         textCalendar.setText(MyPayments.getTodayText());
         dateCalendar = getCustomCalendarInstance().getTime();
 
+        if(!edit){
+            Button button = (Button) findViewById(R.id.delete_button);
+            button.setVisibility(View.GONE);
+        }
+
         refresh();
     }
 
@@ -84,6 +106,8 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         addTransactionNote.setOnClickListener(this);
         RelativeLayout addTransactionCalendar = (RelativeLayout) findViewById(R.id.layout_add_transaction_calendar);
         addTransactionCalendar.setOnClickListener(this);
+        Button deleteTransaction = (Button) findViewById(R.id.delete_button);
+        deleteTransaction.setOnClickListener(this);
     }
 
     @Override
@@ -130,6 +154,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             DialogFragment datePicker = new DatePickerFragment();
             datePicker.setArguments(datePickerBundle);
             datePicker.show(getSupportFragmentManager(), "date picker");
+        }else if(i == R.id.delete_button){
+            TransactionRepository transrepo = new TransactionRepository(this.getApplication());
+            List<Transaction> entityTransactionList = transrepo.getAllTransactions();
+            entityTransactionList.remove(transaction);
+            // zu overview wechseln;
         }
     }
 
