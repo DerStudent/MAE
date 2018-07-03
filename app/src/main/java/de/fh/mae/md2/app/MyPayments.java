@@ -10,9 +10,12 @@ public class MyPayments extends Application {
     private static String separator;
     private static String currencySymbol;
     private static String defaultAmount;
+    private static String todayText;
 
     private static boolean premium = false;
     private static boolean signedIn = false;
+
+    private static String pin = "1234";
 
     @Override
     public void onCreate() {
@@ -29,6 +32,7 @@ public class MyPayments extends Application {
         }
 
         defaultAmount = zero + separator + getDefaultFractionalDigitValue();
+        todayText = getResources().getString(R.string.today);
     }
 
     public static String getDefaultFractionalDigitValue() {
@@ -63,6 +67,14 @@ public class MyPayments extends Application {
         return fractionalDigits;
     }
 
+    public static String getPin() {
+        return pin;
+    }
+
+    public static void setPin(String pin) {
+        MyPayments.pin = pin;
+    }
+
     public static String getSeparator() {
         return separator;
     }
@@ -73,6 +85,10 @@ public class MyPayments extends Application {
 
     public static String getDefaultAmount() {
         return defaultAmount;
+    }
+
+    public static String getTodayText() {
+        return todayText;
     }
 
     public void setSeparator(String separator) {

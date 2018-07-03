@@ -4,6 +4,7 @@
     <string name="currencySymbolDollar">&#36;</string>
     <string name="separatorComma">&#44;</string>
     <string name="separatorDot">&#46;</string>
+    <string name="today">Heute</string>
 
     <!-- activity_main -->
     <string name="main_label">&#220;bersicht</string>

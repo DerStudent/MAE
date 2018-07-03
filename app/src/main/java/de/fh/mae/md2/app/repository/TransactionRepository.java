@@ -27,6 +27,11 @@ public class TransactionRepository {
         return allTransactions;
     }
 
+    //public List<Transaction> getAllTransactions(int offset){
+        //List<Transaction> tmp = transactionDAO.loadAllTransactions(offset);
+        //return  tmp;
+    //}
+
     public void insert(Transaction transaction){
         new insertAsyncTask(transactionDAO).execute(transaction);
     }
