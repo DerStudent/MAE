@@ -1,14 +1,11 @@
 package de.fh.mae.md2.app.activities;
 
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
@@ -20,8 +17,6 @@ import android.widget.Toast;
 
 
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.entities.Category;
-import de.fh.mae.md2.app.viewmodel.CategoryViewModel;
 
 public class CategoryPopupActivity extends AppCompatActivity {
     private EditText mEditCategoryText;
@@ -30,7 +25,7 @@ public class CategoryPopupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.category_popup);
+        setContentView(R.layout.category_dialog);
 
         //ViewModelProviders.of(this).get(CategoryViewModel.class);
 

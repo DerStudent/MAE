@@ -37,18 +37,19 @@
             android:id="@+id/category_add_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="10dp">
 
             <ImageView
                 android:id="@+id/category_add_imageView"
+                android:contentDescription="@string/category_image_description"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_category_icon_7"
                 android:onClick="clickEvent"
                 android:clickable="true"
-                android:background="@android:color/white" />
+                android:background="@android:color/white"
+                android:focusable="true" />
 
             <EditText
                 android:id="@+id/category_add_text"
@@ -73,11 +74,13 @@
 
             <ImageButton
                 android:id="@+id/category_add_button_done"
+                android:contentDescription="@string/category_check_description"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/colorPrimaryLight"
+                android:background="@color/colorSecondary"
                 android:clickable="true"
-                app:srcCompat="@drawable/ic_category_done"/>
+                app:srcCompat="@drawable/ic_category_done"
+                android:focusable="true" />
 
         </RelativeLayout>
 

@@ -22,7 +22,7 @@ import de.fh.mae.md2.app.entities.Transaction;
 import de.fh.mae.md2.app.repository.TransactionRepository;
 import de.fh.mae.md2.app.transaction.*;
 
-public class OverviewActivity extends Fragment implements  View.OnClickListener{
+public class OverviewActivity extends Fragment implements  View.OnClickListener {
     private FragmentActivity activity;
     private List<Transaction> transactionList;
     private List<de.fh.mae.md2.app.entities.Transaction> entityTransactionList;
@@ -38,7 +38,7 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
         activity = getActivity();
 
-        getActivity().setTitle(getString(R.string.overview_label));
+        activity.setTitle(getString(R.string.overview_label));
         initOverview();
         setOnClickListeners();
         /*recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
