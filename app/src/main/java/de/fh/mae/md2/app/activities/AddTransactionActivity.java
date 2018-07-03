@@ -22,12 +22,10 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.dialogs.DatePickerFragment;
-import de.fh.mae.md2.app.entities.Category;
 import de.fh.mae.md2.app.entities.Transaction;
 import de.fh.mae.md2.app.repository.TransactionRepository;
 

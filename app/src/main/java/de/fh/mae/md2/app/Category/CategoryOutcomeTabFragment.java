@@ -42,7 +42,7 @@ public class CategoryOutcomeTabFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tabfragment_category_income, container, false);
+        View view = inflater.inflate(R.layout.tab_category_income, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_category_income);
         mCategoryListAdapter = new CategoryListAdapter(context);
         recyclerView.setAdapter(mCategoryListAdapter);

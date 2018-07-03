@@ -185,8 +185,7 @@ public class Main extends AppCompatActivity
                 fragment = new ChartActivity();
                 break;
             case R.id.nav_categories:
-                Intent myIntent = new Intent(this, CategoryOverviewActivity.class);
-                startActivity(myIntent);
+                fragment = new CategoryOverviewActivity();
                 break;
             case R.id.nav_account:
                 break;

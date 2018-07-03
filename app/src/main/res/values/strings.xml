@@ -105,6 +105,7 @@
     <string name="category_add">Hinzufügen</string>
     <string name="category_content_description">Bezeichnung</string>
     <string name="category_image_description">Kategoriebild</string>
+    <string name="category_check_description">Best&#228;tigen</string>
     <string name="tab_text_1">Einnahmen</string>
     <string name="tab_text_2">Ausgaben</string>
 
