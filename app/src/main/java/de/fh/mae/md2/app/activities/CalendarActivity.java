@@ -10,11 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.entities.Transaction;
 import de.fh.mae.md2.app.transaction.TransactionAdapter;
 
 public class CalendarActivity extends Fragment {
@@ -25,11 +29,16 @@ public class CalendarActivity extends Fragment {
     //the recyclerview
     RecyclerView recyclerView;
 
+    CalendarView calendarView;
+
+    Date today;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         activity = getActivity();
-
+        calendarView = (CalendarView) activity.findViewById(R.id.calendar);
+        setCalendarToday(calendarView);
         getActivity().setTitle(getString(R.string.calendar_label));
         initCalendar();
     }
@@ -52,9 +61,15 @@ public class CalendarActivity extends Fragment {
         transactionList = new ArrayList<Transaction>();
 
         //creating recyclerview adapter
-        TransactionAdapter adapter = new TransactionAdapter(activity, transactionList);
+        TransactionAdapter transactionAdapter = new TransactionAdapter(activity, transactionList);
 
         //setting adapter to recyclerview
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter();
+    }
+
+
+    private void setCalendarToday(CalendarView calendarView){
+        today = Calendar.getInstance().getTime();
+        calendarView.setDate(today.getTime());
     }
 }
