@@ -32,12 +32,18 @@ public class CategoryRepository {
         return allOutcomeCategories;
     }
 
+    public void delete(Category category) { categoryDao.deleteCategory(category); }
+
     public void insert(Category category) {
         new insertAsyncTask(categoryDao).execute(category);
     }
 
     public void update(Category category){
         new updateAsyncTask(categoryDao).execute(category);
+    }
+
+    public List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory){
+        return categoryDao.selectCategoryByAttributes(name, isIncomeCategory);
     }
 
     private static class insertAsyncTask extends AsyncTask<Category, Void, Void> {

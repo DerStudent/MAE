@@ -3,14 +3,11 @@ package de.fh.mae.md2.app.Category;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,7 +23,6 @@ import de.fh.mae.md2.app.viewmodel.CategoryViewModel;
 
 
 public class CategoryIncomeTabFragment extends Fragment {
-    public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     private CategoryListAdapter mCategoryListAdapter;
     private Context context;
     private CategoryViewModel mCategoryViewModel;
@@ -41,7 +37,6 @@ public class CategoryIncomeTabFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //initData();
     }
 
     @Nullable
@@ -71,14 +66,24 @@ public class CategoryIncomeTabFragment extends Fragment {
         super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         String categoryName = sharedPreferences.getString("categoryName", "");
-        int categoryImage = sharedPreferences.getInt("categoryImage", R.drawable.ic_category_icon_7);
+        int categoryImage = sharedPreferences.getInt("categoryImage", 0);
         if(categoryImage != 0 && categoryName != "") {
+            //List<Category> olds = mCategoryViewModel.selectCategoryByAttributes(categoryName, true);
             Category c = new Category(categoryName, categoryImage, true);
-            mCategoryViewModel.insert(c);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("categoryName", "");
-            editor.putInt("categoryImage", 0);
-            editor.commit();;
+            //if(olds.isEmpty()) {
+                mCategoryViewModel.insert(c);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("categoryName", "");
+                editor.putInt("categoryImage", 0);
+                editor.apply();
+            /*}
+            else{
+                mCategoryViewModel.insert(c);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("categoryName", "");
+                editor.putInt("categoryImage", 0);
+                editor.apply();
+            }*/
         }
     }
 }

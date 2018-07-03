@@ -33,6 +33,8 @@ public class CategoryViewModel extends AndroidViewModel {
         return allOutcomeCategories;
     }
 
+    public void delete(Category category) { categoryRepository.delete(category); }
+
     public void insert(Category category){
         categoryRepository.insert(category);
     }
@@ -40,4 +42,8 @@ public class CategoryViewModel extends AndroidViewModel {
     public void update(Category category){
         categoryRepository.update(category);
     }
+
+    //public List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory){
+    //    return categoryRepository.selectCategoryByAttributes(name, isIncomeCategory);
+    //}
 }
