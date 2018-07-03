@@ -5,29 +5,38 @@ import de.fh.mae.md2.app.entities.Transaction;
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
 public interface TransactionDao {
 
-    @Insert
-    public void insertTransaction(Transaction transaction);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public void insertTransaction(Transaction... transaction);
 
     @Update
-    public void updateTransaction(Transaction transaction);
+    public void updateTransaction(Transaction... transaction);
 
     @Delete
-    public void deleteTransaction(Transaction transaction);
-
-    @Query("SELECT * FROM transactions ORDER BY date DESC")
-    public List<Transaction> loadAllTransactions();
+    public void deleteTransaction(Transaction... transaction);
 
     //@Query("SELECT * FROM transactions ORDER BY date DESC LIMIT 10 OFFSET :offset")
     //public List<Transaction> loadAllTransactions(int offset);
 
-    // TODO: LoadLastTransactions(int count)    Menge der letzten Transaktionen
 
-    // TODO: loadTransactionsByTimespan(Date from, Date to)         Query mit ORDER BY date Desc
+    @Query("select * from (select * from transactions order by id ASC limit :count) order by id DESC")
+    public List<Transaction> loadLastTransactions(int count);
 
-    // TODO: LoadTransaction(Long id)
+
+    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end  AND status = 0 Order by date DESC")
+    public List<Transaction> loadTransactionInFromTo(Date begin, Date end);
+
+    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end  AND status = 1 Order by date DESC")
+    public List<Transaction> loadTransactionOutFromTo(Date begin, Date end);
+
+    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end Order by date DESC")
+    public List<Transaction> loadTransactionAllFromTo(Date begin, Date end);
+
+    @Query("SELECT * FROM transactions where id=:id")
+    public Transaction getTransactionById(int id);
 }

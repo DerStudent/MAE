@@ -43,7 +43,5 @@ public class CategoryViewModel extends AndroidViewModel {
         categoryRepository.update(category);
     }
 
-    //public List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory){
-    //    return categoryRepository.selectCategoryByAttributes(name, isIncomeCategory);
-    //}
+
 }
