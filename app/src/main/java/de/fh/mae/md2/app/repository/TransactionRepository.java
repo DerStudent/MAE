@@ -10,6 +10,8 @@ import de.fh.mae.md2.app.dao.TransactionDao;
 import de.fh.mae.md2.app.database.AppDatabase;
 import de.fh.mae.md2.app.entities.Transaction;
 
+// TODO: refactorn zu TransactionHelper. Keine Transaktionsliste speicherbar durch refresh daher immer je die 10 neusten oder queryabhängig laden
+// TODO: Methoden statisch machen, damit man die Methoden ohne immer ein Objekt zu erstellen aufrufen kann
 public class TransactionRepository {
 
     private TransactionDao transactionDAO;
