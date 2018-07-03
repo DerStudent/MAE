@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Switch;
 
 import de.fh.mae.md2.app.MyPayments;
@@ -20,24 +19,30 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
     private FragmentActivity activity;
     private String amount;
 
-
     @Override
     public void onClick(View view) {
         int i = view.getId();
 
         if (i == R.id.pin_switch_settings) {
-            Intent intent = new Intent(activity, UnlockActivity.class);
-            intent.putExtra("AMOUNT", amount);
-            startActivityForResult(intent, AMOUNT_REQUEST);
-        }else if(i == R.id.premium_switch_settings){
             Switch tmp = (Switch) activity.findViewById(R.id.pin_switch_settings);
-
-            if(MyPayments.isPremium()){
+            if (MyPayments.getPin().equals("")) {
+                Intent intent = new Intent(activity, UnlockActivity.class);
+                intent.putExtra("AMOUNT", amount);
+                startActivityForResult(intent, AMOUNT_REQUEST);
+            }else{
+                MyPayments.setPin("");
+            }
+        }else if (i == R.id.premium_switch_settings) {
+            Switch tmp = (Switch) activity.findViewById(R.id.pin_switch_settings);
+            if (MyPayments.isPremium()) {
                 MyPayments.setPremium(false);
                 tmp.setEnabled(false);
-            }else if(!MyPayments.isPremium()){
+            } else if (!MyPayments.isPremium()) {
                 MyPayments.setPremium(true);
                 tmp.setEnabled(true);
+                if (tmp.isEnabled() && !MyPayments.getPin().equals("")) {
+                    tmp.setChecked(true);
+                }
             }
         }
     }
@@ -52,7 +57,7 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
             Switch tmp = (Switch) activity.findViewById(R.id.pin_switch_settings);
             tmp.setEnabled(false);
         }
-        //initOverview();
+        init();
         setOnClickListeners();
     }
 
@@ -80,5 +85,19 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
         }
 
         MyPayments.setPin(amount);
+    }
+
+    public void init(){
+        if(MyPayments.isPremium()){
+            Switch premiumSwitch = (Switch) activity.findViewById(R.id.premium_switch_settings);
+            Switch pinSwitch = (Switch) activity.findViewById(R.id.pin_switch_settings);
+            premiumSwitch.setChecked(true);
+
+            if(!MyPayments.getPin().equals("") && MyPayments.isPremium()){
+                pinSwitch.setChecked(true);
+            }else{
+                pinSwitch.setChecked(false);
+            }
+        }
     }
 }

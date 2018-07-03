@@ -60,7 +60,7 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
             finish();
 
         }
-        if(pin.equals(MyPayments.getPin())){
+        if(pin.equals(MyPayments.getPin()) && !MyPayments.getPin().equals("")){
             finish();
             Intent myIntent = new Intent(UnlockActivity.this, Main.class);
             startActivity(myIntent);
