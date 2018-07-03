@@ -70,4 +70,10 @@
         <item name="android:textColor">@color/colorSecondary</item>
     </style>
 
+    <style name="popupAddCategory" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

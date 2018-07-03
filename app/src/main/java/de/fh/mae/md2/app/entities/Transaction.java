@@ -18,7 +18,7 @@ public class Transaction {
 
     @ColumnInfo(name = "category_id")
     @NonNull
-    private int  categoryID;
+    private int categoryID;
 
     @NonNull
     private Date date;

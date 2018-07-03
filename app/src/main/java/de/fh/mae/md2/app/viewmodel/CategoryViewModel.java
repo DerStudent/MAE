@@ -15,17 +15,25 @@ public class CategoryViewModel extends AndroidViewModel {
 
     private CategoryRepository categoryRepository;
 
-    private List<Category> allCategories;
+    private LiveData<List<Category>> allIncomeCategories;
+    private LiveData<List<Category>> allOutcomeCategories;
 
     public CategoryViewModel(Application application){
         super(application);
         categoryRepository = new CategoryRepository(application);
-        allCategories = categoryRepository.getAllCategories();
+        allIncomeCategories = categoryRepository.getAllIncomeCategories();
+        allOutcomeCategories = categoryRepository.getAllOutcomeCategories();
     }
 
-    public List<Category> getAllCategories() {
-        return allCategories;
+    public LiveData<List<Category>> getAllIncomeCategories() {
+        return allIncomeCategories;
     }
+
+    public LiveData<List<Category>> getAllOutcomeCategories() {
+        return allOutcomeCategories;
+    }
+
+    public void delete(Category category) { categoryRepository.delete(category); }
 
     public void insert(Category category){
         categoryRepository.insert(category);
@@ -34,4 +42,8 @@ public class CategoryViewModel extends AndroidViewModel {
     public void update(Category category){
         categoryRepository.update(category);
     }
+
+    //public List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory){
+    //    return categoryRepository.selectCategoryByAttributes(name, isIncomeCategory);
+    //}
 }
