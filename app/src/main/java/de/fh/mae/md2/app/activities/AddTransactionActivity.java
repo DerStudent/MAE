@@ -154,8 +154,12 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             datePicker.show(getSupportFragmentManager(), "date picker");
         }else if(i == R.id.delete_button){
             TransactionRepository transrepo = new TransactionRepository(this.getApplication());
-            List<Transaction> entityTransactionList = transrepo.getAllTransactions();
-            entityTransactionList.remove(transaction);
+
+            /*
+            Hier bitte Anpassen
+             */
+            //List<Transaction> entityTransactionList = transrepo.getAllTransactions();
+            //entityTransactionList.remove(transaction);
             // zu overview wechseln;
         }
     }

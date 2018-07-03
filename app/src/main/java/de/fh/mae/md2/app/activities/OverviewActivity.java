@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.entities.Transaction;
 import de.fh.mae.md2.app.repository.TransactionRepository;
 import de.fh.mae.md2.app.transaction.*;
 

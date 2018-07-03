@@ -69,7 +69,7 @@ public class CategoryIncomeTabFragment extends Fragment {
         int categoryImage = sharedPreferences.getInt("categoryImage", 0);
         if(categoryImage != 0 && categoryName != "") {
             //List<Category> olds = mCategoryViewModel.selectCategoryByAttributes(categoryName, true);
-            Category c = new Category(categoryName, categoryImage, true);
+            Category c = new Category(categoryName, categoryImage, 1);
             //if(olds.isEmpty()) {
                 mCategoryViewModel.insert(c);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
