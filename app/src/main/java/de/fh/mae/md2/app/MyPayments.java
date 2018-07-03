@@ -15,7 +15,7 @@ public class MyPayments extends Application {
     private static boolean premium = false;
     private static boolean signedIn = false;
 
-    private static String pin = "1234";
+    private static String pin = "";
 
     @Override
     public void onCreate() {
@@ -103,8 +103,8 @@ public class MyPayments extends Application {
         return premium;
     }
 
-    public void setPremium(boolean premium) {
-        this.premium = premium;
+    public static void setPremium(boolean premium) {
+        MyPayments.premium = premium;
     }
 
     public static boolean isSignedIn() {
