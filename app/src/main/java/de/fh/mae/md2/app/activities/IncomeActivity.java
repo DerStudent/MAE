@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.transaction.Transaction;
-import de.fh.mae.md2.app.transaction.Category;
 import de.fh.mae.md2.app.transaction.TransactionAdapter;
 
 public class IncomeActivity extends Fragment {
@@ -25,7 +23,6 @@ public class IncomeActivity extends Fragment {
 
     //the recyclerview
     RecyclerView recyclerView;
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -49,61 +46,8 @@ public class IncomeActivity extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
 
-
         //initializing the productlist
         transactionList = new ArrayList<Transaction>();
-        Calendar cal = Calendar.getInstance();
-
-        //adding some items to our list
-        cal.set(2018,5,5);
-        transactionList.add(
-            new Transaction(
-                +100,
-                new Category("Fast Food"),
-                cal.getTime(),
-                R.drawable.ic_category_fastfood));
-
-        transactionList.add(
-            new Transaction(
-                +20,
-                new Category("Transport"),
-                cal.getTime(),
-                R.drawable.ic_category_transport));
-
-        transactionList.add(
-            new Transaction(
-                +8,
-                new Category("Movie"),
-                cal.getTime(),
-                R.drawable.ic_category_localmovie));
-
-        transactionList.add(
-            new Transaction(
-                +23.56,
-                new Category("Supermarket"),
-                cal.getTime(),
-                R.drawable.ic_category_store));
-
-        transactionList.add(
-            new Transaction(
-                    +30,
-                    new Category("Restaurant"),
-                    cal.getTime(),
-                    R.drawable.ic_category_restaurant));
-
-        transactionList.add(
-            new Transaction(
-                +15,
-                new Category("Filme"),
-                cal.getTime(),
-                R.drawable.ic_category_ondemandvideo));
-
-        transactionList.add(
-            new Transaction(
-                +2,
-                new Category("WC"),
-                cal.getTime(),
-                R.drawable.ic_category_wc));
 
         //creating recyclerview adapter
         TransactionAdapter adapter = new TransactionAdapter(activity, transactionList);

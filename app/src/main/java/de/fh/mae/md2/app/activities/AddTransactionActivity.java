@@ -75,7 +75,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         amount = MyPayments.getDefaultAmount();
 
         imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
-        imageCategory.setImageDrawable(getResources().getDrawable(R.drawable.ic_category_store));
+        imageCategory.setImageDrawable(getResources().getDrawable(R.drawable.ic_category_icon_1));
 
         textAmount = (TextView) findViewById(R.id.text_add_transaction_amount);
 

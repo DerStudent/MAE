@@ -11,15 +11,24 @@ import java.util.List;
 public interface CategoryDao {
 
     @Insert
-    public void insertCategory(Category category);
+    void insertCategory(Category category);
 
     @Update
-    public void updateCategory(Category category);
+    void updateCategory(Category category);
 
     @Delete
-    public void deleteCategory(Category category);
+    void deleteCategory(Category category);
 
-    @Query("SELECT * FROM categories")
-    public List<Category> loadAllCategories();
+    @Query("DELETE FROM categories")
+    void deleteAll();
+
+/*    @Query("SELECT * FROM categories WHERE name LIKE :name AND isIncomeCategory LIKE :isIncomeCategory")
+    List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory);*/
+
+    @Query("SELECT * FROM categories WHERE isIncomeCategory = 1 ORDER BY name ASC ")
+    LiveData<List<Category>> loadAllIncomeCategories();
+
+    @Query("SELECT * FROM categories WHERE isIncomeCategory = 0 ORDER BY name ASC ")
+    LiveData<List<Category>> loadAllOutcomeCategories();
 
 }

@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 import de.fh.mae.md2.app.activities.AddTransactionActivity;
 import de.fh.mae.md2.app.activities.CalendarActivity;
+import de.fh.mae.md2.app.activities.CategoryOverviewActivity;
 import de.fh.mae.md2.app.activities.ChartActivity;
 import de.fh.mae.md2.app.activities.IncomeActivity;
 import de.fh.mae.md2.app.activities.OutcomeActivity;
@@ -184,7 +185,7 @@ public class Main extends AppCompatActivity
                 fragment = new ChartActivity();
                 break;
             case R.id.nav_categories:
-                Intent myIntent = new Intent(this, UnlockActivity.class);
+                Intent myIntent = new Intent(this, CategoryOverviewActivity.class);
                 startActivity(myIntent);
                 break;
             case R.id.nav_account:

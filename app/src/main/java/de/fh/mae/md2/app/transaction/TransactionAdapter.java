@@ -1,5 +1,6 @@
 package de.fh.mae.md2.app.transaction;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return new TransactionViewHolder(view);
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     public void onBindViewHolder(TransactionViewHolder holder, int position) {
         //getting the product of the specified position
@@ -49,7 +51,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         if(transaction.getValue() >= 0){
             // TODO: +/- vorzeichen durch Farbunterscheidung unnötig. Kann außerhalb für beide identisch passieren.
             holder.textAmount.setText(String.format("+ %.2f €", transaction.getValue()));
-            int colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
+            int colorIncome;
+            colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
             holder.textAmount.setTextColor(colorIncome);
         }
         else{
@@ -61,7 +64,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.textCategory.setText(transaction.getCategory().getName());
         // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
         holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
-        holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getImage()));
+       // holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().g));
     }
 
     @Override
