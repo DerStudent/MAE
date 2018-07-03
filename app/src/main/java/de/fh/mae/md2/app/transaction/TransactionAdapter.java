@@ -57,14 +57,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.textAmount.setTextColor(colorIncome);
         }
         else{
-            holder.textAmount.setText(String.format("- %.2f €", Math.abs(transaction.getValue())));
+            //holder.textAmount.setText(String.format("- %.2f €", Math.abs(transaction.getValue())));
             int colorOutcome = mCtx.getResources().getColor(R.color.colorOutcome);
             holder.textAmount.setTextColor(colorOutcome);
         }
 
-        holder.textCategory.setText(transaction.getCategory().getName());
+        //holder.textCategory.setText(transaction.getCategory().getName());
         // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
-        holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
+        //holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
        // holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().g));
     }
 
