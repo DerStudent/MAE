@@ -15,16 +15,22 @@ public class CategoryViewModel extends AndroidViewModel {
 
     private CategoryRepository categoryRepository;
 
-    private List<Category> allCategories;
+    private LiveData<List<Category>> allIncomeCategories;
+    private LiveData<List<Category>> allOutcomeCategories;
 
     public CategoryViewModel(Application application){
         super(application);
         categoryRepository = new CategoryRepository(application);
-        allCategories = categoryRepository.getAllCategories();
+        allIncomeCategories = categoryRepository.getAllIncomeCategories();
+        allOutcomeCategories = categoryRepository.getAllOutcomeCategories();
     }
 
-    public List<Category> getAllCategories() {
-        return allCategories;
+    public LiveData<List<Category>> getAllIncomeCategories() {
+        return allIncomeCategories;
+    }
+
+    public LiveData<List<Category>> getAllOutcomeCategories() {
+        return allOutcomeCategories;
     }
 
     public void insert(Category category){

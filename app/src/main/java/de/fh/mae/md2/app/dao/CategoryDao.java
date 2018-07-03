@@ -19,7 +19,16 @@ public interface CategoryDao {
     @Delete
     public void deleteCategory(Category category);
 
-    @Query("SELECT * FROM categories")
-    public List<Category> loadAllCategories();
+    @Query("DELETE FROM categories WHERE name = :name AND image = :image")
+    public void deleteByAttributes(String name, int image);
+
+    @Query("DELETE FROM categories")
+    public void deleteAll();
+
+    @Query("SELECT * FROM categories WHERE isIncomeCategory = 1 ORDER BY name ASC ")
+    public LiveData<List<Category>> loadAllIncomeCategories();
+
+    @Query("SELECT * FROM categories WHERE isIncomeCategory = 0 ORDER BY name ASC ")
+    public LiveData<List<Category>> loadAllOutcomeCategories();
 
 }

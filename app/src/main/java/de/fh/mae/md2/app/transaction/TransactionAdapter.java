@@ -59,7 +59,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         holder.textCategory.setText(transaction.getCategory().getName());
         holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
-        holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().getImage()));
+       // holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().g));
     }
 
     @Override

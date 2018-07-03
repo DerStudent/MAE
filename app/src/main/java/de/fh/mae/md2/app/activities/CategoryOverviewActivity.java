@@ -8,12 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import de.fh.mae.md2.app.Category.CategoryIncomeTabFragment;
+import de.fh.mae.md2.app.Category.CategoryOutcomeTabFragment;
 import de.fh.mae.md2.app.Category.CategoryPageAdapter;
-import de.fh.mae.md2.app.fragments.*;
 import de.fh.mae.md2.app.R;
-
-
 
 public class CategoryOverviewActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

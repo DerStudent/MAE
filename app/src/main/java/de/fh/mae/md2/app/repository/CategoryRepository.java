@@ -14,18 +14,22 @@ import de.fh.mae.md2.app.entities.Category;
 public class CategoryRepository {
 
     private CategoryDao categoryDao;
-    private List<Category> allCategories;
+    private LiveData<List<Category>> allIncomeCategories;
+    private LiveData<List<Category>> allOutcomeCategories;
 
     public CategoryRepository(Application application){
-
         AppDatabase db = AppDatabase.getDatabase(application);
-
         categoryDao = db.categoryDao();
-        allCategories =categoryDao.loadAllCategories();
+        allIncomeCategories = categoryDao.loadAllIncomeCategories();
+        allOutcomeCategories = categoryDao.loadAllOutcomeCategories();
     }
 
-    public List<Category> getAllCategories() {
-        return allCategories;
+    public LiveData<List<Category>> getAllIncomeCategories() {
+        return allIncomeCategories;
+    }
+
+    public LiveData<List<Category>> getAllOutcomeCategories() {
+        return allOutcomeCategories;
     }
 
     public void insert(Category category) {
