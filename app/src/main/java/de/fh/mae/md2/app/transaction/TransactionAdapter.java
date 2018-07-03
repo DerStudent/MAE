@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app.transaction;
+/*package de.fh.mae.md2.app.transaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,7 +17,7 @@ import java.util.List;
 import de.fh.mae.md2.app.R;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
-    //this context we will use to inflate the layout
+   //this context we will use to inflate the layout
     private Context mCtx;
 
     //we are storing all the products in a list
@@ -85,4 +85,4 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             imageCategory = itemView.findViewById(R.id.image_transaction_card_category);
         }
     }
-}
+}*/

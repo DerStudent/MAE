@@ -1,8 +1,10 @@
 package de.fh.mae.md2.app.entities;
 
 import java.util.Date;
+
 import android.arch.persistence.room.*;
 import android.support.annotation.NonNull;
+import de.fh.mae.md2.app.enums.*;
 
 import de.fh.mae.md2.app.entities.Category;
 
@@ -22,6 +24,12 @@ public class Transaction {
 
     @NonNull
     private Date date;
+
+    @NonNull
+    @ITransactionStatus
+    private int status;
+
+
 
     public Transaction(@NonNull double value, @NonNull int categoryID, @NonNull Date date){
         this.categoryID = categoryID;
@@ -60,4 +68,14 @@ public class Transaction {
     public void setId(@NonNull int id) {
         this.id = id;
     }
+
+    @ITransactionStatus
+    public int getStatus(){
+        return  status;
+    }
+
+    public void setStatus(@ITransactionStatus int status) {
+        this.status = status;
+    }
+
 }
