@@ -34,6 +34,7 @@ import de.fh.mae.md2.app.activities.ChartActivity;
 import de.fh.mae.md2.app.activities.IncomeActivity;
 import de.fh.mae.md2.app.activities.OutcomeActivity;
 import de.fh.mae.md2.app.activities.OverviewActivity;
+import de.fh.mae.md2.app.activities.SettingsActivity;
 import de.fh.mae.md2.app.activities.SignInActivity;
 import de.fh.mae.md2.app.activities.UnlockActivity;
 
@@ -189,8 +190,11 @@ public class Main extends AppCompatActivity
                 startActivity(myIntent);
                 break;
             case R.id.nav_account:
+                Intent pinIntent = new Intent(this, UnlockActivity.class);
+                startActivity(pinIntent);
                 break;
             case R.id.nav_settings:
+                fragment = new SettingsActivity();
                 break;
             case R.id.nav_help:
                 break;
