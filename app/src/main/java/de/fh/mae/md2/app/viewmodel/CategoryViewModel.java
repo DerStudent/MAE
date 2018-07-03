@@ -3,6 +3,7 @@ package de.fh.mae.md2.app.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Query;
 
 import java.util.List;
 
@@ -31,6 +32,14 @@ public class CategoryViewModel extends AndroidViewModel {
 
     public LiveData<List<Category>> getAllOutcomeCategories() {
         return allOutcomeCategories;
+    }
+
+    public Category loadCategoryById(int id){
+        return categoryRepository.loadCategoryById(id);
+    }
+
+    public Category loadCategoryByName(String name){
+        return categoryRepository.loadCategoryByName(name);
     }
 
     public void delete(Category category) { categoryRepository.delete(category); }

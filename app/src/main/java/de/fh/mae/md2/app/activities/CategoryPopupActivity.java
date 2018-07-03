@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 
@@ -25,6 +26,8 @@ import de.fh.mae.md2.app.viewmodel.CategoryViewModel;
 
 public class CategoryPopupActivity extends AppCompatActivity {
     private EditText mEditCategoryText;
+    private RadioButton isIncome;
+    private RadioButton isOutcome;
     private int image;
 
     @Override
@@ -47,21 +50,22 @@ public class CategoryPopupActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mEditCategoryText = findViewById(R.id.category_add_text);
+                isIncome = findViewById(R.id.radioButtonIncome);
 
                 if(mEditCategoryText.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Bezeichnung fehlt!", Toast.LENGTH_LONG).show();
                 }
                 else if(image == 0){
                     Toast.makeText(getApplicationContext(), "Bildeingabe fehlt!", Toast.LENGTH_LONG).show();
-                    Toast.makeText(getApplicationContext(), image + " " + mEditCategoryText.getText().toString(), Toast.LENGTH_LONG).show();
                 }
                 else {
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("categoryName", mEditCategoryText.getText().toString());
-                    Toast.makeText(getApplicationContext(), image + " " + mEditCategoryText.getText().toString(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), image + " " + mEditCategoryText.getText().toString(), Toast.LENGTH_LONG).show();
                     editor.putInt("categoryImage", image);
-                    editor.commit();
+                    editor.putBoolean("categoryIsIncome", isIncome.isChecked());
+                    editor.apply();
                     finish();
                 }
             }

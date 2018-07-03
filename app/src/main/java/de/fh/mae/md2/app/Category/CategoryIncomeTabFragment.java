@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ public class CategoryIncomeTabFragment extends Fragment {
     private CategoryListAdapter mCategoryListAdapter;
     private Context context;
     private CategoryViewModel mCategoryViewModel;
+    Category old;
 
     @Override
     public void onAttach(Context context) {
@@ -65,25 +67,31 @@ public class CategoryIncomeTabFragment extends Fragment {
     public void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-        String categoryName = sharedPreferences.getString("categoryName", "");
+        final String categoryName = sharedPreferences.getString("categoryName", "");
         int categoryImage = sharedPreferences.getInt("categoryImage", 0);
+        boolean isIncome = sharedPreferences.getBoolean("categoryIsIncome", false);
+
         if(categoryImage != 0 && categoryName != "") {
-            //List<Category> olds = mCategoryViewModel.selectCategoryByAttributes(categoryName, true);
-            Category c = new Category(categoryName, categoryImage, true);
-            //if(olds.isEmpty()) {
+            old = mCategoryViewModel.loadCategoryByName(categoryName);
+
+            Category c = new Category(categoryName, categoryImage, isIncome);
+            if(old == null) {
                 mCategoryViewModel.insert(c);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("categoryName", "");
                 editor.putInt("categoryImage", 0);
+                editor.putBoolean("categoryIsIncome", false);
                 editor.apply();
-            /*}
+                Toast.makeText(getContext(), categoryName + " hinzugefügt", Toast.LENGTH_LONG).show();
+            }
             else{
-                mCategoryViewModel.insert(c);
+                Toast.makeText(getContext(), categoryName + " bereits vorhanden", Toast.LENGTH_LONG).show();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("categoryName", "");
                 editor.putInt("categoryImage", 0);
+                editor.putBoolean("categoryIsIncome", false);
                 editor.apply();
-            }*/
+            }
         }
     }
 }

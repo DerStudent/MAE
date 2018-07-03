@@ -37,7 +37,6 @@
             android:id="@+id/category_add_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="10dp">
 
             <ImageView
@@ -69,7 +68,38 @@
             android:id="@+id/category_add_input2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/category_add_input">
+            android:layout_below="@id/category_add_input"
+            android:layout_marginBottom="10dp">
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true">
+
+                <RadioButton
+                    android:id="@+id/radioButtonIncome"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/income_label"
+                    android:checked="false"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonOutcome"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:text="@string/outcome_label"
+                    android:checked="true"/>
+            </RadioGroup>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/category_add_input3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/category_add_input2">
 
             <ImageButton
                 android:id="@+id/category_add_button_done"
