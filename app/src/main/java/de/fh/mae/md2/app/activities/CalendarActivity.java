@@ -12,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.transaction.Transaction;
 import de.fh.mae.md2.app.transaction.TransactionAdapter;
 
 public class CalendarActivity extends Fragment {
