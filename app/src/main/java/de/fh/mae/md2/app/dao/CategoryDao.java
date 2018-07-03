@@ -22,8 +22,8 @@ public interface CategoryDao {
     @Query("DELETE FROM categories")
     void deleteAll();
 
-    @Query("SELECT * FROM categories WHERE name LIKE :name AND isIncomeCategory LIKE :isIncomeCategory")
-    List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory);
+/*    @Query("SELECT * FROM categories WHERE name LIKE :name AND isIncomeCategory LIKE :isIncomeCategory")
+    List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory);*/
 
     @Query("SELECT * FROM categories WHERE isIncomeCategory = 1 ORDER BY name ASC ")
     LiveData<List<Category>> loadAllIncomeCategories();

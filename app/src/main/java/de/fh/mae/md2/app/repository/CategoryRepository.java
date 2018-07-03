@@ -42,9 +42,9 @@ public class CategoryRepository {
         new updateAsyncTask(categoryDao).execute(category);
     }
 
-    public List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory){
+/*    public List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory){
         return categoryDao.selectCategoryByAttributes(name, isIncomeCategory);
-    }
+    }*/
 
     private static class insertAsyncTask extends AsyncTask<Category, Void, Void> {
 
