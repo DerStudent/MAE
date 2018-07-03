@@ -33,6 +33,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.transaction_card, null);
+        // TODO: View Klickbar machen - setOnClickListener! Bei Klick AddTransactionActivity per Intent aufrufen und vorher dem Intent die Id anhängen per: intent.putExtra("TRANSACTION_ID", id);
         return new TransactionViewHolder(view);
     }
 
@@ -42,8 +43,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactionList.get(position);
 
         //binding the data with the viewholder views
-
+        // TODO: Notiz mit anzeigen? siehe TODO in transaction_card.xml
+        // TODO: textAmount ist: transaction.getValue() + " " + MayPayments.getCurrencySymbol()
+        // TODO: Category enum abfragen, um hier if/else zu steuern.
         if(transaction.getValue() >= 0){
+            // TODO: +/- vorzeichen durch Farbunterscheidung unnötig. Kann außerhalb für beide identisch passieren.
             holder.textAmount.setText(String.format("+ %.2f €", transaction.getValue()));
             int colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
             holder.textAmount.setTextColor(colorIncome);
@@ -55,6 +59,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
         holder.textCategory.setText(transaction.getCategory().getName());
+        // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
         holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
         holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getImage()));
     }

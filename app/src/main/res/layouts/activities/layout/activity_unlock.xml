@@ -9,7 +9,7 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView"
         android:layout_width="148dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.239" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editText"
         android:layout_width="148dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
@@ -42,11 +42,193 @@
         android:textColorHint="@android:color/background_light"
         android:textColorLink="@android:color/background_light"
         android:textSize="24sp"
+        android:cursorVisible="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.07999998"
-        android:hint="****"/>
+        android:hint=""/>
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/layout_pin_input"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        app:columnCount="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:orientation="horizontal"
+        app:rowCount="4">
+
+        <Button
+            android:id="@+id/button_pin_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_1"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnSpan="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowSpan="1"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_pin_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_2"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnSpan="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowSpan="1"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_pin_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_3"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <ImageButton
+            android:id="@+id/button_pin_check"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:background="@color/colorSecondary"
+            android:contentDescription="@string/add_transaction_amount_button_check"
+            android:cropToPadding="false"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_check_white"
+            android:stateListAnimator="@null"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowSpan="4" />
+
+        <Button
+            android:id="@+id/button_pin_four"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_4"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_rowWeight="1" />
+
+        <Button
+            android:id="@+id/button_pin_five"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_5"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <Button
+            android:id="@+id/button_pin_six"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_6"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <Button
+            android:id="@+id/button_pin_seven"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_7"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <Button
+            android:id="@+id/button_pin_eight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_8"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <Button
+            android:id="@+id/button_pin_nine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left_bottom"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_9"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <Button
+            android:id="@+id/button_pin_separator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_none"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text=""
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <Button
+            android:id="@+id/button_pin_zero"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/add_transaction_amount_button_0"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+        <ImageButton
+            android:id="@+id/button_pin_backspace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_left"
+            android:contentDescription="@string/add_transaction_amount_button_backspace"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_backspace"
+            android:stateListAnimator="@null"
+            android:textAppearance="@style/mediumSecondary"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill" />
+
+    </android.support.v7.widget.GridLayout>
 
 </android.support.constraint.ConstraintLayout>

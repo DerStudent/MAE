@@ -19,6 +19,15 @@ public interface TransactionDao {
     @Delete
     public void deleteTransaction(Transaction transaction);
 
-    @Query("SELECT * FROM transactions")
+    @Query("SELECT * FROM transactions ORDER BY date DESC")
     public List<Transaction> loadAllTransactions();
+
+    //@Query("SELECT * FROM transactions ORDER BY date DESC LIMIT 10 OFFSET :offset")
+    //public List<Transaction> loadAllTransactions(int offset);
+
+    // TODO: LoadLastTransactions(int count)    Menge der letzten Transaktionen
+
+    // TODO: loadTransactionsByTimespan(Date from, Date to)         Query mit ORDER BY date Desc
+
+    // TODO: LoadTransaction(Long id)
 }

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,10 +22,14 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.dialogs.DatePickerFragment;
+import de.fh.mae.md2.app.entities.Category;
+import de.fh.mae.md2.app.entities.Transaction;
+import de.fh.mae.md2.app.repository.TransactionRepository;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, DatePickerDialog.OnDateSetListener {
     private int AMOUNT_REQUEST = 1;
@@ -32,6 +37,8 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     private String separator;
     private String currencySymbol;
     private String amount;
+
+    private Long transactionId = -1L;
 
     private TextView textAmount;
     private TextView textCategory;
@@ -41,13 +48,23 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
     private ImageView imageCategory;
 
+    private Transaction transaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
 
+        transactionId = getIntent().getLongExtra("TRANSACTION_ID", -1L);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setOnClickListeners();
+
+        if(hasTransactionId()) {
+            showDeleteButton();
+            prefillAddTransactionCard();
+        }
 
         init();
     }
@@ -72,7 +89,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         textCalendar.setText(MyPayments.getTodayText());
         dateCalendar = getCustomCalendarInstance().getTime();
 
-        refresh();
+        refreshAmount();
     }
 
     private void setOnClickListeners() {
@@ -84,6 +101,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         addTransactionNote.setOnClickListener(this);
         RelativeLayout addTransactionCalendar = (RelativeLayout) findViewById(R.id.layout_add_transaction_calendar);
         addTransactionCalendar.setOnClickListener(this);
+
+        if(hasTransactionId()) {
+            Button deleteTransaction = (Button) findViewById(R.id.delete_button);
+            deleteTransaction.setOnClickListener(this);
+        }
     }
 
     @Override
@@ -92,6 +114,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save_transaction) {
+            saveTransaction();
             finish();
             return true;
         }
@@ -114,7 +137,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
         if (i == R.id.layout_add_transaction_amount) {
             Intent intent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
-            intent.putExtra("REQUEST", AMOUNT_REQUEST);
             intent.putExtra("AMOUNT", amount);
             startActivityForResult(intent, AMOUNT_REQUEST);
         } else if (i == R.id.layout_add_transaction_category) {
@@ -130,6 +152,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             DialogFragment datePicker = new DatePickerFragment();
             datePicker.setArguments(datePickerBundle);
             datePicker.show(getSupportFragmentManager(), "date picker");
+        }else if(i == R.id.delete_button){
+            TransactionRepository transrepo = new TransactionRepository(this.getApplication());
+            List<Transaction> entityTransactionList = transrepo.getAllTransactions();
+            entityTransactionList.remove(transaction);
+            // zu overview wechseln;
         }
     }
 
@@ -154,10 +181,10 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             amount = data.getStringExtra("AMOUNT");
         }
 
-        refresh();
+        refreshAmount();
     }
 
-    private void refresh() {
+    private void refreshAmount() {
         textAmount.setText(amount + " " + currencySymbol);
     }
 
@@ -194,9 +221,43 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
         if(currentDateTime.getTime() != calendarDateTime.getTime()) {
             dateCalendar = calendarDateTime;
-            currentDateText = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+            currentDateText = getFormattedDate(calendar.getTime());
         }
 
         textCalendar.setText(currentDateText);
     }
+
+    private String getFormattedDate(Date date) {
+        return DateFormat.getDateInstance(DateFormat.FULL).format(date);
+    }
+
+    private boolean hasTransactionId() {
+        return transactionId >= 0;
+    }
+
+    private void showDeleteButton() {
+        Button button = (Button) findViewById(R.id.delete_button);
+        button.setVisibility(View.VISIBLE);
+    }
+
+    private void prefillAddTransactionCard() {
+//        Transaction transaction = TransactionHelper.get(transactionId);
+//        amount = transaction.getValue();
+//        refreshAmount();
+//
+//        Long categoryId = transaction.getCategoryID();
+//        Category category = getCategoryById(categoryId);
+//        textCategory = category.getName();
+//        imageCategory =  imageCategory.setImageDrawable(category.getImage());
+//
+//        dateCalendar = transaction.getDate();
+//        textCalendar = getFormattedDate(dateCalendar);
+//
+//        refreshAmount();
+    }
+
+    private void saveTransaction() {
+
+    }
+
 }
