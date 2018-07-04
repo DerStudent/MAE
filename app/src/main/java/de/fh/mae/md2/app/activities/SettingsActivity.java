@@ -27,7 +27,7 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
             Switch tmp = (Switch) activity.findViewById(R.id.pin_switch_settings);
             if (MyPayments.getPin().equals("")) {
                 Intent intent = new Intent(activity, UnlockActivity.class);
-                //intent.putExtra("AMOUNT", amount);
+                //intent.putExtra("AMOUNT", amount); dd
                 startActivityForResult(intent, PIN_REQUEST);
             }else{
                 MyPayments.setPin("");
