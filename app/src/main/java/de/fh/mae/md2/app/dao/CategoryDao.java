@@ -25,13 +25,18 @@ public interface CategoryDao {
 /*    @Query("SELECT * FROM categories WHERE name LIKE :name AND isIncomeCategory LIKE :isIncomeCategory")
     List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory);*/
 
-    @Query("SELECT * FROM categories WHERE status = 1 ORDER BY name ASC ")
+    @Query("SELECT * FROM categories WHERE status = 1 ORDER BY name COLLATE NOCASE ASC ")
     LiveData<List<Category>> loadAllIncomeCategories();
 
-    @Query("SELECT * FROM categories WHERE status = 0 ORDER BY name ASC ")
+    @Query("SELECT * FROM categories WHERE status = 0 ORDER BY name COLLATE NOCASE ASC ")
     LiveData<List<Category>> loadAllOutcomeCategories();
 
-    @Query("SELECT * FROM categories WHERE id = :id")
-    LiveData<Category> getCategoryById(int id);
+    @Query("SELECT * FROM categories WHERE id=:id")
+    Category getCategoryById(String id);
 
+    @Query("SELECT * FROM categories ORDER BY name COLLATE NOCASE ASC LIMIT 1")
+    Category getFirstCategory();
+
+    @Query("SELECT count(*) FROM categories")
+    Long getCategoryCount();
 }
