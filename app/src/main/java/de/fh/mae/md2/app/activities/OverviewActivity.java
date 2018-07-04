@@ -1,6 +1,6 @@
 package de.fh.mae.md2.app.activities;
 
-import android.arch.persistence.room.Dao;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.entities.Transaction;
+import de.fh.mae.md2.app.repository.CategoryRepository;
 import de.fh.mae.md2.app.repository.TransactionRepository;
 import de.fh.mae.md2.app.transaction.*;
 
@@ -77,8 +79,15 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         int i = view.getId();
 
         if (i == R.id.button__floating_main) {
-            Intent myIntent = new Intent(activity, AddTransactionActivity.class);
-            startActivity(myIntent);
+            CategoryRepository categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
+//          categoryRepository.startAddTransactionIfHasCategory();
+
+            if (categoryRepository.hasCategory()) {
+                Intent myIntent = new Intent(activity, AddTransactionActivity.class);
+                startActivity(myIntent);
+            } else {
+                Toast.makeText(activity, getResources().getString(R.string.add_transaction_create_category), Toast.LENGTH_LONG).show();
+            }
         }
     }
 

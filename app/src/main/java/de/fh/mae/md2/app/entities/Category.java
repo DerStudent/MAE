@@ -10,7 +10,7 @@ import de.fh.mae.md2.app.enums.ICategroryStatus;
 public class Category {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
 
     @NonNull
     private String name;
@@ -44,11 +44,11 @@ public class Category {
         this.image = image;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
