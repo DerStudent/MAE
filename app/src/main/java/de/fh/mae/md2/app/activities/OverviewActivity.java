@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
@@ -25,12 +26,10 @@ import de.fh.mae.md2.app.transaction.*;
 public class OverviewActivity extends Fragment implements  View.OnClickListener {
     private FragmentActivity activity;
     private List<Transaction> transactionList;
-    private List<de.fh.mae.md2.app.entities.Transaction> entityTransactionList;
-
-    //the recyclerview
     private RecyclerView recyclerView;
     private int count = 0;
-    TransactionRepository transrepo;
+    private TransactionRepository transrepo;
+    private Calendar cal = Calendar.getInstance();
 
 
     @Override
@@ -82,28 +81,39 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         }
     }
 
-    /*public void loadList(int offset){
-        for(de.fh.mae.md2.app.entities.Transaction m : transrepo.getAllTransactions(offset)){
-            entityTransactionList.add(m);
+    public Date getFirstMonth(){
+        Date d = new Date();
+        d.setYear(cal.get(Calendar.YEAR));
+        d.setMonth(cal.get(Calendar.MONTH));
+        d.setDate(1);
+        return d;
+    }
+
+    public Date getLastMonth(){
+        Date d = new Date();
+        d.setYear(cal.get(Calendar.YEAR));
+        d.setMonth(cal.get(Calendar.MONTH));
+        d.setDate(cal.getActualMaximum(cal.get(Calendar.MONTH)));
+        return d;
+    }
+
+    public void loadList(int offset){
+        for(Transaction m : transrepo.loadTransactionAllFromTo(getFirstMonth(), getLastMonth()).subList(offset, offset+10)){
+            transactionList.add(m);
         }
         count += 10;
-    }*/
+    }
 
     public void initOverview() {
 
-        //getting the recyclerview from xml
         recyclerView = (RecyclerView) activity.findViewById(R.id.recycler_overview);
         LinearLayoutManager manager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
 
-
-        //initializing the productlist
         transactionList = new ArrayList<Transaction>();
-        Calendar cal = Calendar.getInstance();
 
-        // Items in overview list
-        //transrepo = new TransactionRepository(activity.getApplication());
+        transrepo = new TransactionRepository(activity.getApplication());
         //loadList(count);
 
         //adding some items to our list
