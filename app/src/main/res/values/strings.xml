@@ -56,6 +56,7 @@
     <string name="add_transaction_calendar_image_desc">Kalendersymbol</string>
     <string name="add_transaction_hint_empty"></string>
     <string name="add_transaction_delete">Transaktion l&#246;schen</string>
+    <string name="add_transaction_create_category">Erstellen Sie eine Kategorie</string>
 
     <!-- activity_add_transaction_amount-->
     <string name="add_transaction_amount_label">Betrag eingeben</string>
@@ -105,6 +106,7 @@
     <string name="category_add">Hinzufügen</string>
     <string name="category_content_description">Bezeichnung</string>
     <string name="category_image_description">Kategoriebild</string>
+    <string name="category_check_description">Best&#228;tigen</string>
     <string name="tab_text_1">Einnahmen</string>
     <string name="tab_text_2">Ausgaben</string>
 
