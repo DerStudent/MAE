@@ -27,7 +27,7 @@ public class CategoryPopupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category_dialog);
 
-        //ViewModelProviders.of(this).get(CategoryViewModel.class);
+        //ViewModelProviders.of(this).get(CategoryRepository.class);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

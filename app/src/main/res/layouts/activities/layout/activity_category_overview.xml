@@ -13,7 +13,6 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:background="@color/colorPrimaryLight"
         >
@@ -36,6 +35,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="@dimen/margin_default_half"
+        android:paddingBottom="@dimen/margin_default_half"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </LinearLayout>

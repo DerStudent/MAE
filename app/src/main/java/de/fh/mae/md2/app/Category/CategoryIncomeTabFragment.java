@@ -13,19 +13,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.entities.Category;
-import de.fh.mae.md2.app.viewmodel.CategoryViewModel;
+import de.fh.mae.md2.app.repository.CategoryRepository;
 
 
 public class CategoryIncomeTabFragment extends Fragment {
     private CategoryListAdapter mCategoryListAdapter;
     private Context context;
-    private CategoryViewModel mCategoryViewModel;
+    private CategoryRepository categoryRepository;
 
     @Override
     public void onAttach(Context context) {
@@ -48,9 +47,9 @@ public class CategoryIncomeTabFragment extends Fragment {
         recyclerView.setAdapter(mCategoryListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        mCategoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+        categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
 
-        mCategoryViewModel.getAllIncomeCategories().observe(this, new Observer<List<Category>>() {
+        categoryRepository.getAllIncomeCategories().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(@Nullable final List<Category> categories) {
                 // Update the cached copy of the categories in the adapter.
@@ -68,17 +67,17 @@ public class CategoryIncomeTabFragment extends Fragment {
         String categoryName = sharedPreferences.getString("categoryName", "");
         int categoryImage = sharedPreferences.getInt("categoryImage", 0);
         if(categoryImage != 0 && categoryName != "") {
-            //List<Category> olds = mCategoryViewModel.selectCategoryByAttributes(categoryName, true);
+            //List<Category> olds = categoryRepository.selectCategoryByAttributes(categoryName, true);
             Category c = new Category(categoryName, categoryImage, 1);
             //if(olds.isEmpty()) {
-                mCategoryViewModel.insert(c);
+                categoryRepository.insert(c);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("categoryName", "");
                 editor.putInt("categoryImage", 0);
                 editor.apply();
             /*}
             else{
-                mCategoryViewModel.insert(c);
+                categoryRepository.insert(c);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("categoryName", "");
                 editor.putInt("categoryImage", 0);

@@ -1,6 +1,7 @@
 package de.fh.mae.md2.app.repository;
 
 import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
@@ -12,9 +13,7 @@ import de.fh.mae.md2.app.dao.TransactionDao;
 import de.fh.mae.md2.app.database.AppDatabase;
 import de.fh.mae.md2.app.entities.Transaction;
 
-// TODO: refactorn zu TransactionHelper. Keine Transaktionsliste speicherbar durch refresh daher immer je die 10 neusten oder queryabhängig laden
-// TODO: Methoden statisch machen, damit man die Methoden ohne immer ein Objekt zu erstellen aufrufen kann
-public class TransactionRepository {
+public class TransactionRepository extends AndroidViewModel {
 
     private TransactionDao transactionDAO;
 
@@ -23,6 +22,7 @@ public class TransactionRepository {
     private Transaction transaction;
 
     public TransactionRepository(Application application) {
+        super(application);
         AppDatabase db = AppDatabase.getDatabase(application);
 
         transactionDAO = db.transactionDao();
