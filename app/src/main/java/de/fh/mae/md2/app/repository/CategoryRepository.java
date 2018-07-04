@@ -36,12 +36,12 @@ public class CategoryRepository {
         return allOutcomeCategories;
     }
 
-    public Category loadCategoryByName(final String name){
+    public Category loadCategoryByName(final String name, final boolean isIncomeCategory){
         try {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... voids) {
-                    c = categoryDao.loadCategoryByName(name);
+                    c = categoryDao.loadCategoryByName(name, isIncomeCategory);
                     return null;
                 }
             }.execute().get();

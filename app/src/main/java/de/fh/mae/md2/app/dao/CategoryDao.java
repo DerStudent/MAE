@@ -28,8 +28,8 @@ public interface CategoryDao {
     @Query("SELECT * FROM categories WHERE id=:id")
     Category loadCategoryById(int id);
 
-    @Query("SELECT * FROM categories WHERE name = :name LIMIT 1")
-    Category loadCategoryByName(String name);
+    @Query("SELECT * FROM categories WHERE name = :name AND isIncomeCategory = :isIncomeCategory LIMIT 1")
+    Category loadCategoryByName(String name, boolean isIncomeCategory);
 
     @Query("SELECT * FROM categories WHERE isIncomeCategory = 1 ORDER BY name ASC ")
     LiveData<List<Category>> loadAllIncomeCategories();

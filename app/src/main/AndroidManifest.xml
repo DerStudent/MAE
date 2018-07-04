@@ -52,7 +52,11 @@
             android:label="@string/category_placeholer"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".activities.CategoryPopupActivity"
+            android:name=".activities.CategoryAddPopupActivity"
+            android:label="@string/app_name"
+            android:theme="@style/popupAddCategory"/>
+        <activity
+            android:name=".activities.CategoryEditPopupActivity"
             android:label="@string/app_name"
             android:theme="@style/popupAddCategory"/>
         <activity

@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
@@ -27,7 +26,9 @@ public class CategoryIncomeTabFragment extends Fragment {
     private CategoryListAdapter mCategoryListAdapter;
     private Context context;
     private CategoryViewModel mCategoryViewModel;
-    Category old;
+    SharedPreferences sharedPreferences;
+    Category oldCategory;
+    Category newCategory;
 
     @Override
     public void onAttach(Context context) {
@@ -39,6 +40,8 @@ public class CategoryIncomeTabFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        resetSharedPreference(sharedPreferences);
     }
 
     @Nullable
@@ -66,32 +69,45 @@ public class CategoryIncomeTabFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         final String categoryName = sharedPreferences.getString("categoryName", "");
         int categoryImage = sharedPreferences.getInt("categoryImage", 0);
         boolean isIncome = sharedPreferences.getBoolean("categoryIsIncome", false);
+        String categoryAction = sharedPreferences.getString("categoryAction", "");
+        int id = sharedPreferences.getInt("categoryId", 0);
 
         if(categoryImage != 0 && categoryName != "") {
-            old = mCategoryViewModel.loadCategoryByName(categoryName);
+            oldCategory = mCategoryViewModel.loadCategoryByName(categoryName, isIncome);
+            newCategory = new Category(categoryName, categoryImage, isIncome);
 
-            Category c = new Category(categoryName, categoryImage, isIncome);
-            if(old == null) {
-                mCategoryViewModel.insert(c);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("categoryName", "");
-                editor.putInt("categoryImage", 0);
-                editor.putBoolean("categoryIsIncome", false);
-                editor.apply();
+            if(((oldCategory == null) && (categoryAction == "insert"))) {
+                mCategoryViewModel.insert(newCategory);
+                resetSharedPreference(sharedPreferences);
+                Toast.makeText(getContext(), categoryName + " hinzugefügt", Toast.LENGTH_LONG).show();
+            }
+            else if(((oldCategory == null) || ((oldCategory.getName() != newCategory.getName()) || (oldCategory.getImage() != newCategory.getImage()))) && (categoryAction == "update")){
+                newCategory.setId(id);
+                mCategoryViewModel.update(newCategory);
+                resetSharedPreference(sharedPreferences);
+                Toast.makeText(getContext(), categoryName + " aktualisiert", Toast.LENGTH_LONG).show();
+            }
+            else if((oldCategory.getIsIncomeCategory() != newCategory.getIsIncomeCategory()) && (oldCategory.getName() != newCategory.getName()) && (categoryAction == "insert")){
+                mCategoryViewModel.insert(newCategory);
+                resetSharedPreference(sharedPreferences);
                 Toast.makeText(getContext(), categoryName + " hinzugefügt", Toast.LENGTH_LONG).show();
             }
             else{
                 Toast.makeText(getContext(), categoryName + " bereits vorhanden", Toast.LENGTH_LONG).show();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("categoryName", "");
-                editor.putInt("categoryImage", 0);
-                editor.putBoolean("categoryIsIncome", false);
-                editor.apply();
+                resetSharedPreference(sharedPreferences);
             }
         }
+    }
+
+    private void resetSharedPreference(SharedPreferences sharedPreferences){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("categoryName", "");
+        editor.putInt("categoryImage", 0);
+        editor.putBoolean("categoryIsIncome", false);
+        editor.putString("categoryAction", "");
+        editor.apply();
     }
 }

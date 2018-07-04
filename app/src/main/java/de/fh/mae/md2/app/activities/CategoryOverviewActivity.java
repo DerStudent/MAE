@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import de.fh.mae.md2.app.Category.CategoryIncomeTabFragment;
 import de.fh.mae.md2.app.Category.CategoryOutcomeTabFragment;
@@ -33,7 +32,7 @@ public class CategoryOverviewActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(CategoryOverviewActivity.this, CategoryPopupActivity.class));
+                startActivity(new Intent(CategoryOverviewActivity.this, CategoryAddPopupActivity.class));
             }
         });
 

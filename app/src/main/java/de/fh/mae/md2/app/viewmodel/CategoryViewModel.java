@@ -38,8 +38,8 @@ public class CategoryViewModel extends AndroidViewModel {
         return categoryRepository.loadCategoryById(id);
     }
 
-    public Category loadCategoryByName(String name){
-        return categoryRepository.loadCategoryByName(name);
+    public Category loadCategoryByName(String name, boolean isIncomeCategory){
+        return categoryRepository.loadCategoryByName(name, isIncomeCategory);
     }
 
     public void delete(Category category) { categoryRepository.delete(category); }
