@@ -15,7 +15,7 @@ import de.fh.mae.md2.app.R;
 
 public class SettingsActivity extends Fragment implements  View.OnClickListener{
 
-    private int AMOUNT_REQUEST = 1;
+    private int PIN_REQUEST = 1;
     private FragmentActivity activity;
     private String amount;
 
@@ -27,8 +27,8 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
             Switch tmp = (Switch) activity.findViewById(R.id.pin_switch_settings);
             if (MyPayments.getPin().equals("")) {
                 Intent intent = new Intent(activity, UnlockActivity.class);
-                intent.putExtra("AMOUNT", amount);
-                startActivityForResult(intent, AMOUNT_REQUEST);
+                //intent.putExtra("AMOUNT", amount); dd
+                startActivityForResult(intent, PIN_REQUEST);
             }else{
                 MyPayments.setPin("");
             }
@@ -80,7 +80,7 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
             return;
         }
 
-        if (requestCode == AMOUNT_REQUEST) {
+        if (requestCode == PIN_REQUEST) {
             amount = data.getStringExtra("AMOUNT");
         }
 
