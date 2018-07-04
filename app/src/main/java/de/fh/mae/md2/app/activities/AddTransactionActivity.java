@@ -1,8 +1,11 @@
 package de.fh.mae.md2.app.activities;
 
 import android.app.DatePickerDialog;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,15 +21,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import de.fh.mae.md2.app.Category.CategoryListAdapter;
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.dialogs.DatePickerFragment;
+import de.fh.mae.md2.app.entities.Category;
 import de.fh.mae.md2.app.entities.Transaction;
+import de.fh.mae.md2.app.repository.CategoryRepository;
 import de.fh.mae.md2.app.repository.TransactionRepository;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, DatePickerDialog.OnDateSetListener {
@@ -37,6 +45,10 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     private String amount;
 
     private Long transactionId = -1L;
+    private Transaction transaction;
+    private Category category;
+    private TransactionRepository transactionRepository;
+    private CategoryRepository categoryRepository;
 
     private TextView textAmount;
     private TextView textCategory;
@@ -45,24 +57,15 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     private Date dateCalendar;
 
     private ImageView imageCategory;
-
-    private Transaction transaction;
+    private EditText note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transaction);
 
-        transactionId = getIntent().getLongExtra("TRANSACTION_ID", -1L);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setOnClickListeners();
-
-        if(hasTransactionId()) {
-            showDeleteButton();
-            prefillAddTransactionCard();
-        }
 
         init();
     }
@@ -72,21 +75,38 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         separator = MyPayments.getSeparator();
         amount = MyPayments.getDefaultAmount();
 
-        imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
-        imageCategory.setImageDrawable(getResources().getDrawable(R.drawable.ic_category_icon_1));
-
         textAmount = (TextView) findViewById(R.id.text_add_transaction_amount);
-
+        imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
         textCategory = (TextView) findViewById(R.id.text_add_transaction_category);
-        textCategory.setText("Supermarkt");
-
-        EditText note = (EditText) findViewById(R.id.edit_add_transaction_note);
+        textCalendar = (TextView) findViewById(R.id.text_add_transaction_calendar);
+        note = (EditText) findViewById(R.id.edit_add_transaction_note);
         note.setOnEditorActionListener(this);
 
-        textCalendar = (TextView) findViewById(R.id.text_add_transaction_calendar);
+        transactionRepository = ViewModelProviders.of(this).get(TransactionRepository.class);
+        categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
+        transactionId = getIntent().getLongExtra("TRANSACTION_ID", -1L);
+
+        if(hasTransactionId()) {
+            showDeleteButton();
+            prefillAddTransactionCard();
+            return;
+        }
+
+        List<Transaction> transactions = transactionRepository.loadLastTransactions(1);
+        if(!transactions.isEmpty()) {
+            transaction = transactions.get(0);
+        }
+
+        if(transaction != null) {
+            category = categoryRepository.getCategoryById(transaction.getCategoryID());
+        } else {
+            category = categoryRepository.getFirstCategory();
+        }
+
+        imageCategory.setImageDrawable(getResources().getDrawable(category.getImage()));
+        textCategory.setText(category.getName());
         textCalendar.setText(MyPayments.getTodayText());
         dateCalendar = getCustomCalendarInstance().getTime();
-
         refreshAmount();
     }
 
@@ -151,7 +171,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             datePicker.setArguments(datePickerBundle);
             datePicker.show(getSupportFragmentManager(), "date picker");
         }else if(i == R.id.delete_button){
-            TransactionRepository transrepo = new TransactionRepository(this.getApplication());
 
             /*
             Hier bitte Anpassen
@@ -243,23 +262,33 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     }
 
     private void prefillAddTransactionCard() {
-//        Transaction transaction = TransactionHelper.get(transactionId);
-//        amount = transaction.getValue();
-//        refreshAmount();
-//
-//        Long categoryId = transaction.getCategoryID();
-//        Category category = getCategoryById(categoryId);
-//        textCategory = category.getName();
-//        imageCategory =  imageCategory.setImageDrawable(category.getImage());
-//
-//        dateCalendar = transaction.getDate();
-//        textCalendar = getFormattedDate(dateCalendar);
-//
-//        refreshAmount();
+        transaction = transactionRepository.getTransactionById(transactionId);
+
+        categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
+        Category category = categoryRepository.getCategoryById(transaction.getCategoryID());
+
+        imageCategory.setImageDrawable(getResources().getDrawable(category.getImage()));
+        textCategory.setText(category.getName());
+
+        amount = transaction.getValue();
+        note.setText(transaction.getNote());
+        dateCalendar = transaction.getDate();
+        textCalendar.setText(getFormattedDate(dateCalendar));
+        refreshAmount();
+
     }
 
     private void saveTransaction() {
-
+        if(hasTransactionId()) {
+            transaction.setValue(amount);
+            transaction.setCategoryID(category.getId());
+            transaction.setNote(String.valueOf(note.getText()));
+            transaction.setDate(dateCalendar);
+            transactionRepository.update(transaction);
+        } else {
+            transaction = new Transaction(amount, category.getId(), String.valueOf(note.getText()), dateCalendar);
+            transactionRepository.insert(transaction);
+        }
     }
 
 }

@@ -49,7 +49,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // TODO: Notiz mit anzeigen? siehe TODO in transaction_card.xml
         // TODO: textAmount ist: transaction.getValue() + " " + MayPayments.getCurrencySymbol()
         // TODO: Category enum abfragen, um hier if/else zu steuern.
-        if(transaction.getValue() >= 0){
+        if(/*transaction.getValue() >= 0*/true){
             // TODO: +/- vorzeichen durch Farbunterscheidung unnötig. Kann außerhalb für beide identisch passieren.
             holder.textAmount.setText(String.format("+ %.2f €", transaction.getValue()));
             int colorIncome;

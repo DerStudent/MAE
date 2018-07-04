@@ -24,19 +24,19 @@ public interface TransactionDao {
     //public List<Transaction> loadAllTransactions(int offset);
 
 
-    @Query("select * from (select * from transactions order by id ASC limit :count) order by id DESC")
+    @Query("SELECT * FROM (SELECT * FROM transactions ORDER BY id ASC LIMIT :count) ORDER BY id DESC")
     public List<Transaction> loadLastTransactions(int count);
 
 
-    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end  AND status = 0 Order by date DESC")
+    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end  AND status = 0 ORDER BY date DESC")
     public List<Transaction> loadTransactionInFromTo(Date begin, Date end);
 
-    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end  AND status = 1 Order by date DESC")
+    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end  AND status = 1 ORDER BY date DESC")
     public List<Transaction> loadTransactionOutFromTo(Date begin, Date end);
 
-    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end Order by date DESC")
+    @Query("SELECT * FROM transactions WHERE date BETWEEN :begin AND :end ORDER BY date DESC")
     public List<Transaction> loadTransactionAllFromTo(Date begin, Date end);
 
-    @Query("SELECT * FROM transactions where id=:id")
-    public Transaction getTransactionById(int id);
+    @Query("SELECT * FROM transactions WHERE id=:id")
+    public Transaction getTransactionById(long id);
 }

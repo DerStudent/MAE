@@ -80,7 +80,7 @@ public class TransactionRepository extends AndroidViewModel {
         return list;
     }
 
-    public Transaction getTransactionById(final int id) {
+    public Transaction getTransactionById(final long id) {
         try{
             new  AsyncTask<Void, Void, Void>(){
                 @Override
