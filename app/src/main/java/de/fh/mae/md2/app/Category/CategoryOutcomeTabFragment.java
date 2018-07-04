@@ -6,8 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,16 +14,15 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import de.fh.mae.md2.app.Category.*;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.entities.Category;
-import de.fh.mae.md2.app.viewmodel.CategoryViewModel;
+import de.fh.mae.md2.app.repository.CategoryRepository;
 
 
 public class CategoryOutcomeTabFragment extends Fragment {
     private CategoryListAdapter mCategoryListAdapter;
     private Context context;
-    private CategoryViewModel mCategoryViewModel;
+    private CategoryRepository categoryRepository;
 
     @Override
     public void onAttach(Context context) {
@@ -48,9 +45,9 @@ public class CategoryOutcomeTabFragment extends Fragment {
         recyclerView.setAdapter(mCategoryListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        mCategoryViewModel = ViewModelProviders.of(this).get(CategoryViewModel.class);
+        categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
 
-        mCategoryViewModel.getAllOutcomeCategories().observe(this, new Observer<List<Category>>() {
+        categoryRepository.getAllOutcomeCategories().observe(this, new Observer<List<Category>>() {
             @Override
             public void onChanged(@Nullable final List<Category> categories) {
                 // Update the cached copy of the categories in the adapter.

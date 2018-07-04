@@ -1,6 +1,7 @@
 package de.fh.mae.md2.app.repository;
 
 import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.icu.util.ULocale;
 import android.os.AsyncTask;
@@ -11,13 +12,14 @@ import de.fh.mae.md2.app.dao.CategoryDao;
 import de.fh.mae.md2.app.database.AppDatabase;
 import de.fh.mae.md2.app.entities.Category;
 
-public class CategoryRepository {
+public class CategoryRepository extends AndroidViewModel {
 
     private CategoryDao categoryDao;
     private LiveData<List<Category>> allIncomeCategories;
     private LiveData<List<Category>> allOutcomeCategories;
 
     public CategoryRepository(Application application){
+        super(application);
         AppDatabase db = AppDatabase.getDatabase(application);
         categoryDao = db.categoryDao();
         allIncomeCategories = categoryDao.loadAllIncomeCategories();
