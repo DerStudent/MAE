@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
+
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.enums.ICategroryType;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
    //this context we will use to inflate the layout
@@ -54,19 +57,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //binding the data with the viewholder views
         // TODO: Notiz mit anzeigen? siehe TODO in transaction_card.xml
-        // TODO: textAmount ist: transaction.getAmount() + " " + MayPayments.getCurrencySymbol()
-        // TODO: Category enum abfragen, um hier if/else zu steuern.
-        if(/*transaction.getAmount() >= 0*/true){
-            // TODO: +/- vorzeichen durch Farbunterscheidung unnötig. Kann außerhalb für beide identisch passieren.
-            holder.textAmount.setText(String.format("+ %.2f €", transaction.getAmount()));
-            int colorIncome;
-            colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
-            holder.textAmount.setTextColor(colorIncome);
-        }
-        else{
-            //holder.textAmount.setText(String.format("- %.2f €", Math.abs(transaction.getAmount())));
-            int colorOutcome = mCtx.getResources().getColor(R.color.colorOutcome);
-            holder.textAmount.setTextColor(colorOutcome);
+        holder.textAmount.setText(transaction.getAmount()+ " " + MyPayments.getCurrencySymbol());
+        if(transaction.getCategory().getType() == ICategroryType.INCOME){
+            holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorIncome));
+        } else{
+            holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorOutcome));
         }
 
         //holder.textCategory.setText(transaction.getCategory().getName());

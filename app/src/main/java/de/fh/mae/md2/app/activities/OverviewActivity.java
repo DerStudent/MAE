@@ -117,6 +117,9 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         List<Transaction> monthlyTransactions = getMonthlyTransaction();
 
         //adding some items to our list
+        Transaction t = new Transaction(MyPayments.getDefaultAmount(), CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime());
+
+        TransactionsHelper.add(t);
 
         //creating recyclerview adapter
         TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
