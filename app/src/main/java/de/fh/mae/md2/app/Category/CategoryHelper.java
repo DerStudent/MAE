@@ -1,5 +1,6 @@
 package de.fh.mae.md2.app.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.fh.mae.md2.app.MyPayments;
@@ -54,27 +55,29 @@ public class CategoryHelper {
         add(new Category("Fast Food", R.drawable.ic_category_icon_40, ICategroryType.OUTCOME));
 
         //Einnahmen
-        new Category("Arbeit", R.drawable.ic_category_icon_18, ICategroryType.INCOME);
-        new Category("Pfand", R.drawable.ic_category_icon_33, ICategroryType.INCOME);
-        new Category("Geschenk", R.drawable.ic_category_icon_13, ICategroryType.INCOME);
+        add(new Category("Arbeit", R.drawable.ic_category_icon_18, ICategroryType.INCOME));
+        add(new Category("Pfand", R.drawable.ic_category_icon_33, ICategroryType.INCOME));
+        add(new Category("Geschenk", R.drawable.ic_category_icon_13, ICategroryType.INCOME));
+    }
+
+    public static List<Category> getCategories() {
+        return getCategoriesByType(null);
+    }
+
+    public static List<Category> getCategoriesByType(Integer type) {
+        List<Category> tmpList = new ArrayList<>();
+
+        for(Category c : list){
+            if(type == null || c.getType() == type) {
+                tmpList.add(c);
+            }
+        }
+
+        return tmpList;
     }
 
     public static void add(Category category){
         list.add(category);
-    }
-
-    public static void update(Category category) {
-        int i = 0;
-
-        for (Category c : list) {
-            i++;
-
-            if(category.getId() == c.getId()) {
-                list.remove(i);
-                list.add(i, category);
-                break;
-            }
-        }
     }
 
     public static void delete(Category category){

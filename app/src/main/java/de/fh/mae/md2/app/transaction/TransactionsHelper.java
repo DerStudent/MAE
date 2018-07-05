@@ -69,20 +69,6 @@ public class TransactionsHelper {
         list.add(transaction);
     }
 
-    public static void update(Transaction transaction) {
-        int i = 0;
-
-        for (Transaction t : list) {
-            i++;
-
-            if(transaction.getId() == t.getId()) {
-                list.remove(i);
-                list.add(i, transaction);
-                break;
-            }
-        }
-    }
-
     public static void delete(Transaction transaction){
         list.remove(transaction);
     }
