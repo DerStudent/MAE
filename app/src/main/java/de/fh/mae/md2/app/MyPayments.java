@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import de.fh.mae.md2.app.Category.Category;
 import de.fh.mae.md2.app.transaction.Transaction;
 
 public class MyPayments extends Application {
@@ -23,15 +25,23 @@ public class MyPayments extends Application {
     private static String pin = "";
 
     private static List<Transaction> transactionList;
+    private static List<Category> categoryList;
 
     @Override
     public void onCreate() {
-        transactionList = new ArrayList<>();
         super.onCreate();
         init();
     }
 
     private void init() {
+        if (transactionList == null) {
+            transactionList = new ArrayList<>();
+        }
+
+        if (categoryList == null) {
+            categoryList = new ArrayList<>();
+        }
+
         if (separator == null) {
             setSeparator(String.format(getResources().getString(R.string.separatorComma)));
         }
@@ -50,6 +60,16 @@ public class MyPayments extends Application {
         }
 
         return value;
+    }
+
+    public static Calendar getCustomCalendarInstance() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar;
     }
 
     // Called by the system when the device configuration changes while your component is running.
@@ -75,8 +95,12 @@ public class MyPayments extends Application {
         return fractionalDigits;
     }
 
-    public static List getList(){
+    public static List getTransactionList(){
         return transactionList;
+    }
+
+    public static List getCategoryList(){
+        return categoryList;
     }
 
     public static String getPin() {
@@ -130,4 +154,5 @@ public class MyPayments extends Application {
     public static void signOut() {
         signedIn = false;
     }
+
 }

@@ -42,11 +42,11 @@ public class Transaction {
         return id;
     }
 
-    public String getValue() {
+    public String getAmount() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setAmount(String value) {
         this.value = value;
     }
 

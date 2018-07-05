@@ -1,6 +1,5 @@
 package de.fh.mae.md2.app.activities;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,20 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import de.fh.mae.md2.app.Category.CategoryHelper;
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.transaction.*;
 
 public class OverviewActivity extends Fragment implements  View.OnClickListener {
     private FragmentActivity activity;
-    private List<Transaction> transactionList;
     private RecyclerView recyclerView;
-    private int count = 0;
-    //private TransactionRepository transrepo;
     private Calendar cal = Calendar.getInstance();
 
 
@@ -75,15 +72,12 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         int i = view.getId();
 
         if (i == R.id.button__floating_main) {
-           // CategoryRepository categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
-//          categoryRepository.startAddTransactionIfHasCategory();
-
-           // if (categoryRepository.hasCategory()) {
-               // Intent myIntent = new Intent(activity, AddTransactionActivity.class);
-               // startActivity(myIntent);
-           // } else {
-            //    Toast.makeText(activity, getResources().getString(R.string.add_transaction_create_category), Toast.LENGTH_LONG).show();
-          //  }
+            if (CategoryHelper.hasCategories()) {
+                Intent myIntent = new Intent(activity, AddTransactionActivity.class);
+                startActivity(myIntent);
+            } else {
+                Toast.makeText(activity, getResources().getString(R.string.add_transaction_create_category), Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -103,11 +97,14 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         return d;
     }
 
-    public void loadList(){
-       // for(Transaction m : transrepo.loadTransactionAllFromTo(getFirstMonth(), getLastMonth())){//.subList(offset, offset+10)){
-           // transactionList.add(m);
-        //}
-        //count += 10;
+    public List<Transaction> getMonthlyTransaction(){
+        Calendar calendar = MyPayments.getCustomCalendarInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date from = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date to = calendar.getTime();
+
+        return TransactionsHelper.getTransactionsFromTo(from, to);
     }
 
     public void initOverview() {
@@ -117,15 +114,12 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
 
-        transactionList = new ArrayList<Transaction>();
-
-        //transrepo = new TransactionRepository(activity.getApplication());
-        //loadList();
+        List<Transaction> monthlyTransactions = getMonthlyTransaction();
 
         //adding some items to our list
 
         //creating recyclerview adapter
-        TransactionAdapter adapter = new TransactionAdapter(activity, transactionList);
+        TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);

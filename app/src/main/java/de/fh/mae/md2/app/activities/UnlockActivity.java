@@ -3,11 +3,7 @@ package de.fh.mae.md2.app.activities;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +18,7 @@ import de.fh.mae.md2.app.R;
 
 public class UnlockActivity extends AppCompatActivity implements View.OnClickListener{
     private AppCompatActivity activity;
-    private String amount;
+    private String pin;
     private EditText txt;
     private ComponentName componentName;
 
@@ -54,7 +50,7 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
 
     public void isPinCorrect(String pin){
         Intent intent = new Intent(UnlockActivity.this, SettingsActivity.class);
-        intent.putExtra("AMOUNT", amount);
+        intent.putExtra("PIN", pin);
         if(componentName != null) {
             setResult(getIntent().getIntExtra("REQUEST", 0), intent);
             finish();
@@ -65,8 +61,8 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
             Intent myIntent = new Intent(UnlockActivity.this, Main.class);
             startActivity(myIntent);
         }else{
-            amount = "";
-            refreshAmount();
+            pin = "";
+            refreshPin();
         }
     }
 
@@ -78,10 +74,11 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
         if (item.getItemId() == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
-        } else if (id == R.id.action_save_transaction_amount) {
-            //saveAmount();
-            return true;
         }
+//        else if (id == R.id.action_save_transaction_pin) {
+//            //savePin();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -92,28 +89,28 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (i) {
             case R.id.button_pin_backspace:
-                removeCharacterFromAmount();
-                refreshAmount();
-                System.out.println(amount);
+                removeCharacterFromPin();
+                refreshPin();
+                System.out.println(pin);
                 break;
             case R.id.button_pin_check:
-                System.out.println(amount);
-                isPinCorrect(amount);
+                System.out.println(pin);
+                isPinCorrect(pin);
                 break;
             default:
-                addInputToAmount(i);
-                refreshAmount();
-                System.out.println(amount);
+                addInputToPin(i);
+                refreshPin();
+                System.out.println(pin);
                 break;
         }
     }
 
-    private void refreshAmount() {
-        if(isAmountEmpty()) {
-            amount = "";
+    private void refreshPin() {
+        if(isPinEmpty()) {
+            pin = "";
         }
 
-        txt.setText(amount);
+        txt.setText(pin);
     }
 
     private String getButtonInputValue(int buttonId) {
@@ -121,23 +118,23 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
         return String.valueOf(button.getText());
     }
 
-    private void addInputToAmount(int buttonId) {
+    private void addInputToPin(int buttonId) {
         String inputValue = getButtonInputValue(buttonId);
-        if(amount == null){
-            amount = inputValue;
+        if(pin == null){
+            pin = inputValue;
         }else {
-            amount += inputValue;
+            pin += inputValue;
         }
     }
 
-    private void removeCharacterFromAmount() {
-        if (!isAmountEmpty()) {
-            amount = amount.substring(0, amount.length() - 1);
+    private void removeCharacterFromPin() {
+        if (!isPinEmpty()) {
+            pin = pin.substring(0, pin.length() - 1);
         }
     }
 
-    private boolean isAmountEmpty() {
-        if(amount != null && amount.length() > 0) {
+    private boolean isPinEmpty() {
+        if(pin != null && pin.length() > 0) {
             return  false;
         }
 
