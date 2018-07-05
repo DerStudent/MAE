@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.entities;
-
+/*
 import android.arch.persistence.room.*;
 import android.support.annotation.NonNull;
 
@@ -110,4 +110,4 @@ public class Category {
             new Category("Geschenk", R.drawable.ic_category_icon_13, ICategroryStatus.IN),
         };
     }
-}
+}*/

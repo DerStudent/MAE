@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.Category;
-
+/*
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -82,7 +82,7 @@ public class CategoryIncomeTabFragment extends Fragment {
                 editor.putString("categoryName", "");
                 editor.putInt("categoryImage", 0);
                 editor.apply();
-            }*/
+            }
         }
     }
-}
+}*/

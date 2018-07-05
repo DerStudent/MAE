@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.Category;
-
+/*
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,4 +62,4 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             categoryImageView = itemView.findViewById(R.id.image_category_card);
         }
     }
-}
+}*/

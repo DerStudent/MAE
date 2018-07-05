@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.Category;
-
+/*
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -100,4 +100,4 @@ public class CategoryImageAdapter extends BaseAdapter {
         imageView.setImageResource(Images[position]);
         return imageView;
     }
-}
+}*/

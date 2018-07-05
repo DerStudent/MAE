@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.entities;
-
+/*
 import java.util.Date;
 
 import android.arch.persistence.room.*;
@@ -86,5 +86,5 @@ public class Transaction {
     public void setStatus(@ITransactionStatus int status) {
         this.status = status;
     }
-
 }
+*/
