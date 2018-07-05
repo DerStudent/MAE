@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DateFormat;
 import java.util.List;
 
 import de.fh.mae.md2.app.MyPayments;
@@ -64,10 +66,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
             holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorOutcome));
         }
 
-        //holder.textCategory.setText(transaction.getCategory().getName());
-        // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
-        //holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
-       // holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().g));
+        holder.textCategory.setText(transaction.getCategory().getName());
+        holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().getImage()));
+
+        holder.textDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate()));
     }
 
     @Override
