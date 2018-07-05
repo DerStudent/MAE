@@ -123,13 +123,11 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         Date to = calendar.getTime();
 
         //adding some items to our list
-
         //TransactionsHelper.add(new Transaction("100", new CategoryHelper().getFirstCategory(), "Test", calendar.getTime()));
 
         Transaction t = new Transaction("100", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime());
 
         TransactionsHelper.add(t);
-
 
         //creating recyclerview adapter
         TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);

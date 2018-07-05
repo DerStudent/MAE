@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.List;
 
 import de.fh.mae.md2.app.MyPayments;
@@ -24,6 +24,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     //we are storing all the products in a list
     private List<Transaction> transactionList;
+    View v;
 
     private int TRANSACTION_ID = 1;
 
@@ -39,10 +40,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.transaction_card, null);
         // TODO: View Klickbar machen - setOnClickListener! Bei Klick AddTransactionActivity per Intent aufrufen und vorher dem Intent die Id anhängen per: intent.putExtra("TRANSACTION_ID", id);
-        view.setOnClickListener(new View.OnClickListener() {
+        /*view.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(mCtx, AddTransactionActivity.class);
-                intent.putExtra("TRANSACTION_ID", parent.getId());
+                intent.putExtra("TRANSACTION_ID", 1);
                 mCtx.startActivity(intent);
                 //mCtx.startActivity(intent);
                 //if(mCtx instanceof Activity){
@@ -50,7 +51,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                    // a.startActivityForResult(intent, TRANSACTION_ID);
                 //}
             }
-        } );
+        } );**/
+        v = view;
         return new TransactionViewHolder(view);
     }
 
@@ -58,7 +60,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(TransactionViewHolder holder, int position) {
         //getting the product of the specified position
-        Transaction transaction = transactionList.get(position);
+        final Transaction transaction = transactionList.get(position);
 
         //binding the data with the viewholder views
         // TODO: Notiz mit anzeigen? siehe TODO in transaction_card.xml
@@ -70,9 +72,20 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
         holder.textCategory.setText(transaction.getCategory().getName());
-        // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
-        holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
         holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().getImage()));
+        holder.textDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate()));
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(mCtx, AddTransactionActivity.class);
+                intent.putExtra("TRANSACTION_ID", transaction.getId());
+                mCtx.startActivity(intent);
+                //if(mCtx instanceof Activity){
+                // Activity a = ((Activity) mCtx);
+                // a.startActivityForResult(intent, TRANSACTION_ID);
+                //}
+            }
+        } );
     }
 
     @Override
