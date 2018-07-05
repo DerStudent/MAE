@@ -2,14 +2,21 @@ package de.fh.mae.md2.app.transaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
+
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.activities.AddTransactionActivity;
+import de.fh.mae.md2.app.enums.ICategroryType;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
    //this context we will use to inflate the layout
@@ -32,17 +39,18 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.transaction_card, null);
         // TODO: View Klickbar machen - setOnClickListener! Bei Klick AddTransactionActivity per Intent aufrufen und vorher dem Intent die Id anhängen per: intent.putExtra("TRANSACTION_ID", id);
-        /*view.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(mCtx, AddTransactionActivity.class);
                 intent.putExtra("TRANSACTION_ID", parent.getId());
+                mCtx.startActivity(intent);
                 //mCtx.startActivity(intent);
-                if(mCtx instanceof Activity){
-                    Activity a = ((Activity) mCtx);
-                    a.startActivityForResult(intent, TRANSACTION_ID);
-                }
+                //if(mCtx instanceof Activity){
+                   // Activity a = ((Activity) mCtx);
+                   // a.startActivityForResult(intent, TRANSACTION_ID);
+                //}
             }
-        } );*/
+        } );
         return new TransactionViewHolder(view);
     }
 
@@ -54,25 +62,17 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         //binding the data with the viewholder views
         // TODO: Notiz mit anzeigen? siehe TODO in transaction_card.xml
-        // TODO: textAmount ist: transaction.getAmount() + " " + MayPayments.getCurrencySymbol()
-        // TODO: Category enum abfragen, um hier if/else zu steuern.
-        if(/*transaction.getAmount() >= 0*/true){
-            // TODO: +/- vorzeichen durch Farbunterscheidung unnötig. Kann außerhalb für beide identisch passieren.
-            holder.textAmount.setText(String.format("+ %.2f €", transaction.getAmount()));
-            int colorIncome;
-            colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
-            holder.textAmount.setTextColor(colorIncome);
-        }
-        else{
-            //holder.textAmount.setText(String.format("- %.2f €", Math.abs(transaction.getAmount())));
-            int colorOutcome = mCtx.getResources().getColor(R.color.colorOutcome);
-            holder.textAmount.setTextColor(colorOutcome);
+        holder.textAmount.setText(transaction.getAmount()+ " " + MyPayments.getCurrencySymbol());
+        if(transaction.getCategory().getType() == ICategroryType.INCOME){
+            holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorIncome));
+        } else{
+            holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorOutcome));
         }
 
-        //holder.textCategory.setText(transaction.getCategory().getName());
+        holder.textCategory.setText(transaction.getCategory().getName());
         // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
-        //holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
-       // holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().g));
+        holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
+        holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().getImage()));
     }
 
     @Override

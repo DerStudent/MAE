@@ -29,6 +29,7 @@ import de.fh.mae.md2.app.Category.CategoryHelper;
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.dialogs.DatePickerFragment;
+import de.fh.mae.md2.app.enums.ICategroryType;
 import de.fh.mae.md2.app.transaction.Transaction;
 import de.fh.mae.md2.app.transaction.TransactionsHelper;
 
@@ -88,7 +89,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             refresh();
         }
 
-        if(transaction != null) {
+        if(transaction == null) {
             Category category = null;
             if(TransactionsHelper.hasTransactions()) {
                 List<Transaction> tL = TransactionsHelper.getLastTransactions(1);
@@ -96,7 +97,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
                     category = tL.get(0).getCategory();
                 }
             } else {
-                CategoryHelper.getFirstCategory();
+                category = CategoryHelper.getFirstCategory();
             }
 
             transaction = new Transaction(MyPayments.getDefaultAmount(), category, "", MyPayments.getCustomCalendarInstance().getTime());
@@ -198,6 +199,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     private void refresh() {
         if (transaction != null) {
             textAmount.setText(transaction.getAmount() + " " + currencySymbol);
+            if(transaction.getCategory().getType() == ICategroryType.INCOME) {
+                textAmount.setTextColor(getResources().getColor(R.color.colorIncome));
+            } else {
+                textAmount.setTextColor(getResources().getColor(R.color.colorOutcome));
+            }
 
             imageCategory.setImageDrawable(getResources().getDrawable(transaction.getCategory().getImage()));
             textCategory.setText(transaction.getCategory().getName());
@@ -225,6 +231,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar calendar = MyPayments.getCustomCalendarInstance();
+        calendar.set(year, month, dayOfMonth);
 
         transaction.setDate(calendar.getTime());
         refresh();
@@ -248,9 +255,7 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     }
 
     private void saveTransaction() {
-        if(hasTransactionId()) {
-            TransactionsHelper.update(transaction);
-        } else {
+        if(!hasTransactionId()) {
             TransactionsHelper.add(transaction);
         }
     }
