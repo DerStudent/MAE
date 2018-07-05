@@ -63,20 +63,6 @@ public class CategoryHelper {
         list.add(category);
     }
 
-    public static void update(Category category) {
-        int i = 0;
-
-        for (Category c : list) {
-            i++;
-
-            if(category.getId() == c.getId()) {
-                list.remove(i);
-                list.add(i, category);
-                break;
-            }
-        }
-    }
-
     public static void delete(Category category){
         list.remove(category);
     }

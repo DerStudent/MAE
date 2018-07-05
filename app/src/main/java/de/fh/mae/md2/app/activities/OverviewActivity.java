@@ -13,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import de.fh.mae.md2.app.Category.Category;
 import de.fh.mae.md2.app.Category.CategoryHelper;
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.enums.ICategroryType;
 import de.fh.mae.md2.app.transaction.*;
 
 public class OverviewActivity extends Fragment implements  View.OnClickListener {
@@ -115,8 +118,12 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         recyclerView.setHasFixedSize(true);
 
         List<Transaction> monthlyTransactions = getMonthlyTransaction();
+        Calendar calendar = Calendar.getInstance();
+        DateFormat df = DateFormat.getDateInstance();
+        Date to = calendar.getTime();
 
         //adding some items to our list
+        TransactionsHelper.add(new Transaction("100", new CategoryHelper().getFirstCategory(), "Test", calendar.getTime()));
 
         //creating recyclerview adapter
         TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
