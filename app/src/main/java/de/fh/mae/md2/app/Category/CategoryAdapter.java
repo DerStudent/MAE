@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.Category;
-
+/*
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import de.fh.mae.md2.app.entities.Category;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
@@ -60,4 +59,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             imageCategory = itemView.findViewById(R.id.image_category_card);
         }
     }
-}
+}*/

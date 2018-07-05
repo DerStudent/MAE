@@ -2,20 +2,14 @@ package de.fh.mae.md2.app.transaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.text.SimpleDateFormat;
-
-
 import java.util.List;
-
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.entities.Transaction;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
    //this context we will use to inflate the layout
@@ -24,6 +18,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     //we are storing all the products in a list
     private List<Transaction> transactionList;
 
+    private int TRANSACTION_ID = 1;
+
     //getting the context and product list with constructor
     public TransactionAdapter(Context mCtx, List<Transaction> productList) {
         this.mCtx = mCtx;
@@ -31,11 +27,22 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     @Override
-    public TransactionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TransactionViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.transaction_card, null);
         // TODO: View Klickbar machen - setOnClickListener! Bei Klick AddTransactionActivity per Intent aufrufen und vorher dem Intent die Id anhängen per: intent.putExtra("TRANSACTION_ID", id);
+        /*view.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(mCtx, AddTransactionActivity.class);
+                intent.putExtra("TRANSACTION_ID", parent.getId());
+                //mCtx.startActivity(intent);
+                if(mCtx instanceof Activity){
+                    Activity a = ((Activity) mCtx);
+                    a.startActivityForResult(intent, TRANSACTION_ID);
+                }
+            }
+        } );*/
         return new TransactionViewHolder(view);
     }
 

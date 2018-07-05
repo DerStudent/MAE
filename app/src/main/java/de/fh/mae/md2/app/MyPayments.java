@@ -3,6 +3,11 @@ package de.fh.mae.md2.app;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import de.fh.mae.md2.app.transaction.Transaction;
+
 public class MyPayments extends Application {
     private static final int fractionalDigits = 2;
     private static final String zero = "0";
@@ -17,8 +22,11 @@ public class MyPayments extends Application {
 
     private static String pin = "";
 
+    private static List<Transaction> transactionList;
+
     @Override
     public void onCreate() {
+        transactionList = new ArrayList<>();
         super.onCreate();
         init();
     }
@@ -65,6 +73,10 @@ public class MyPayments extends Application {
 
     public static int getFractionalDigits() {
         return fractionalDigits;
+    }
+
+    public static List getList(){
+        return transactionList;
     }
 
     public static String getPin() {

@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app.database;
+/*package de.fh.mae.md2.app.database;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.*;
@@ -14,7 +14,7 @@ import de.fh.mae.md2.app.entities.Category;
 import de.fh.mae.md2.app.entities.Transaction;
 import de.fh.mae.md2.app.typeConverter.Converters;
 
-@Database(entities = {Transaction.class, Category.class}, version = 1)
+@Database(entities = {Transaction.class, Category.class}, version = 2)
 @TypeConverters({Converters.class})
 
 public abstract class AppDatabase extends RoomDatabase {
@@ -32,6 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                         AppDatabase.class, "MyPaymentsDatabase")
                             .addCallback(sRoomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
@@ -72,4 +73,4 @@ public abstract class AppDatabase extends RoomDatabase {
             return null;
         }
     }
-}
+}*/

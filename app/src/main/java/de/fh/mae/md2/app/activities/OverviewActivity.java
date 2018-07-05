@@ -20,9 +20,6 @@ import java.util.Date;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.entities.Transaction;
-import de.fh.mae.md2.app.repository.CategoryRepository;
-import de.fh.mae.md2.app.repository.TransactionRepository;
 import de.fh.mae.md2.app.transaction.*;
 
 public class OverviewActivity extends Fragment implements  View.OnClickListener {
@@ -30,7 +27,7 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
     private List<Transaction> transactionList;
     private RecyclerView recyclerView;
     private int count = 0;
-    private TransactionRepository transrepo;
+    //private TransactionRepository transrepo;
     private Calendar cal = Calendar.getInstance();
 
 
@@ -78,15 +75,15 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         int i = view.getId();
 
         if (i == R.id.button__floating_main) {
-            CategoryRepository categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
+           // CategoryRepository categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
 //          categoryRepository.startAddTransactionIfHasCategory();
 
-            if (categoryRepository.hasCategory()) {
-                Intent myIntent = new Intent(activity, AddTransactionActivity.class);
-                startActivity(myIntent);
-            } else {
-                Toast.makeText(activity, getResources().getString(R.string.add_transaction_create_category), Toast.LENGTH_LONG).show();
-            }
+           // if (categoryRepository.hasCategory()) {
+               // Intent myIntent = new Intent(activity, AddTransactionActivity.class);
+               // startActivity(myIntent);
+           // } else {
+            //    Toast.makeText(activity, getResources().getString(R.string.add_transaction_create_category), Toast.LENGTH_LONG).show();
+          //  }
         }
     }
 
@@ -106,11 +103,11 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         return d;
     }
 
-    public void loadList(int offset){
-        for(Transaction m : transrepo.loadTransactionAllFromTo(getFirstMonth(), getLastMonth()).subList(offset, offset+10)){
-            transactionList.add(m);
-        }
-        count += 10;
+    public void loadList(){
+       // for(Transaction m : transrepo.loadTransactionAllFromTo(getFirstMonth(), getLastMonth())){//.subList(offset, offset+10)){
+           // transactionList.add(m);
+        //}
+        //count += 10;
     }
 
     public void initOverview() {
@@ -122,8 +119,8 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
 
         transactionList = new ArrayList<Transaction>();
 
-        transrepo = new TransactionRepository(activity.getApplication());
-        //loadList(count);
+        //transrepo = new TransactionRepository(activity.getApplication());
+        //loadList();
 
         //adding some items to our list
 

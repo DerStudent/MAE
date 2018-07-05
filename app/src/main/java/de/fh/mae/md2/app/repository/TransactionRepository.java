@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.repository;
-
+/*
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
@@ -171,4 +171,4 @@ public class TransactionRepository extends AndroidViewModel {
             return null;
         }
     }
-}
+}*/

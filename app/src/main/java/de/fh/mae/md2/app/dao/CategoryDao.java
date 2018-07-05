@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app.dao;
+/*package de.fh.mae.md2.app.dao;
 
 import de.fh.mae.md2.app.entities.Category;
 
@@ -22,8 +22,8 @@ public interface CategoryDao {
     @Query("DELETE FROM categories")
     void deleteAll();
 
-/*    @Query("SELECT * FROM categories WHERE name LIKE :name AND isIncomeCategory LIKE :isIncomeCategory")
-    List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory);*/
+//    @Query("SELECT * FROM categories WHERE name LIKE :name AND isIncomeCategory LIKE :isIncomeCategory")
+//    List<Category> selectCategoryByAttributes(String name, boolean isIncomeCategory);
 
     @Query("SELECT * FROM categories WHERE status = 1 ORDER BY name COLLATE NOCASE ASC ")
     LiveData<List<Category>> loadAllIncomeCategories();
@@ -39,4 +39,4 @@ public interface CategoryDao {
 
     @Query("SELECT count(*) FROM categories")
     Long getCategoryCount();
-}
+}*/

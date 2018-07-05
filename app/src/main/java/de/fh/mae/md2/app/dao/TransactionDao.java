@@ -1,4 +1,4 @@
-package de.fh.mae.md2.app.dao;
+/*package de.fh.mae.md2.app.dao;
 
 import de.fh.mae.md2.app.entities.Transaction;
 
@@ -40,3 +40,4 @@ public interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE id=:id")
     public Transaction getTransactionById(long id);
 }
+*/
