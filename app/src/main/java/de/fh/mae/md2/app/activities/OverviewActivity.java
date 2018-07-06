@@ -1,6 +1,7 @@
 package de.fh.mae.md2.app.activities;
 
 import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -54,6 +55,13 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
                 }
             }
         });*/
+    }
+
+    @Override
+    public void onStop() {
+
+        super.onStop();
+        initOverview();
     }
 
     @Nullable
@@ -110,6 +118,16 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         return TransactionsHelper.getTransactionsFromTo(from, to);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if(data == null) {
+            return;
+        }
+
+
+    }
+
     public void initOverview() {
 
         recyclerView = (RecyclerView) activity.findViewById(R.id.recycler_overview);
@@ -122,12 +140,14 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         DateFormat df = DateFormat.getDateInstance();
         Date to = calendar.getTime();
 
+
+
         //adding some items to our list
         //TransactionsHelper.add(new Transaction("100", new CategoryHelper().getFirstCategory(), "Test", calendar.getTime()));
 
-        Transaction t = new Transaction("100", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime());
+        //Transaction t = new Transaction("100", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime());
 
-        TransactionsHelper.add(t);
+        //TransactionsHelper.add(t);
 
         //creating recyclerview adapter
         TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);

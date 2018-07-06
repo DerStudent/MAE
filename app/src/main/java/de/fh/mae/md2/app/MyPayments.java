@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.fh.mae.md2.app.Category.Category;
+import de.fh.mae.md2.app.Category.CategoryHelper;
 import de.fh.mae.md2.app.transaction.Transaction;
 
 public class MyPayments extends Application {
@@ -51,6 +52,8 @@ public class MyPayments extends Application {
 
         defaultAmount = zero + separator + getDefaultFractionalDigitValue();
         todayText = getResources().getString(R.string.today);
+
+        transactionList.add(new Transaction("100", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime()));
     }
 
     public static String getDefaultFractionalDigitValue() {

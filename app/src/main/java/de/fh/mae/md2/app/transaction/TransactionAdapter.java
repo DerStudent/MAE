@@ -1,6 +1,7 @@
 package de.fh.mae.md2.app.transaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -80,10 +81,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                 Intent intent = new Intent(mCtx, AddTransactionActivity.class);
                 intent.putExtra("TRANSACTION_ID", transaction.getId());
                 mCtx.startActivity(intent);
-                //if(mCtx instanceof Activity){
-                // Activity a = ((Activity) mCtx);
-                // a.startActivityForResult(intent, TRANSACTION_ID);
-                //}
+                /*if(mCtx instanceof Activity){
+                    Activity a = ((Activity) mCtx);
+                    a.startActivityForResult(intent, TRANSACTION_ID);
+                }*/
             }
         } );
     }
