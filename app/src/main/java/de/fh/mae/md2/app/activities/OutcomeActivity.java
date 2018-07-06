@@ -46,16 +46,6 @@ public class OutcomeActivity extends Fragment {
         initOutcome();
     }
 
-    public List<Transaction> getMonthlyTransactionType(Integer type){
-        Calendar calendar = MyPayments.getCustomCalendarInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
-        Date from = calendar.getTime();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        Date to = calendar.getTime();
-
-        return TransactionsHelper.getTransactionsFromToByType(from, to, type);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -70,10 +60,10 @@ public class OutcomeActivity extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         //initializing the productlist
-        List<Transaction> monthlyTransactions = getMonthlyTransactionType(ICategroryType.OUTCOME);
+        List<Transaction> outcomeTransactions = TransactionsHelper.getAllTransactions(ICategroryType.OUTCOME);
 
         //creating recyclerview adapter
-        TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
+        TransactionAdapter adapter = new TransactionAdapter(activity, outcomeTransactions);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);

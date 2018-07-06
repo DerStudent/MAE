@@ -73,7 +73,7 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
 
         //noinspection SimplifiableIfStatement
         if (item.getItemId() == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
+            onBackPressed();
             return true;
         }
 //        else if (id == R.id.action_save_transaction_pin) {

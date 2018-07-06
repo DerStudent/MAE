@@ -124,7 +124,7 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
 
         //noinspection SimplifiableIfStatement
         if (item.getItemId() == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
+            onBackPressed();
             return true;
         } else if (id == R.id.action_save_transaction_amount) {
             saveAmount();

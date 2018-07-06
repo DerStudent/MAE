@@ -51,16 +51,6 @@ public class IncomeActivity extends Fragment {
         return inflater.inflate(R.layout.activity_income, container, false);
     }
 
-    public List<Transaction> getMonthlyTransactionType(Integer type){
-        Calendar calendar = MyPayments.getCustomCalendarInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
-        Date from = calendar.getTime();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        Date to = calendar.getTime();
-
-        return TransactionsHelper.getTransactionsFromToByType(from, to, type);
-    }
-
     private void initIncome() {
         //getting the recyclerview from xml
         recyclerView = (RecyclerView) activity.findViewById(R.id.recycler_income);
@@ -69,10 +59,10 @@ public class IncomeActivity extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         //initializing the productlist
-        List<Transaction> monthlyTransactions = getMonthlyTransactionType(ICategroryType.INCOME);
+        List<Transaction> incomeTransactions = TransactionsHelper.getAllTransactions(ICategroryType.INCOME);
 
         //creating recyclerview adapter
-        TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
+        TransactionAdapter adapter = new TransactionAdapter(activity, incomeTransactions);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);

@@ -42,6 +42,24 @@ public class TransactionsHelper {
         return tmpList;
     }
 
+    public static List<Transaction> getAllTransactions(Integer type) {
+        List<Transaction> tmpList = new ArrayList<>();
+        if(type == null) {
+            tmpList = list;
+            Collections.sort(tmpList);
+            return tmpList;
+        }
+
+        for(Transaction t : list){
+            if(t.getCategory().getType() == type) {
+                    tmpList.add(t);
+            }
+        }
+
+        Collections.sort(tmpList);
+        return tmpList;
+    }
+
     public static List<Transaction> getTransactionsFromTo(Date from, Date to) {
         return getTransactionsFromToByType(from, to, null);
     }
