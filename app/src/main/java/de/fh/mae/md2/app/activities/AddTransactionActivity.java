@@ -114,11 +114,8 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         addTransactionNote.setOnClickListener(this);
         RelativeLayout addTransactionCalendar = (RelativeLayout) findViewById(R.id.layout_add_transaction_calendar);
         addTransactionCalendar.setOnClickListener(this);
-
-        if(hasTransactionId()) {
-            Button deleteTransaction = (Button) findViewById(R.id.delete_button);
-            deleteTransaction.setOnClickListener(this);
-        }
+        Button deleteTransaction = (Button) findViewById(R.id.delete_button);
+        deleteTransaction.setOnClickListener(this);
     }
 
     @Override
