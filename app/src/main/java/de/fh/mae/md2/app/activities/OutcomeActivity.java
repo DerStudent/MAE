@@ -11,11 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.enums.ICategroryType;
 import de.fh.mae.md2.app.transaction.Transaction;
 import de.fh.mae.md2.app.transaction.TransactionAdapter;
+import de.fh.mae.md2.app.transaction.TransactionsHelper;
 
 public class OutcomeActivity extends Fragment {
 
@@ -34,6 +39,23 @@ public class OutcomeActivity extends Fragment {
         initOutcome();
     }
 
+    @Override
+    public void onStart() {
+
+        super.onStart();
+        initOutcome();
+    }
+
+    public List<Transaction> getMonthlyTransactionType(Integer type){
+        Calendar calendar = MyPayments.getCustomCalendarInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date from = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date to = calendar.getTime();
+
+        return TransactionsHelper.getTransactionsFromToByType(from, to, type);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -48,10 +70,10 @@ public class OutcomeActivity extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         //initializing the productlist
-        transactionList = new ArrayList<Transaction>();
+        List<Transaction> monthlyTransactions = getMonthlyTransactionType(ICategroryType.OUTCOME);
 
         //creating recyclerview adapter
-        TransactionAdapter adapter = new TransactionAdapter(activity, transactionList);
+        TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
