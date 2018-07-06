@@ -45,7 +45,7 @@ public class CategoryOutcomeTabFragment extends Fragment {
 
 
         List<Category> categories = CategoryHelper.getCategoriesByType(ICategroryType.OUTCOME);
-        mCategoryListAdapter = new CategoryListAdapter(context, categories);
+        mCategoryListAdapter = new CategoryListAdapter(context, categories, categoryId);
 
         recyclerView.setAdapter(mCategoryListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));

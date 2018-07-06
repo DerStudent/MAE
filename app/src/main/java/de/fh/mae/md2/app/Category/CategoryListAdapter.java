@@ -20,13 +20,15 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     private final LayoutInflater mInflater;
     private Context context;
+    private long categoryId = -1L;
 
     private List<Category> categoryList;
     View view;
 
-    CategoryListAdapter(Context context, List<Category> categoryList) {
+    CategoryListAdapter(Context context, List<Category> categoryList, long categoryId) {
         this.context = context;
         this.categoryList = categoryList;
+        this.categoryId = categoryId;
 
         mInflater = LayoutInflater.from(context);
     }
@@ -51,24 +53,27 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             holder.categoryItemView.setText("No Category");
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+        if(CategoryHelper.hasCategoryId(categoryId)) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                Intent intent = new Intent(context, Main.class);
 //                intent.putExtra("CATEGORY_ANSWER", category.getId());
 //                context.startActivity(intent);
 
 //                ((Activity)context).finish();
 
-                Intent intent = new Intent((Activity) context, AddTransactionActivity.class);
-                intent.putExtra("CATEGORY_ID", category.getId());
+                    Intent intent = new Intent((Activity) context, AddTransactionActivity.class);
+                    intent.putExtra("CATEGORY_ID", category.getId());
 
-                if(((Activity)context).getComponentName() != null) {
-                    ((Activity)context).setResult(2, intent);
+                    if (((Activity) context).getComponentName() != null) {
+                        ((Activity) context).setResult(2, intent);
+                    }
+
+                    ((Activity) context).finish();
                 }
-
-                ((Activity)context).finish();
-            }
-        } );
+            });
+        }
     }
 
     // getItemCount() is called many times, and when it is first called,

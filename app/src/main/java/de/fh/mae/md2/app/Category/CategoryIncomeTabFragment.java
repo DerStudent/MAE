@@ -46,7 +46,7 @@ public class CategoryIncomeTabFragment extends Fragment {
 
 
         List<Category> categories = CategoryHelper.getCategoriesByType(ICategroryType.INCOME);
-        mCategoryListAdapter = new CategoryListAdapter(context, categories);
+        mCategoryListAdapter = new CategoryListAdapter(context, categories, categoryId);
 
         recyclerView.setAdapter(mCategoryListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
