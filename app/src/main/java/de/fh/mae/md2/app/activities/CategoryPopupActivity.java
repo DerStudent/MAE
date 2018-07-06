@@ -48,13 +48,12 @@ public class CategoryPopupActivity extends AppCompatActivity {
                 }
                 else if(image == 0){
                     Toast.makeText(getApplicationContext(), "Bildeingabe fehlt!", Toast.LENGTH_LONG).show();
-                    Toast.makeText(getApplicationContext(), image + " " + mEditCategoryText.getText().toString(), Toast.LENGTH_LONG).show();
                 }
                 else {
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("categoryName", mEditCategoryText.getText().toString());
-                    Toast.makeText(getApplicationContext(), image + " " + mEditCategoryText.getText().toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), mEditCategoryText.getText().toString() + " hinzugefügt", Toast.LENGTH_LONG).show();
                     editor.putInt("categoryImage", image);
                     editor.commit();
                     finish();

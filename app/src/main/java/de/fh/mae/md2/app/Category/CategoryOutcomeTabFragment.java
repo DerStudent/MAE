@@ -27,9 +27,6 @@ public class CategoryOutcomeTabFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-
-        List<Category> categories = CategoryHelper.getCategoriesByType(ICategroryType.OUTCOME);
-        mCategoryListAdapter = new CategoryListAdapter(context, categories);
     }
 
     @Override

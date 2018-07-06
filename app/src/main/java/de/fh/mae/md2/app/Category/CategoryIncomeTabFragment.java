@@ -28,9 +28,6 @@ public class CategoryIncomeTabFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-
-        List<Category> categories = CategoryHelper.getCategoriesByType(ICategroryType.INCOME);
-        mCategoryListAdapter = new CategoryListAdapter(context, categories);
     }
 
     @Override
