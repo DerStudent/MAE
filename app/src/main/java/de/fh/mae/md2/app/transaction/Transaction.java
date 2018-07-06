@@ -4,7 +4,7 @@ import java.util.Date;
 
 import de.fh.mae.md2.app.Category.Category;
 
-public class Transaction {
+public class Transaction implements Comparable<Transaction> {
     private long id;
     private static long idCounter = 0L;
 
@@ -58,5 +58,10 @@ public class Transaction {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public int compareTo(Transaction o) {
+        return o.getDate().compareTo(date);
     }
 }

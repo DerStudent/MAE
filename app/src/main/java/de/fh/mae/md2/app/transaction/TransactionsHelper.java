@@ -1,6 +1,7 @@
 package de.fh.mae.md2.app.transaction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -62,6 +63,7 @@ public class TransactionsHelper {
             }
         }
 
+        Collections.sort(tmpList);
         return tmpList;
     }
 

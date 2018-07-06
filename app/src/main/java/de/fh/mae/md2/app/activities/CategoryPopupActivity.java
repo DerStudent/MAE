@@ -16,7 +16,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import de.fh.mae.md2.app.Category.Category;
+import de.fh.mae.md2.app.Category.CategoryHelper;
 import de.fh.mae.md2.app.R;
+import de.fh.mae.md2.app.enums.ICategroryType;
 
 public class CategoryPopupActivity extends AppCompatActivity {
     private EditText mEditCategoryText;
@@ -50,6 +53,8 @@ public class CategoryPopupActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Bildeingabe fehlt!", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    CategoryHelper.add(new Category(mEditCategoryText.getText().toString(),image, ICategroryType.OUTCOME));
+                    CategoryHelper.add(new Category(mEditCategoryText.getText().toString(),image, ICategroryType.INCOME));
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("categoryName", mEditCategoryText.getText().toString());

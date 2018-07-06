@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -71,6 +72,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
                     }
 
                     ((Activity) context).finish();
+                }
+            });
+        } else {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, category.getName().toString() + " entfernt", Toast.LENGTH_SHORT).show();
+                    CategoryHelper.delete(category);
                 }
             });
         }
