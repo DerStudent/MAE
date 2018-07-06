@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.entities.Transaction;
+import de.fh.mae.md2.app.transaction.Transaction;
 import de.fh.mae.md2.app.transaction.TransactionAdapter;
 
 public class CalendarActivity extends Fragment {

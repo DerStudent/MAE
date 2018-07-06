@@ -5,9 +5,9 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IntDef({ICategroryStatus.IN, ICategroryStatus.OUT})
+@IntDef({ICategroryType.INCOME, ICategroryType.OUTCOME})
 @Retention(RetentionPolicy.SOURCE)
-public @interface ICategroryStatus {
-    int IN = 0;
-    int OUT = 1;
+public @interface ICategroryType {
+    int INCOME = 0;
+    int OUTCOME = 1;
 }

@@ -75,6 +75,15 @@ public class Main extends AppCompatActivity
         displaySelectedScreen(R.id.nav_overview);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(!hasFocus && MyPayments.isPremium() && MyPayments.getPin()!= null && !MyPayments.getPin().equals("")){
+            Intent pinIntent = new Intent(this, UnlockActivity.class);
+            startActivity(pinIntent);
+        }
+    }
+
     private void setNavigationDrawerHeader(NavigationView navigationView) {
         View navigationHeader = navigationView.getHeaderView(0);
         /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/

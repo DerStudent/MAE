@@ -1,5 +1,4 @@
 package de.fh.mae.md2.app.Category;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import de.fh.mae.md2.app.entities.Category;
 
 import java.util.List;
 
@@ -16,9 +14,15 @@ import de.fh.mae.md2.app.R;
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder> {
 
     private final LayoutInflater mInflater;
-    private List<Category> mCategories; // Cached copy of categories
+    private List<Category> categories; // Cached copy of categories
+    private Context context;
 
-    CategoryListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    CategoryListAdapter(Context context, List<Category> categories) {
+        this.context = context;
+        this.categories = categories;
+
+        mInflater = LayoutInflater.from(context);
+    }
 
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,8 +32,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
-        if (mCategories != null) {
-            Category current = mCategories.get(position);
+        if (categories != null) {
+            Category current = categories.get(position);
             holder.categoryItemView.setText(current.getName());
             holder.categoryImageView.setImageResource(current.getImage());
         } else {
@@ -38,17 +42,12 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         }
     }
 
-    public void setCategories(List<Category> categories){
-        mCategories = categories;
-        notifyDataSetChanged();
-    }
-
     // getItemCount() is called many times, and when it is first called,
     // mCategories has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mCategories != null)
-            return mCategories.size();
+        if (categories != null)
+            return categories.size();
         else return 0;
     }
 

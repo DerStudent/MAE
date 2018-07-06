@@ -1,7 +1,7 @@
 package de.fh.mae.md2.app.activities;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,26 +12,30 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import de.fh.mae.md2.app.Category.Category;
+import de.fh.mae.md2.app.Category.CategoryHelper;
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.entities.Transaction;
-import de.fh.mae.md2.app.repository.CategoryRepository;
-import de.fh.mae.md2.app.repository.TransactionRepository;
+import de.fh.mae.md2.app.enums.ICategroryType;
 import de.fh.mae.md2.app.transaction.*;
 
 public class OverviewActivity extends Fragment implements  View.OnClickListener {
     private FragmentActivity activity;
-    private List<Transaction> transactionList;
     private RecyclerView recyclerView;
-    private int count = 0;
-    private TransactionRepository transrepo;
     private Calendar cal = Calendar.getInstance();
+    private TextView incomeAmount;
+    private TextView outcomeAmount;
+    private TextView totalAmount;
 
 
     @Override
@@ -59,6 +63,13 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         });*/
     }
 
+    @Override
+    public void onStart() {
+
+        super.onStart();
+        initOverview();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -78,10 +89,7 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         int i = view.getId();
 
         if (i == R.id.button__floating_main) {
-            CategoryRepository categoryRepository = ViewModelProviders.of(this).get(CategoryRepository.class);
-//          categoryRepository.startAddTransactionIfHasCategory();
-
-            if (categoryRepository.hasCategory()) {
+            if (CategoryHelper.hasCategories()) {
                 Intent myIntent = new Intent(activity, AddTransactionActivity.class);
                 startActivity(myIntent);
             } else {
@@ -90,45 +98,87 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         }
     }
 
-    public Date getFirstMonth(){
-        Date d = new Date();
-        d.setYear(cal.get(Calendar.YEAR));
-        d.setMonth(cal.get(Calendar.MONTH));
-        d.setDate(1);
-        return d;
+    public List<Transaction> getMonthlyTransaction(){
+        Calendar calendar = MyPayments.getCustomCalendarInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date from = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date to = calendar.getTime();
+
+        return TransactionsHelper.getTransactionsFromTo(from, to);
     }
 
-    public Date getLastMonth(){
-        Date d = new Date();
-        d.setYear(cal.get(Calendar.YEAR));
-        d.setMonth(cal.get(Calendar.MONTH));
-        d.setDate(cal.getActualMaximum(cal.get(Calendar.MONTH)));
-        return d;
+    public List<Transaction> getMonthlyTransactionType(Integer type){
+        Calendar calendar = MyPayments.getCustomCalendarInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date from = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date to = calendar.getTime();
+
+        return TransactionsHelper.getTransactionsFromToByType(from, to, type);
     }
 
-    public void loadList(int offset){
-        for(Transaction m : transrepo.loadTransactionAllFromTo(getFirstMonth(), getLastMonth()).subList(offset, offset+10)){
-            transactionList.add(m);
+    // 0 = Income, 1 = Outcome
+    public void calculateCredit(){
+        List<Transaction> tmp = getMonthlyTransaction();
+        double income = 0;
+        double outcome = 0;
+
+        for(Transaction i : tmp){
+            if(i.getCategory().getType() == 0) {
+                income += Double.parseDouble(i.getAmount().replace(",", "."));
+            }else{
+                outcome += Double.parseDouble(i.getAmount().replace(",", "."));
+            }
         }
-        count += 10;
+        incomeAmount.setText(numberWithOnAfterSeperator(String.valueOf(income).replace(".", ",")));
+        outcomeAmount.setText(numberWithOnAfterSeperator(String.valueOf(outcome).replace(".", ",")));
+
+        totalAmount.setText(numberWithOnAfterSeperator(String.valueOf(income-outcome).replace(".", ",")));
+    }
+
+    public String numberWithOnAfterSeperator(String tmp){
+        int after = -1;
+        boolean b = false;
+        for(int i = 0; i < tmp.length(); i++){
+            if(tmp.charAt(i) == '.' || tmp.charAt(i) == ','){
+                b = true;
+            }
+            if(b){
+                after++;
+            }
+        }
+        if(after == 1){
+            return tmp + "0";
+        }
+        return tmp;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if(data == null) {
+            return;
+        }
     }
 
     public void initOverview() {
+
+        incomeAmount = (TextView) activity.findViewById(R.id.text_overview_income_value);
+        outcomeAmount = (TextView) activity.findViewById(R.id.text_overview_outcome_value);
+        totalAmount = (TextView) activity.findViewById(R.id.text_overview_total_value);
 
         recyclerView = (RecyclerView) activity.findViewById(R.id.recycler_overview);
         LinearLayoutManager manager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
 
-        transactionList = new ArrayList<Transaction>();
-
-        transrepo = new TransactionRepository(activity.getApplication());
-        //loadList(count);
-
-        //adding some items to our list
+        List<Transaction> monthlyTransactions = getMonthlyTransaction();
 
         //creating recyclerview adapter
-        TransactionAdapter adapter = new TransactionAdapter(activity, transactionList);
+        TransactionAdapter adapter = new TransactionAdapter(activity, monthlyTransactions);
+
+        calculateCredit();
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);

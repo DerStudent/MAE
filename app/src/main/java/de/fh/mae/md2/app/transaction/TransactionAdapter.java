@@ -1,21 +1,23 @@
 package de.fh.mae.md2.app.transaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.text.SimpleDateFormat;
 
-
+import java.text.DateFormat;
 import java.util.List;
 
+import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
-import de.fh.mae.md2.app.entities.Transaction;
+import de.fh.mae.md2.app.activities.AddTransactionActivity;
+import de.fh.mae.md2.app.enums.ICategroryType;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
    //this context we will use to inflate the layout
@@ -23,6 +25,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     //we are storing all the products in a list
     private List<Transaction> transactionList;
+    View v;
+
+    private int TRANSACTION_ID = 1;
 
     //getting the context and product list with constructor
     public TransactionAdapter(Context mCtx, List<Transaction> productList) {
@@ -31,11 +36,24 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     @Override
-    public TransactionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TransactionViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.transaction_card, null);
         // TODO: View Klickbar machen - setOnClickListener! Bei Klick AddTransactionActivity per Intent aufrufen und vorher dem Intent die Id anhängen per: intent.putExtra("TRANSACTION_ID", id);
+        /*view.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(mCtx, AddTransactionActivity.class);
+                intent.putExtra("TRANSACTION_ID", 1);
+                mCtx.startActivity(intent);
+                //mCtx.startActivity(intent);
+                //if(mCtx instanceof Activity){
+                   // Activity a = ((Activity) mCtx);
+                   // a.startActivityForResult(intent, TRANSACTION_ID);
+                //}
+            }
+        } );**/
+        v = view;
         return new TransactionViewHolder(view);
     }
 
@@ -43,29 +61,32 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(TransactionViewHolder holder, int position) {
         //getting the product of the specified position
-        Transaction transaction = transactionList.get(position);
+        final Transaction transaction = transactionList.get(position);
 
         //binding the data with the viewholder views
         // TODO: Notiz mit anzeigen? siehe TODO in transaction_card.xml
-        // TODO: textAmount ist: transaction.getValue() + " " + MayPayments.getCurrencySymbol()
-        // TODO: Category enum abfragen, um hier if/else zu steuern.
-        if(/*transaction.getValue() >= 0*/true){
-            // TODO: +/- vorzeichen durch Farbunterscheidung unnötig. Kann außerhalb für beide identisch passieren.
-            holder.textAmount.setText(String.format("+ %.2f €", transaction.getValue()));
-            int colorIncome;
-            colorIncome = mCtx.getResources().getColor(R.color.colorIncome);
-            holder.textAmount.setTextColor(colorIncome);
-        }
-        else{
-            //holder.textAmount.setText(String.format("- %.2f €", Math.abs(transaction.getValue())));
-            int colorOutcome = mCtx.getResources().getColor(R.color.colorOutcome);
-            holder.textAmount.setTextColor(colorOutcome);
+        holder.textAmount.setText(transaction.getAmount()+ " " + MyPayments.getCurrencySymbol());
+        if(transaction.getCategory().getType() == ICategroryType.INCOME){
+            holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorIncome));
+        } else{
+            holder.textAmount.setTextColor(mCtx.getResources().getColor(R.color.colorOutcome));
         }
 
-        //holder.textCategory.setText(transaction.getCategory().getName());
-        // TODO: Datumsformat einheitlich? DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate());
-        //holder.textDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(transaction.getDate()));
-       // holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().g));
+        holder.textCategory.setText(transaction.getCategory().getName());
+        holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().getImage()));
+        holder.textDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate()));
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent intent = new Intent(mCtx, AddTransactionActivity.class);
+                intent.putExtra("TRANSACTION_ID", transaction.getId());
+                mCtx.startActivity(intent);
+                /*if(mCtx instanceof Activity){
+                    Activity a = ((Activity) mCtx);
+                    a.startActivityForResult(intent, TRANSACTION_ID);
+                }*/
+            }
+        } );
     }
 
     @Override

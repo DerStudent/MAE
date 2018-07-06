@@ -1,5 +1,5 @@
 package de.fh.mae.md2.app.repository;
-
+/*
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
@@ -28,12 +28,12 @@ public class TransactionRepository extends AndroidViewModel {
         transactionDAO = db.transactionDao();
     }
 
-    public List<Transaction> loadLastTransactions(final int count) {
+    public List<Transaction> getLastTransactions(final int count) {
         try {
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... voids) {
-                    list = transactionDAO.loadLastTransactions(count);
+                    list = transactionDAO.getLastTransactions(count);
                     return null;
                 }
             }.execute().get();
@@ -171,4 +171,4 @@ public class TransactionRepository extends AndroidViewModel {
             return null;
         }
     }
-}
+}*/
