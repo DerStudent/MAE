@@ -48,6 +48,13 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
     }
 
     @Override
+    public void onStart() {
+
+        super.onStart();
+        init();
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         activity = getActivity();
