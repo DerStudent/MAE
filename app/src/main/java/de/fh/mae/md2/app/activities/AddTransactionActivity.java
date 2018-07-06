@@ -35,6 +35,7 @@ import de.fh.mae.md2.app.transaction.TransactionsHelper;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, DatePickerDialog.OnDateSetListener {
     private int AMOUNT_REQUEST = 1;
+    private int CATEGORY_REQUEST = 1;
 
     private String separator;
     private String currencySymbol;
@@ -166,6 +167,10 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             TransactionsHelper.delete(transaction);
             setResult(RESULT_OK);
             finish();
+        }else if(i == R.id.layout_add_transaction_category){
+            Intent intent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
+            intent.putExtra("CATEGORY", transaction.getCategory().getId());
+            startActivityForResult(intent, CATEGORY_REQUEST);
         }
     }
 

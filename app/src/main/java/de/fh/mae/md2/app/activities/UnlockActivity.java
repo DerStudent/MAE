@@ -60,8 +60,9 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
             finish();
             Intent myIntent = new Intent(UnlockActivity.this, Main.class);
             startActivity(myIntent);
-        }else{
-            pin = "";
+        }else if(!pin.equals(MyPayments.getPin())){
+            //pin = "";
+            this.pin = "";
             refreshPin();
         }
     }
@@ -109,7 +110,6 @@ public class UnlockActivity extends AppCompatActivity implements View.OnClickLis
         if(isPinEmpty()) {
             pin = "";
         }
-
         txt.setText(pin);
     }
 

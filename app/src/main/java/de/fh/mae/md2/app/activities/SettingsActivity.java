@@ -27,7 +27,7 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
             Switch tmp = (Switch) activity.findViewById(R.id.pin_switch_settings);
             if (MyPayments.getPin().equals("")) {
                 Intent intent = new Intent(activity, UnlockActivity.class);
-                //intent.putExtra("VALUE", value);
+                intent.putExtra("PIN", MyPayments.getPin());
                 startActivityForResult(intent, PIN_REQUEST);
             }else{
                 MyPayments.setPin("");
@@ -81,7 +81,7 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
         }
 
         if (requestCode == PIN_REQUEST) {
-            pin = data.getStringExtra("VALUE");
+            pin = data.getStringExtra("PIN");
         }
 
         MyPayments.setPin(pin);
@@ -93,7 +93,7 @@ public class SettingsActivity extends Fragment implements  View.OnClickListener{
             Switch pinSwitch = (Switch) activity.findViewById(R.id.pin_switch_settings);
             premiumSwitch.setChecked(true);
 
-            if(!MyPayments.getPin().equals("") && MyPayments.isPremium()){
+            if(MyPayments.getPin() != null && !MyPayments.getPin().equals("") && MyPayments.isPremium()){
                 pinSwitch.setChecked(true);
             }else{
                 pinSwitch.setChecked(false);

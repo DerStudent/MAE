@@ -23,7 +23,7 @@ public class MyPayments extends Application {
     private static boolean premium = false;
     private static boolean signedIn = false;
 
-    private static String pin = "";
+    private static String pin ="";
 
     private static List<Transaction> transactionList;
     private static List<Category> categoryList;

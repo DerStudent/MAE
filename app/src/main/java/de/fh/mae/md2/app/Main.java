@@ -78,7 +78,7 @@ public class Main extends AppCompatActivity
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(!hasFocus && MyPayments.isPremium() && !MyPayments.getPin().equals("")){
+        if(!hasFocus && MyPayments.isPremium() && MyPayments.getPin()!= null && !MyPayments.getPin().equals("")){
             Intent pinIntent = new Intent(this, UnlockActivity.class);
             startActivity(pinIntent);
         }
