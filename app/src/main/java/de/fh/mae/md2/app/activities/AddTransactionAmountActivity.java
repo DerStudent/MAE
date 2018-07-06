@@ -83,7 +83,7 @@ public class AddTransactionAmountActivity extends AppCompatActivity implements V
         Intent intent = new Intent(AddTransactionAmountActivity.this, AddTransactionActivity.class);
         intent.putExtra("AMOUNT", amount);
         if(componentName != null) {
-            setResult(getIntent().getIntExtra("REQUEST", 0), intent);
+            setResult(getIntent().getIntExtra("AMOUNT_REQUEST", -1), intent);
         }
 
         finish();

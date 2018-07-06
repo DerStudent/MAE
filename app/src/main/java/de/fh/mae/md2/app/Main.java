@@ -27,7 +27,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import de.fh.mae.md2.app.Category.Category;
+import de.fh.mae.md2.app.Category.CategoryHelper;
 import de.fh.mae.md2.app.activities.AddTransactionActivity;
+import de.fh.mae.md2.app.activities.AddTransactionAmountActivity;
 import de.fh.mae.md2.app.activities.CalendarActivity;
 import de.fh.mae.md2.app.activities.CategoryOverviewActivity;
 import de.fh.mae.md2.app.activities.ChartActivity;
@@ -43,6 +46,8 @@ public class Main extends AppCompatActivity
 
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
+
+    private long categoryId = -1L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,14 @@ public class Main extends AppCompatActivity
 
         setNavigationDrawerHeader(navigationView);
 
-        displaySelectedScreen(R.id.nav_overview);
+        categoryId = getIntent().getLongExtra("CATEGORY_ID", -1L);
+
+        if(CategoryHelper.hasCategoryId(categoryId)) {
+            displaySelectedScreen(R.id.nav_categories);
+        } else {
+            displaySelectedScreen(R.id.nav_overview);
+        }
+
     }
 
     @Override
@@ -195,7 +207,11 @@ public class Main extends AppCompatActivity
                 fragment = new ChartActivity();
                 break;
             case R.id.nav_categories:
+                Bundle categoryBundle = new Bundle();
+                categoryBundle.putLong("CATEGORY_ANSWER", categoryId);
+
                 fragment = new CategoryOverviewActivity();
+                fragment.setArguments(categoryBundle);
                 break;
             case R.id.nav_account:
                 Intent pinIntent = new Intent(this, UnlockActivity.class);
@@ -238,5 +254,4 @@ public class Main extends AppCompatActivity
         displaySelectedScreen(item.getItemId());
         return true;
     }
-
 }

@@ -19,6 +19,7 @@ import de.fh.mae.md2.app.R;
 
 public class CategoryOverviewActivity extends Fragment implements  View.OnClickListener {
     private FragmentActivity activity;
+    private long categoryId = -1L;
 
     private CategoryPageAdapter mCategoryPageAdapter;
 
@@ -45,13 +46,23 @@ public class CategoryOverviewActivity extends Fragment implements  View.OnClickL
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        categoryId = getArguments().getLong("CATEGORY_ANSWER", -1L);
+
         return inflater.inflate(R.layout.activity_category_overview, container, false);
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        Bundle categoryTabBundle = new Bundle();
+        categoryTabBundle.putLong("CATEGORY_ANSWER", categoryId);
+
+        Fragment incomeTabFragment = new CategoryIncomeTabFragment();
+        Fragment outcomeTabFragment = new CategoryOutcomeTabFragment();
+        incomeTabFragment.setArguments(categoryTabBundle);
+        outcomeTabFragment.setArguments(categoryTabBundle);
+
         CategoryPageAdapter adapter = new CategoryPageAdapter(activity.getSupportFragmentManager());
-        adapter.addFragment(new CategoryIncomeTabFragment(), getString(R.string.tab_text_1));
-        adapter.addFragment(new CategoryOutcomeTabFragment(), getString(R.string.tab_text_2));
+        adapter.addFragment(incomeTabFragment, getString(R.string.tab_text_1));
+        adapter.addFragment(outcomeTabFragment, getString(R.string.tab_text_2));
         viewPager.setAdapter(adapter);
     }
 

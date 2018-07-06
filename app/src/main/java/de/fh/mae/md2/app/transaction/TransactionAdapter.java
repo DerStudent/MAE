@@ -25,7 +25,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     //we are storing all the products in a list
     private List<Transaction> transactionList;
-    View v;
+    View view;
 
     private int TRANSACTION_ID = 1;
 
@@ -39,21 +39,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public TransactionViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.transaction_card, null);
-        // TODO: View Klickbar machen - setOnClickListener! Bei Klick AddTransactionActivity per Intent aufrufen und vorher dem Intent die Id anhängen per: intent.putExtra("TRANSACTION_ID", id);
-        /*view.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Intent intent = new Intent(mCtx, AddTransactionActivity.class);
-                intent.putExtra("TRANSACTION_ID", 1);
-                mCtx.startActivity(intent);
-                //mCtx.startActivity(intent);
-                //if(mCtx instanceof Activity){
-                   // Activity a = ((Activity) mCtx);
-                   // a.startActivityForResult(intent, TRANSACTION_ID);
-                //}
-            }
-        } );**/
-        v = view;
+        this.view = inflater.inflate(R.layout.transaction_card, null);
+
         return new TransactionViewHolder(view);
     }
 
@@ -76,7 +63,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         holder.imageCategory.setImageDrawable(mCtx.getResources().getDrawable(transaction.getCategory().getImage()));
         holder.textDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(transaction.getDate()));
 
-        v.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(mCtx, AddTransactionActivity.class);
                 intent.putExtra("TRANSACTION_ID", transaction.getId());

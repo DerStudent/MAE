@@ -24,6 +24,8 @@ public class CategoryIncomeTabFragment extends Fragment {
     private CategoryListAdapter mCategoryListAdapter;
     private Context context;
 
+    private long categoryId = -1L;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -33,6 +35,7 @@ public class CategoryIncomeTabFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        categoryId = getArguments().getLong("CATEGORY_ANSWER", -1L);
     }
 
     @Nullable

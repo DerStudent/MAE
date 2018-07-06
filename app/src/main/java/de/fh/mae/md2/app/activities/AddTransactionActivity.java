@@ -26,6 +26,7 @@ import java.util.List;
 
 import de.fh.mae.md2.app.Category.Category;
 import de.fh.mae.md2.app.Category.CategoryHelper;
+import de.fh.mae.md2.app.Main;
 import de.fh.mae.md2.app.MyPayments;
 import de.fh.mae.md2.app.R;
 import de.fh.mae.md2.app.dialogs.DatePickerFragment;
@@ -35,9 +36,8 @@ import de.fh.mae.md2.app.transaction.TransactionsHelper;
 
 public class AddTransactionActivity extends AppCompatActivity implements View.OnClickListener, EditText.OnEditorActionListener, DatePickerDialog.OnDateSetListener {
     private int AMOUNT_REQUEST = 1;
-    private int CATEGORY_REQUEST = 1;
+    private int CATEGORY_REQUEST = 2;
 
-    private String separator;
     private String currencySymbol;
 
     private long transactionId = -1L;
@@ -64,7 +64,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
     private void init() {
         currencySymbol = MyPayments.getCurrencySymbol();
-        separator = MyPayments.getSeparator();
 
         textAmount = (TextView) findViewById(R.id.text_add_transaction_amount);
         imageCategory = (ImageView) findViewById(R.id.image_add_transaction_category);
@@ -74,14 +73,14 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         note.setOnEditorActionListener(this);
 
         transactionId = getIntent().getLongExtra("TRANSACTION_ID", -1L);
-        categoryId = getIntent().getLongExtra("CATEGORY_ID", -1L);
-
-        if(hasCategoryId() && transaction != null) {
-            Category category = CategoryHelper.getCategoryById(categoryId);
-            if(category != null) {
-                transaction.setCategory(category);
-            }
-        }
+//        categoryId = getIntent().getLongExtra("CATEGORY_ID", -1L);
+//
+//        if(CategoryHelper.hasCategoryId(categoryId) && transaction != null) {
+//            Category category = CategoryHelper.getCategoryById(categoryId);
+//            if(category != null) {
+//                transaction.setCategory(category);
+//            }
+//        }
 
         if(hasTransactionId()) {
             showDeleteButton();
@@ -151,8 +150,8 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             intent.putExtra("AMOUNT", transaction.getAmount());
             startActivityForResult(intent, AMOUNT_REQUEST);
         } else if (i == R.id.layout_add_transaction_category) {
-            Intent intent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
-            intent.putExtra("CATEGORY", transaction.getCategory().getId());
+            Intent intent = new Intent(AddTransactionActivity.this, Main.class);
+            intent.putExtra("CATEGORY_ID", transaction.getCategory().getId());
             startActivityForResult(intent, CATEGORY_REQUEST);
         } else if (i == R.id.layout_add_transaction_note) {
             EditText note = (EditText) findViewById(R.id.edit_add_transaction_note);
@@ -193,6 +192,11 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             transaction.setAmount(data.getStringExtra("AMOUNT"));
         }
 
+        if (requestCode == CATEGORY_REQUEST) {
+            transaction.setCategory(CategoryHelper.getCategoryById(data.getLongExtra("CATEGORY_ID", -1L)));
+            refreshCategory();
+        }
+
         refreshAmount();
     }
 
@@ -205,12 +209,16 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
         }
     }
 
+    private void refreshCategory() {
+        imageCategory.setImageDrawable(getResources().getDrawable(transaction.getCategory().getImage()));
+        textCategory.setText(transaction.getCategory().getName());
+    }
+
     private void refresh() {
         if (transaction != null) {
             refreshAmount();
 
-            imageCategory.setImageDrawable(getResources().getDrawable(transaction.getCategory().getImage()));
-            textCategory.setText(transaction.getCategory().getName());
+            refreshCategory();
 
             note.setText(transaction.getNote().toString());
 
@@ -250,10 +258,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
 
     private boolean hasTransactionId() {
         return transactionId >= 0;
-    }
-
-    private boolean hasCategoryId() {
-        return categoryId >= 0;
     }
 
     private void showDeleteButton() {
