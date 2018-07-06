@@ -109,16 +109,6 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
         return TransactionsHelper.getTransactionsFromTo(from, to);
     }
 
-    public List<Transaction> getMonthlyTransactionType(Integer type){
-        Calendar calendar = MyPayments.getCustomCalendarInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
-        Date from = calendar.getTime();
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        Date to = calendar.getTime();
-
-        return TransactionsHelper.getTransactionsFromToByType(from, to, type);
-    }
-
     // 0 = Income, 1 = Outcome
     public void calculateCredit(){
         DecimalFormat f = new DecimalFormat("#0.00");

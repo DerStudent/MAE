@@ -53,7 +53,19 @@ public class MyPayments extends Application {
         defaultAmount = zero + separator + getDefaultFractionalDigitValue();
         todayText = getResources().getString(R.string.today);
 
+        addTransactions();
+    }
+
+    public void addTransactions(){
         transactionList.add(new Transaction("100,00", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("268,00", CategoryHelper.getCategoryById(3), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("5,50", CategoryHelper.getCategoryById(22), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("4,45", CategoryHelper.getCategoryById(15), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("4,25", CategoryHelper.getCategoryById(40), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("600,00", CategoryHelper.getCategoryById(23), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("1200,00", CategoryHelper.getCategoryById(39), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("70,00", CategoryHelper.getCategoryById(5), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("23,50", CategoryHelper.getCategoryById(23), "", MyPayments.getCustomCalendarInstance().getTime()));
     }
 
     public static String getDefaultFractionalDigitValue() {
