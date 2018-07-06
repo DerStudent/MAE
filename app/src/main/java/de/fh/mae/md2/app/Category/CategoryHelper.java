@@ -109,4 +109,8 @@ public class CategoryHelper {
 
         return null;
     }
+
+    public static boolean hasCategoryId(long id) {
+        return id >= 0;
+    }
 }
