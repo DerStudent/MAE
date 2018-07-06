@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import de.fh.mae.md2.app.Category.CategoryImageAdapter;
 import de.fh.mae.md2.app.R;
 
 public class ChooseIconActivity extends FragmentActivity{
@@ -17,7 +18,7 @@ public class ChooseIconActivity extends FragmentActivity{
         setContentView(R.layout.activity_category_choose_icon);
 
         GridView gridView = findViewById(R.id.add_category_gridview);
-//        gridView.setAdapter(new CategoryImageAdapter(this));
+        gridView.setAdapter(new CategoryImageAdapter(this));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

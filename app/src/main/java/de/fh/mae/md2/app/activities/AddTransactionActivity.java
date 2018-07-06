@@ -193,22 +193,26 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             transaction.setAmount(data.getStringExtra("AMOUNT"));
         }
 
-        refresh();
+        refreshAmount();
+    }
+
+    private void refreshAmount() {
+        textAmount.setText(transaction.getAmount() + " " + currencySymbol);
+        if(transaction.getCategory().getType() == ICategroryType.INCOME) {
+            textAmount.setTextColor(getResources().getColor(R.color.colorIncome));
+        } else {
+            textAmount.setTextColor(getResources().getColor(R.color.colorOutcome));
+        }
     }
 
     private void refresh() {
         if (transaction != null) {
-            textAmount.setText(transaction.getAmount() + " " + currencySymbol);
-            if(transaction.getCategory().getType() == ICategroryType.INCOME) {
-                textAmount.setTextColor(getResources().getColor(R.color.colorIncome));
-            } else {
-                textAmount.setTextColor(getResources().getColor(R.color.colorOutcome));
-            }
+            refreshAmount();
 
             imageCategory.setImageDrawable(getResources().getDrawable(transaction.getCategory().getImage()));
             textCategory.setText(transaction.getCategory().getName());
 
-            note.setText(transaction.getNote());
+            note.setText(transaction.getNote().toString());
 
             if(transaction.getDate().getTime() != MyPayments.getCustomCalendarInstance().getTime().getTime()) {
                 textCalendar.setText(getFormattedDate(transaction.getDate()));
@@ -219,9 +223,12 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
     }
 
     private void leaveEditText() {
+        transaction.setNote(note.getText().toString());
         View view = getCurrentFocus();
 
         if(view instanceof EditText) {
+
+
             InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             view.clearFocus();
