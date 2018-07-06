@@ -214,8 +214,6 @@ public class Main extends AppCompatActivity
                 fragment.setArguments(categoryBundle);
                 break;
             case R.id.nav_account:
-                Intent pinIntent = new Intent(this, UnlockActivity.class);
-                startActivity(pinIntent);
                 break;
             case R.id.nav_settings:
                 fragment = new SettingsActivity();
