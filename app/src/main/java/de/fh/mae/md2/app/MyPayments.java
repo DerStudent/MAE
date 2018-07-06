@@ -53,7 +53,7 @@ public class MyPayments extends Application {
         defaultAmount = zero + separator + getDefaultFractionalDigitValue();
         todayText = getResources().getString(R.string.today);
 
-        transactionList.add(new Transaction("100", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime()));
+        transactionList.add(new Transaction("100,00", CategoryHelper.getFirstCategory(), "", MyPayments.getCustomCalendarInstance().getTime()));
     }
 
     public static String getDefaultFractionalDigitValue() {

@@ -151,7 +151,9 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             intent.putExtra("AMOUNT", transaction.getAmount());
             startActivityForResult(intent, AMOUNT_REQUEST);
         } else if (i == R.id.layout_add_transaction_category) {
-
+            Intent intent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
+            intent.putExtra("CATEGORY", transaction.getCategory().getId());
+            startActivityForResult(intent, CATEGORY_REQUEST);
         } else if (i == R.id.layout_add_transaction_note) {
             EditText note = (EditText) findViewById(R.id.edit_add_transaction_note);
             note.setFocusableInTouchMode(true);
@@ -167,10 +169,6 @@ public class AddTransactionActivity extends AppCompatActivity implements View.On
             TransactionsHelper.delete(transaction);
             setResult(RESULT_OK);
             finish();
-        }else if(i == R.id.layout_add_transaction_category){
-            Intent intent = new Intent(AddTransactionActivity.this, AddTransactionAmountActivity.class);
-            intent.putExtra("CATEGORY", transaction.getCategory().getId());
-            startActivityForResult(intent, CATEGORY_REQUEST);
         }
     }
 

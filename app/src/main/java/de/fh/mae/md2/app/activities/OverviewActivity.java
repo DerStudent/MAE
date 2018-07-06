@@ -18,6 +18,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -120,38 +121,26 @@ public class OverviewActivity extends Fragment implements  View.OnClickListener 
 
     // 0 = Income, 1 = Outcome
     public void calculateCredit(){
+        DecimalFormat f = new DecimalFormat("#0.00");
         List<Transaction> tmp = getMonthlyTransaction();
-        double income = 0;
-        double outcome = 0;
+        double income = 0.00;
+        double outcome = 0.00;
+        String separator = MyPayments.getSeparator();
 
-        for(Transaction i : tmp){
-            if(i.getCategory().getType() == 0) {
-                income += Double.parseDouble(i.getAmount().replace(",", "."));
+        for(Transaction t : tmp){
+            double amount = Double.parseDouble(t.getAmount().replace(separator, "."));
+
+            if(t.getCategory().getType() == ICategroryType.INCOME) {
+                income += amount;
             }else{
-                outcome += Double.parseDouble(i.getAmount().replace(",", "."));
+                outcome += amount;
             }
         }
-        incomeAmount.setText(numberWithOnAfterSeperator(String.valueOf(income).replace(".", ",")));
-        outcomeAmount.setText(numberWithOnAfterSeperator(String.valueOf(outcome).replace(".", ",")));
 
-        totalAmount.setText(numberWithOnAfterSeperator(String.valueOf(income-outcome).replace(".", ",")));
-    }
+        incomeAmount.setText((String.valueOf(f.format(income))).replace(".", separator));
+        outcomeAmount.setText(String.valueOf(f.format(outcome)).replace(".", separator));
 
-    public String numberWithOnAfterSeperator(String tmp){
-        int after = -1;
-        boolean b = false;
-        for(int i = 0; i < tmp.length(); i++){
-            if(tmp.charAt(i) == '.' || tmp.charAt(i) == ','){
-                b = true;
-            }
-            if(b){
-                after++;
-            }
-        }
-        if(after == 1){
-            return tmp + "0";
-        }
-        return tmp;
+        totalAmount.setText(String.valueOf(f.format(income-outcome)).replace(".", separator));
     }
 
     @Override
